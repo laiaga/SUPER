@@ -1,4 +1,4 @@
-package classes;
+package model;
 
 /**
  * @author Loïc Vierin

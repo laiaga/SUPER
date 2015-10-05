@@ -1,4 +1,4 @@
-package model;
+package model.vehicle;
 
 /**
  * Abstract modelisation of a vehicule using the bridge

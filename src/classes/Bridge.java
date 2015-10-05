@@ -21,7 +21,12 @@ public class Bridge
 		if(this.state == PositionBridge.Down)
 		{
 			this.state = PositionBridge.Moving;
-			wait(5000);
+			try {
+				wait(5000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			this.state = PositionBridge.Up;
 		}
 	}
@@ -30,7 +35,12 @@ public class Bridge
 		if(this.state == PositionBridge.Up)
 		{
 			this.state = PositionBridge.Moving;
-			wait(5000);
+			try {
+				wait(5000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			this.state = PositionBridge.Down;
 		}
 	}

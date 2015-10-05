@@ -1,6 +1,8 @@
-package classes;
+package model;
 
-public class TricolorLight extends ColorLights{
+import model.ColorLights.ColorTri;
+
+public class BicolorLight extends ColorLights{
 	ColorTri feux;
 
 	public ColorTri getFeux() {
@@ -11,14 +13,12 @@ public class TricolorLight extends ColorLights{
 		this.feux = feux;
 	}
 
-	public TricolorLight() {
+	public BicolorLight() {
 		super();
 	}
 
-	public TricolorLight(ColorTri feux) {
+	public BicolorLight(ColorTri feux) {
 		super();
 		this.feux = feux;
 	}
-	
-	
 }

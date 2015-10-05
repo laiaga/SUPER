@@ -1,6 +1,6 @@
-package classes;
+package model;
 
-public class BicolorLight extends ColorLights{
+public class TricolorLight extends ColorLights{
 	ColorTri feux;
 
 	public ColorTri getFeux() {
@@ -11,12 +11,14 @@ public class BicolorLight extends ColorLights{
 		this.feux = feux;
 	}
 
-	public BicolorLight() {
+	public TricolorLight() {
 		super();
 	}
 
-	public BicolorLight(ColorTri feux) {
+	public TricolorLight(ColorTri feux) {
 		super();
 		this.feux = feux;
 	}
+	
+	
 }

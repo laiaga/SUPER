@@ -85,6 +85,11 @@ try {
 			car.setHorizontalAlignment(SwingConstants.CENTER);
 			car.setText("");
 			
+			BufferedImage picture_boat = ImageIO.read(new File("res/img/vehicles/boats/boat.png"));
+			JLabel boat = new JLabel( new ImageIcon(picture_boat));
+			boat.setHorizontalAlignment(SwingConstants.CENTER);
+			boat.setText("");
+			
 			BufferedImage picture_bg = ImageIO.read(new File("res/img/background/background.png"));
 			JLabel bg = new JLabel( new ImageIcon(picture_bg));
 			bg.setHorizontalAlignment(SwingConstants.CENTER);
@@ -100,9 +105,15 @@ try {
 			Panel_car.setBounds(200, 300, picture_car.getWidth(), picture_car.getHeight()+10);
 			layeredPane.add(Panel_car);
 			
+			JPanel Panel_boat = new JPanel();
+			layeredPane.setLayer(Panel_boat, 2);
+			Panel_boat.setBounds(500, 450, picture_boat.getWidth(), picture_boat.getHeight()+10);
+			layeredPane.add(Panel_boat);
+			
 			
 			Panel_car.add(car);
 			Panel_bg.add(bg);
+			Panel_boat.add(boat);
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

@@ -31,6 +31,7 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLayeredPane;
+import javax.swing.JProgressBar;
 
 /**
  * @author Loïc Vierin
@@ -70,42 +71,56 @@ public class View {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.WHITE);
 		
-		JPanel panel = new JPanel();
-		panel.setBackground(Color.WHITE);
-		frame.getContentPane().add(panel, BorderLayout.CENTER);
+		JLayeredPane layeredPane = new JLayeredPane();
+		frame.getContentPane().add(layeredPane, BorderLayout.CENTER);
 		
-		try {
+
+		
+try {
+		
 
 			
-			BufferedImage myPicture2 = ImageIO.read(new File("res/img/vehicles/cars/car.png"));
-			JLabel car = new JLabel( new ImageIcon(myPicture2));
-
+			BufferedImage picture_car = ImageIO.read(new File("res/img/vehicles/cars/car.png"));
+			JLabel car = new JLabel( new ImageIcon(picture_car));
 			car.setHorizontalAlignment(SwingConstants.CENTER);
 			car.setText("");
 			
-			BufferedImage myPicture = ImageIO.read(new File("res/img/background/background.png"));
-			JLabel bg = new JLabel( new ImageIcon(myPicture));
+			BufferedImage picture_bg = ImageIO.read(new File("res/img/background/background.png"));
+			JLabel bg = new JLabel( new ImageIcon(picture_bg));
 			bg.setHorizontalAlignment(SwingConstants.CENTER);
 			bg.setText("");
-			panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panel.add(car);
-			panel.add(bg);
+
+			JPanel Panel_bg = new JPanel();
+			layeredPane.setLayer(Panel_bg, 1);
+			Panel_bg.setBounds(0, 0, 897, 773);
+			layeredPane.add(Panel_bg);
+			
+			JPanel Panel_car = new JPanel();
+			layeredPane.setLayer(Panel_car, 2);
+			Panel_car.setBounds(200, 300, picture_car.getWidth(), picture_car.getHeight()+10);
+			layeredPane.add(Panel_car);
+			
+			
+			Panel_car.add(car);
+			Panel_bg.add(bg);
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		
 
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(Color.WHITE);
-		frame.getContentPane().add(panel_1, BorderLayout.EAST);
-		GridBagLayout gbl_panel_1 = new GridBagLayout();
-		gbl_panel_1.columnWidths = new int[] {37, 0};
-		gbl_panel_1.rowHeights = new int[]{15, 0, 0, 0, 0, 0, 0, 0};
-		gbl_panel_1.columnWeights = new double[]{0.0, Double.MIN_VALUE};
-		gbl_panel_1.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		panel_1.setLayout(gbl_panel_1);
+		JPanel panel_states = new JPanel();
+		panel_states.setBackground(Color.WHITE);
+		frame.getContentPane().add(panel_states, BorderLayout.EAST);
+		GridBagLayout gbl_panel_states = new GridBagLayout();
+		gbl_panel_states.columnWidths = new int[] {37, 0};
+		gbl_panel_states.rowHeights = new int[]{15, 0, 0, 0, 0, 0, 0, 0};
+		gbl_panel_states.columnWeights = new double[]{0.0, Double.MIN_VALUE};
+		gbl_panel_states.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		panel_states.setLayout(gbl_panel_states);
 		
 		JLabel lblNewLabel = new JLabel("STATES");
 		lblNewLabel.setFont(new Font("Arimo", Font.PLAIN, 14));
@@ -114,7 +129,7 @@ public class View {
 		gbc_lblNewLabel.anchor = GridBagConstraints.NORTHWEST;
 		gbc_lblNewLabel.gridx = 0;
 		gbc_lblNewLabel.gridy = 0;
-		panel_1.add(lblNewLabel, gbc_lblNewLabel);
+		panel_states.add(lblNewLabel, gbc_lblNewLabel);
 		
 		JLabel lblCapteurV = new JLabel("Bridge Closed");
 		lblCapteurV.setFont(new Font("Arimo", Font.PLAIN, 14));
@@ -123,7 +138,7 @@ public class View {
 		gbc_lblCapteurV.insets = new Insets(0, 0, 5, 0);
 		gbc_lblCapteurV.gridx = 0;
 		gbc_lblCapteurV.gridy = 1;
-		panel_1.add(lblCapteurV, gbc_lblCapteurV);
+		panel_states.add(lblCapteurV, gbc_lblCapteurV);
 		
 		JMenuBar menuBar = new JMenuBar();
 		frame.getContentPane().add(menuBar, BorderLayout.NORTH);
@@ -143,8 +158,12 @@ public class View {
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Infos");
 		mntmNewMenuItem_1.setFont(new Font("Arimo", Font.PLAIN, 14));
 		mnNewMenu_1.add(mntmNewMenuItem_1);
+		
+		JProgressBar progressBar = new JProgressBar();
+		frame.getContentPane().add(progressBar, BorderLayout.SOUTH);
+		progressBar.setValue(50);
 		frame.setBackground(UIManager.getColor("Button.darkShadow"));
-		frame.setBounds(100, 100, 1077, 834);
+		frame.setBounds(100, 100, 1200, 800);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 }

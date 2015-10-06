@@ -3,23 +3,34 @@
  */
 package view;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
-import javax.swing.JPanel;
-import javax.swing.UIManager;
-import java.awt.BorderLayout;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import java.awt.Color;
-import javax.swing.JProgressBar;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import java.awt.Font;
-import javax.swing.JSeparator;
+import javax.swing.JPanel;
+import javax.swing.UIManager;
+import javax.swing.SwingConstants;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import net.miginfocom.swing.MigLayout;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JLayeredPane;
 
 /**
  * @author Loïc Vierin
@@ -63,11 +74,34 @@ public class View {
 		panel.setBackground(Color.WHITE);
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
 		
+		try {
+
+			
+			BufferedImage myPicture2 = ImageIO.read(new File("res/img/vehicles/cars/car.png"));
+			JLabel car = new JLabel( new ImageIcon(myPicture2));
+
+			car.setHorizontalAlignment(SwingConstants.CENTER);
+			car.setText("");
+			
+			BufferedImage myPicture = ImageIO.read(new File("res/img/background/background.png"));
+			JLabel bg = new JLabel( new ImageIcon(myPicture));
+			bg.setHorizontalAlignment(SwingConstants.CENTER);
+			bg.setText("");
+			panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+			panel.add(car);
+			panel.add(bg);
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.WHITE);
 		frame.getContentPane().add(panel_1, BorderLayout.EAST);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
-		gbl_panel_1.columnWidths = new int[]{37, 0};
+		gbl_panel_1.columnWidths = new int[] {37, 0};
 		gbl_panel_1.rowHeights = new int[]{15, 0, 0, 0, 0, 0, 0, 0};
 		gbl_panel_1.columnWeights = new double[]{0.0, Double.MIN_VALUE};
 		gbl_panel_1.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
@@ -110,8 +144,7 @@ public class View {
 		mntmNewMenuItem_1.setFont(new Font("Arimo", Font.PLAIN, 14));
 		mnNewMenu_1.add(mntmNewMenuItem_1);
 		frame.setBackground(UIManager.getColor("Button.darkShadow"));
-		frame.setBounds(100, 100, 1013, 662);
+		frame.setBounds(100, 100, 1077, 834);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
-
 }

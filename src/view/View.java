@@ -15,7 +15,6 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -25,11 +24,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.SwingConstants;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import net.miginfocom.swing.MigLayout;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLayeredPane;
 import javax.swing.JProgressBar;
 
@@ -40,6 +34,7 @@ import javax.swing.JProgressBar;
 public class View {
 
 	private JFrame frame;
+	
 
 	/**
 	 * Launch the application.
@@ -74,21 +69,32 @@ public class View {
 		JLayeredPane layeredPane = new JLayeredPane();
 		frame.getContentPane().add(layeredPane, BorderLayout.CENTER);
 		
+		DisplayCars displayCars = new DisplayCars(layeredPane);
 
 		
 try { 
 		
 
+			displayCars.createCar();
+		
 			
-			BufferedImage picture_car = ImageIO.read(new File("res/img/vehicles/cars/car.png"));
-			JLabel car = new JLabel( new ImageIcon(picture_car));
-			car.setHorizontalAlignment(SwingConstants.CENTER);
-			car.setText("");
+			
+			/////////////////////////////
+			
 			
 			BufferedImage picture_boat = ImageIO.read(new File("res/img/vehicles/boats/boat.png"));
 			JLabel boat = new JLabel( new ImageIcon(picture_boat));
 			boat.setHorizontalAlignment(SwingConstants.CENTER);
 			boat.setText("");
+			
+			JPanel Panel_boat = new JPanel();
+			layeredPane.setLayer(Panel_boat, 1);
+			Panel_boat.setBounds(500, 450, picture_boat.getWidth(), picture_boat.getHeight()+10);
+			layeredPane.add(Panel_boat);
+			
+			
+			//////////////////////////////
+			
 			
 			BufferedImage picture_bg = ImageIO.read(new File("res/img/background/background.png"));
 			JLabel bg = new JLabel( new ImageIcon(picture_bg));
@@ -96,27 +102,20 @@ try {
 			bg.setText("");
 
 			JPanel Panel_bg = new JPanel();
-			layeredPane.setLayer(Panel_bg, 1);
+			layeredPane.setLayer(Panel_bg, 0);
 			Panel_bg.setBounds(0, 0, 897, 773);
 			layeredPane.add(Panel_bg);
 			
-			JPanel Panel_car = new JPanel();
-			layeredPane.setLayer(Panel_car, 2);
-			Panel_car.setBounds(200, 300, picture_car.getWidth(), picture_car.getHeight()+10);
-			layeredPane.add(Panel_car);
-			
-			JPanel Panel_boat = new JPanel();
-			layeredPane.setLayer(Panel_boat, 2);
-			Panel_boat.setBounds(500, 450, picture_boat.getWidth(), picture_boat.getHeight()+10);
-			layeredPane.add(Panel_boat);
 			
 			
-			Panel_car.add(car);
+			
+			
+			
+			
 			Panel_bg.add(bg);
 			Panel_boat.add(boat);
 			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

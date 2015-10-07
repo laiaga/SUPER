@@ -4,13 +4,13 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 @SuppressWarnings("serial")
-public class JCar extends JLabel {
+public class JImage extends JLabel {
 
-	public JCar(){
+	public JImage(){
 		super();
 	}
 	
-	public JCar(ImageIcon imageIcon) {
+	public JImage(ImageIcon imageIcon) {
 		super(imageIcon);
 	}
 

@@ -10,6 +10,7 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -38,18 +39,43 @@ public class View {
 
 	/**
 	 * Launch the application.
+	 * @throws IOException 
+	 * @throws InterruptedException 
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
+	public static void main(String[] args) throws IOException, InterruptedException {
+		/*EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					View window = new View();
+
 					window.frame.setVisible(true);
+					
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
-		});
+		});*/
+		
+		View window = new View();
+
+		window.frame.setVisible(true);
+		
+		Car car1 = window.create_car(Position.East);
+		Car car2 = null;
+		for(int i=0; i<=1000; i++ ) {
+
+			car1.move(1);
+			if(car2!=null)
+				car2.move(1);
+			Thread.sleep(15);
+			window.frame.revalidate();
+			window.frame.repaint();
+			if(i==200)
+				car2 = window.create_car(Position.East);
+				
+		}
+		
 	}
 
 	/**
@@ -74,24 +100,15 @@ public class View {
 		
 try { 
 		
-		DisplayCars displayCars = new DisplayCars(layeredPane);
-		displayCars.createCar("left");
-		
+
+
+
 			
 			
 			/////////////////////////////
 			
 			
-			BufferedImage picture_boat = ImageIO.read(new File("res/img/vehicles/boats/boat.png"));
-			JLabel boat = new JLabel( new ImageIcon(picture_boat));
-			boat.setHorizontalAlignment(SwingConstants.CENTER);
-			boat.setText("");
-			
-			JPanel Panel_boat = new JPanel();
-			layeredPane.setLayer(Panel_boat, 1);
-			Panel_boat.setBounds(500, 450, picture_boat.getWidth(), picture_boat.getHeight()+10);
-			layeredPane.add(Panel_boat);
-			
+		Boat boat1 = new Boat(layeredPane, Position.North);
 			
 			//////////////////////////////
 			
@@ -113,7 +130,6 @@ try {
 			
 			
 			Panel_bg.add(bg);
-			Panel_boat.add(boat);
 			
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -175,5 +191,17 @@ try {
 		frame.setBackground(UIManager.getColor("Button.darkShadow"));
 		frame.setBounds(100, 100, 1200, 800);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		
+	}
+	
+	public Car create_car(Position p) throws IOException {
+		return (new Car(frame.getLayeredPane(), p));
+		
+	}
+	
+	public void move_car(Car car, int x) throws IOException {
+		car.move(x);
+		
 	}
 }

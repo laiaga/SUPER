@@ -75,7 +75,7 @@ public class View {
 try { 
 		
 		DisplayCars displayCars = new DisplayCars(layeredPane);
-		displayCars.createCar();
+		displayCars.createCar("left");
 		
 			
 			

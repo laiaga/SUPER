@@ -22,7 +22,7 @@ public class DisplayCars {
 		
 	}
 	
-	public JCar createCar() {
+	public JCar createCar(String pos) {
 		JCar car = new JCar(icon_car);
 		
 		JPanel panel_car = new JPanel();

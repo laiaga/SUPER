@@ -1,7 +1,5 @@
 package model;
 
-import model.ColorLights.ColorTri;
-
 public class BicolorLight extends ColorLights{
 	ColorTri feux;
 

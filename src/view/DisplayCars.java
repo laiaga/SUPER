@@ -6,22 +6,24 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
 public class DisplayCars {
+	ImageIcon icon_car;
+	BufferedImage picture_car;
 	
 	private JLayeredPane layeredPane;
 	
-	public DisplayCars(JLayeredPane layeredPane){
+	public DisplayCars(JLayeredPane layeredPane) throws IOException{
+		picture_car = ImageIO.read(new File("res/img/vehicles/cars/car.png"));
+		icon_car = new ImageIcon(picture_car);
 		this.layeredPane = layeredPane;
 		
 	}
 	
-	public JCar createCar() throws IOException{
-		BufferedImage picture_car = ImageIO.read(new File("res/img/vehicles/cars/car.png"));
-		JCar car = new JCar( new ImageIcon(picture_car));
+	public JCar createCar() {
+		JCar car = new JCar(icon_car);
 		
 		JPanel panel_car = new JPanel();
 		layeredPane.setLayer(panel_car, 1);

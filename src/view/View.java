@@ -69,13 +69,13 @@ public class View {
 		JLayeredPane layeredPane = new JLayeredPane();
 		frame.getContentPane().add(layeredPane, BorderLayout.CENTER);
 		
-		DisplayCars displayCars = new DisplayCars(layeredPane);
+		
 
 		
 try { 
 		
-
-			displayCars.createCar();
+		DisplayCars displayCars = new DisplayCars(layeredPane);
+		displayCars.createCar();
 		
 			
 			

@@ -33,7 +33,7 @@ public class Boat {
 		
 	public Boat(JLayeredPane layeredPane, Position pos) throws IOException {
 		
-		this.picture_boat = ImageIO.read(new File("res/img/vehicles/boats/boat.png"));
+		this.picture_boat = ImageIO.read(new File("ressources/img/vehicles/boats/boat.png"));
 		this.layeredPane = layeredPane;
 		this.panelBoat = new JPanel();
 		this.p = new Point();

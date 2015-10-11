@@ -33,7 +33,7 @@ public class Car {
 		
 	public Car(JLayeredPane layeredPane, Position pos) throws IOException {
 		
-		BufferedImage picture_car = ImageIO.read(new File("res/img/vehicles/cars/car.png"));
+		BufferedImage picture_car = ImageIO.read(new File("ressources/img/vehicles/cars/car.png"));
 		this.layeredPane = layeredPane;
 		this.panelCar = new JPanel();
 		this.p = new Point();

@@ -19,6 +19,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
+
+import test.Bridge;
+
 import javax.swing.SwingConstants;
 import javax.swing.JLayeredPane;
 import javax.swing.JProgressBar;
@@ -27,10 +30,7 @@ import javax.swing.JProgressBar;
  * @author Loïc Vierin
  *
  */
-public class View extends JFrame{
-
-	//private JFrame frame;
-	
+public class View extends JFrame{	
 
 	/**
 	 * Launch the application.
@@ -65,6 +65,8 @@ public class View extends JFrame{
 	 * Initialize the contents of the frame.
 	 */
 	public View() {
+		super();
+		
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
@@ -74,13 +76,11 @@ public class View extends JFrame{
 		getContentPane().add(layeredPane, BorderLayout.CENTER);
 		
 		
-
-		
 		try { 
 			
 			
 			
-			BufferedImage picture_bg = ImageIO.read(new File("res/img/background/background.png"));
+			BufferedImage picture_bg = ImageIO.read(new File("ressources/img/background/background.png"));
 			JLabel bg = new JLabel( new ImageIcon(picture_bg));
 			bg.setHorizontalAlignment(SwingConstants.CENTER);
 

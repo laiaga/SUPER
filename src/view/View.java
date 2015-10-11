@@ -1,16 +1,11 @@
-/**
- * 
- */
 package view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -32,9 +27,9 @@ import javax.swing.JProgressBar;
  * @author Loïc Vierin
  *
  */
-public class View {
+public class View extends JFrame{
 
-	private JFrame frame;
+	//private JFrame frame;
 	
 
 	/**
@@ -43,104 +38,67 @@ public class View {
 	 * @throws InterruptedException 
 	 */
 	public static void main(String[] args) throws IOException, InterruptedException {
-		/*EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					View window = new View();
 
-					window.frame.setVisible(true);
-					
-
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});*/
-		
 		View window = new View();
 
-		window.frame.setVisible(true);
-		
+		//création voitures et bateaux
 		Car car1 = window.create_car(Position.East);
 		Car car2 = null;
+		Boat boat1 = new Boat(window.getLayeredPane(), Position.North);
+		
 		for(int i=0; i<=1000; i++ ) {
-
 			car1.move(1);
 			if(car2!=null)
 				car2.move(1);
 			Thread.sleep(15);
-			window.frame.revalidate();
-			window.frame.repaint();
+			window.revalidate();
+			window.repaint();
 			if(i==200)
+			{
 				car2 = window.create_car(Position.East);
-				
+			}
 		}
 		
 	}
 
 	/**
-	 * Create the application.
-	 */
-	public View() {
-		initialize();
-	}
-
-	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.getContentPane().setBackground(Color.WHITE);
+	public View() {
+		setVisible(true);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setResizable(false);
 		
+		getContentPane().setBackground(Color.WHITE);
 		JLayeredPane layeredPane = new JLayeredPane();
-		frame.getContentPane().add(layeredPane, BorderLayout.CENTER);
+		getContentPane().add(layeredPane, BorderLayout.CENTER);
 		
 		
 
 		
-try { 
-		
-
-
-
+		try { 
 			
-			
-			/////////////////////////////
-			
-			
-		Boat boat1 = new Boat(layeredPane, Position.North);
-			
-			//////////////////////////////
 			
 			
 			BufferedImage picture_bg = ImageIO.read(new File("res/img/background/background.png"));
 			JLabel bg = new JLabel( new ImageIcon(picture_bg));
 			bg.setHorizontalAlignment(SwingConstants.CENTER);
-			bg.setText("");
 
 			JPanel Panel_bg = new JPanel();
 			layeredPane.setLayer(Panel_bg, 0);
 			Panel_bg.setBounds(0, 0, 897, 773);
 			layeredPane.add(Panel_bg);
 			
-			
-			
-			
-			
-			
-			
 			Panel_bg.add(bg);
 			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		
 
 		
 		JPanel panel_states = new JPanel();
 		panel_states.setBackground(Color.WHITE);
-		frame.getContentPane().add(panel_states, BorderLayout.EAST);
+		getContentPane().add(panel_states, BorderLayout.EAST);
 		GridBagLayout gbl_panel_states = new GridBagLayout();
 		gbl_panel_states.columnWidths = new int[] {37, 0};
 		gbl_panel_states.rowHeights = new int[]{15, 0, 0, 0, 0, 0, 0, 0};
@@ -167,7 +125,7 @@ try {
 		panel_states.add(lblCapteurV, gbc_lblCapteurV);
 		
 		JMenuBar menuBar = new JMenuBar();
-		frame.getContentPane().add(menuBar, BorderLayout.NORTH);
+		getContentPane().add(menuBar, BorderLayout.NORTH);
 		
 		JMenu mnNewMenu = new JMenu("Actions");
 		mnNewMenu.setFont(new Font("Arimo", Font.PLAIN, 14));
@@ -186,17 +144,17 @@ try {
 		mnNewMenu_1.add(mntmNewMenuItem_1);
 		
 		JProgressBar progressBar = new JProgressBar();
-		frame.getContentPane().add(progressBar, BorderLayout.SOUTH);
+		getContentPane().add(progressBar, BorderLayout.SOUTH);
 		progressBar.setValue(50);
-		frame.setBackground(UIManager.getColor("Button.darkShadow"));
-		frame.setBounds(100, 100, 1200, 800);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBackground(UIManager.getColor("Button.darkShadow"));
+		setBounds(100, 100, 1200, 800);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		
 	}
 	
 	public Car create_car(Position p) throws IOException {
-		return (new Car(frame.getLayeredPane(), p));
+		return (new Car(getLayeredPane(), p));
 		
 	}
 	

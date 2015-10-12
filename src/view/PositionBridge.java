@@ -1,6 +1,10 @@
 package view;
 
+/**
+ * @author Loïc Vierin
+ * Possible positions of the bridge
+ */
 public enum PositionBridge
 {
-	Up, Down, Moving;
+	UP, DOWN, MOVING;
 }

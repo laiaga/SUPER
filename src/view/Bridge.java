@@ -54,7 +54,7 @@ public class Bridge extends JPanel {
 	 * At the end of the operation, cars can go through, boats are blocked
 	 */
 	public void close() {
-		pos = PositionBridge.Moving;
+		pos = PositionBridge.MOVING;
 		try {
 			int width = 0;
 			for(int i=0; i<bufferedImgBridge.getWidth(); i++) {
@@ -67,7 +67,7 @@ public class Bridge extends JPanel {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		pos=PositionBridge.Down;	
+		pos=PositionBridge.DOWN;	
 	}
 	
 	/**
@@ -75,7 +75,7 @@ public class Bridge extends JPanel {
 	 * At the end of the operation, boats can go through, cars are blocked
 	 */
 	public void open() {
-		pos = PositionBridge.Moving;
+		pos = PositionBridge.MOVING;
 		try {
 			int width = bufferedImgBridge.getWidth();
 			for(int i=0; i<bufferedImgBridge.getWidth(); i++) {
@@ -88,7 +88,7 @@ public class Bridge extends JPanel {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		pos=PositionBridge.Up;		
+		pos=PositionBridge.UP;		
 	}
 	
 	/**

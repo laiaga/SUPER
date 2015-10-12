@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -20,16 +19,15 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 
-import test_view.Bridge;
-
 import javax.swing.SwingConstants;
 import javax.swing.JLayeredPane;
 import javax.swing.JProgressBar;
 
 /**
+ * The main JFrame containing the whole GUI
  * @author Loïc Vierin
- *
  */
+@SuppressWarnings("serial")
 public class View extends JFrame{	
 
 	/**
@@ -51,7 +49,7 @@ public class View extends JFrame{
 		Boat boat2 = null;
 		Boat boat3 = null;
 		Boat boat4 = null;
-		view.Bridge bridge = window.create_bridge(PositionBridge.Down);
+		view.Bridge bridge = window.create_bridge(PositionBridge.DOWN);
 		Barrier barrier= window.create_barrier(Position.EAST);
 		Barrier barrier2= window.create_barrier(Position.WEST);
 		bridge.open();
@@ -131,17 +129,17 @@ public class View extends JFrame{
 			
 			
 			
-			BufferedImage picture_bg = ImageIO.read(new File("res/img/background/background.png"));
-			JLabel bg = new JLabel( new ImageIcon(picture_bg));
-			bg.setHorizontalAlignment(SwingConstants.CENTER);
+			BufferedImage bufferedImgBackground = ImageIO.read(new File(ImagePath.BACKGROUND.toString()));
+			JImage imgBackground = new JImage( new ImageIcon(bufferedImgBackground));
+			imgBackground.setHorizontalAlignment(SwingConstants.CENTER);
 
-			JPanel Panel_bg = new JPanel();
-			Panel_bg.setBackground(Color.WHITE);
-			layeredPane.setLayer(Panel_bg, 0);
-			Panel_bg.setBounds(0, 0, 897, 773);
-			layeredPane.add(Panel_bg);
+			JPanel panelBackground = new JPanel();
+			panelBackground.setBackground(Color.WHITE);
+			layeredPane.setLayer(panelBackground, 0);
+			panelBackground.setBounds(0, 0, 897, 773);
+			layeredPane.add(panelBackground);
 			
-			Panel_bg.add(bg);
+			panelBackground.add(imgBackground);
 			
 		} catch (IOException e) {
 			e.printStackTrace();

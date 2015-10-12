@@ -57,10 +57,10 @@ public class View extends JFrame{
 		Barrier barrier= window.createBarrier(Position.EAST);
 		Barrier barrier2= window.createBarrier(Position.WEST);
 		
-		Traffic_Tri traffic1 = window.create_traffic_tri(Position.EAST);
-		Traffic_Tri traffic2 = window.create_traffic_tri(Position.WEST);
-		Traffic_Bi traffic3 = window.create_traffic_bi(Position.NORTH);
-		Traffic_Bi traffic4 = window.create_traffic_bi(Position.SOUTH);
+		TrafficTri traffic1 = window.createTrafficTri(Position.EAST);
+		TrafficTri traffic2 = window.createTrafficTri(Position.WEST);
+		TrafficBi traffic3 = window.createTrafficBi(Position.NORTH);
+		TrafficBi traffic4 = window.createTrafficBi(Position.SOUTH);
 		
 		
 		barrier.setOpen(); 
@@ -215,9 +215,18 @@ public class View extends JFrame{
 		setBounds(100, 100, 1218, 858);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		displayButtons();
 		
 	}
 	
+	/**
+	 * Creates the button pannel on the right of the window
+	 * @param contentPane
+	 */
+	private void displayButtons() {
+		ButtonsColumn buttons = new ButtonsColumn();
+	}
+
 	/**
 	 * Creates a new car to display on screen
 	 * @param p the position (East or West, relative to the bridge) of the car
@@ -259,19 +268,18 @@ public class View extends JFrame{
 		return (new Barrier(getLayeredPane(), p));
 	}
 	
-	
 	/**
 	 * Creates a new traffic light to display onscreen
 	 * @param p
 	 * @return
 	 * @throws IOException
 	 */
-	public Traffic_Tri create_traffic_tri(Position p) throws IOException {
-		return (new Traffic_Tri(getLayeredPane(), p));
+	public TrafficTri createTrafficTri(Position p) throws IOException {
+		return (new TrafficTri(getLayeredPane(), p));
 	}
 	
-	public Traffic_Bi create_traffic_bi(Position p) throws IOException {
-		return (new Traffic_Bi(getLayeredPane(), p));
+	public TrafficBi createTrafficBi(Position p) throws IOException {
+		return (new TrafficBi(getLayeredPane(), p));
 	}
 
 	/**

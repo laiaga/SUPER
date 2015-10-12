@@ -52,7 +52,8 @@ public class View extends JFrame{
 		Boat boat3 = null;
 		Boat boat4 = null;
 		view.Bridge bridge = window.create_bridge(PositionBridge.Down);
-		
+		Barrier barrier= window.create_barrier(Position.East);
+		Barrier barrier2= window.create_barrier(Position.West);
 		bridge.open();
 		
 		for(int i=0; i<=700; i++ ) {
@@ -223,5 +224,8 @@ public class View extends JFrame{
 		return (new view.Bridge(getLayeredPane(), p));
 	}
 	
+	public Barrier create_barrier(Position p) throws IOException {
+		return (new Barrier(getLayeredPane(), p));
+	}
 
 }

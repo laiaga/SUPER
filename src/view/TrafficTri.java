@@ -10,7 +10,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
-import model.ColorLights.ColorBi;
 import view.ColorLights.ColorTri;
 
 /**
@@ -18,20 +17,20 @@ import view.ColorLights.ColorTri;
  * @author Loic Vierin
  */
 @SuppressWarnings("serial")
-public class Traffic_Bi extends JPanel {
+public class TrafficTri extends JPanel {
 	
 	private BufferedImage bufferedImgBridge;
 	private JImage imgBridge;
 	private JLayeredPane layeredPane;
 	private Position pos;
-	private ColorBi color;
+	private ColorTri color;
 	private Point p;
 	
 	public Position getPos() {
 		return pos;
 	}
 		
-	public Traffic_Bi(JLayeredPane layeredPane, Position pos) throws IOException {
+	public TrafficTri(JLayeredPane layeredPane, Position pos) throws IOException {
 		super();
 		
 		bufferedImgBridge = ImageIO.read(new File(ImagePath.TRAFFIC.toString()+"green.png"));
@@ -39,17 +38,16 @@ public class Traffic_Bi extends JPanel {
 		this.setOpaque(false);
 		p = new Point();
 		this.pos = pos;
-		color = ColorBi.VERT;
+		color = ColorTri.VERT;
 		
-		
-		if(pos == Position.NORTH) {
+		if(pos == Position.EAST) {
 			p.x=190;
-			p.y=110;
+			p.y=230;
 		}
 		
-		else if(pos == Position.SOUTH) {
+		else if(pos == Position.WEST) {
 			p.x=710;
-			p.y=620;
+			p.y=500;
 		}
 		
 		else {
@@ -69,7 +67,7 @@ public class Traffic_Bi extends JPanel {
 	}
 	
 	public void setRed() {
-		this.color = ColorBi.ROUGE;
+		this.color = ColorTri.ROUGE;
 		try {
 			bufferedImgBridge = ImageIO.read(new File(ImagePath.TRAFFIC.toString()+"red.png"));
 		} catch (IOException e) {
@@ -78,10 +76,18 @@ public class Traffic_Bi extends JPanel {
 		}
 		imgBridge.setIcon(new ImageIcon(bufferedImgBridge));
 	}
-
-
+	public void setOrange() {
+		this.color = ColorTri.ORANGE;
+		try {
+			bufferedImgBridge = ImageIO.read(new File(ImagePath.TRAFFIC.toString()+"orange.png"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		imgBridge.setIcon(new ImageIcon(bufferedImgBridge));
+	}
 	public void setGreen() {
-		this.color = ColorBi.VERT;
+		this.color = ColorTri.VERT;
 		try {
 			bufferedImgBridge = ImageIO.read(new File(ImagePath.TRAFFIC.toString()+"green.png"));
 		} catch (IOException e) {

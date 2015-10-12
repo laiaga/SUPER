@@ -54,8 +54,8 @@ public class View extends JFrame{
 		Boat boat3 = null;
 		Boat boat4 = null;
 		view.Bridge bridge = window.createBridge(BridgeState.DOWN);
-		Barrier barrier= window.create_barrier(Position.EAST);
-		Barrier barrier2= window.create_barrier(Position.WEST);
+		Barrier barrier= window.createBarrier(Position.EAST);
+		Barrier barrier2= window.createBarrier(Position.WEST);
 		
 		/*Traffic traffic1 = window.create_traffic(Position.EAST);
 		Traffic traffic2 = window.create_traffic(Position.WEST);
@@ -227,7 +227,7 @@ public class View extends JFrame{
 	 * @return the Barrier created 
 	 * @throws IOException in the case of the barrier image not being at the specified path
 	 */
-	public Barrier create_barrier(Position p) throws IOException {
+	public Barrier createBarrier(Position p) throws IOException {
 		return (new Barrier(getLayeredPane(), p));
 	}
 	
@@ -237,7 +237,7 @@ public class View extends JFrame{
 	 * @return
 	 * @throws IOException
 	 */
-	public Traffic create_traffic(Position p) throws IOException {
+	public Traffic createTraffic(Position p) throws IOException {
 		return (new Traffic(getLayeredPane(), p));
 	}
 

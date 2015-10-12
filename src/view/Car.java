@@ -1,6 +1,3 @@
-/**
- * 
- */
 package view;
 
 import java.awt.Point;
@@ -16,30 +13,32 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
 /**
+ * Modelization of a boat of a random color
  * @author Loic Vierin
- *
  */
-
-//ceci est l'image sur l'interface de 1 voiture.
-public class Car {
+@SuppressWarnings("serial")
+public class Car extends JPanel {
 	
-	private ImageIcon icon_car;
-	private BufferedImage picture_car_rotated;
+	private BufferedImage bufferedImgCar;
+	private JImage imgCar;
 	private JLayeredPane layeredPane;
-	private JPanel panelCar;
 	private Position pos;
 	private Point p;
 	
 		
 	public Car(JLayeredPane layeredPane, Position pos) throws IOException {
+		super();
+		
 		int max=6;
 		int min=1;
 		int rand= (int) ( Math.random()*( max - min + 1 ) ) + min;
 		String img = ImagePath.CAR.toString() + rand + ".png";
-		BufferedImage picture_car = ImageIO.read(new File(img));
+		BufferedImage originBufferedImgCar = ImageIO.read(new File(img));
+		
 		this.layeredPane = layeredPane;
-		this.panelCar = new JPanel();
-		this.panelCar.setOpaque(false);
+		
+		this.setOpaque(false);
+		
 		this.p = new Point();
 		this.pos = pos;
 		int rot=0;
@@ -60,52 +59,52 @@ public class Car {
 		
 	    
 	    AffineTransform xform = new AffineTransform();
-	    xform.translate(0.5*picture_car.getHeight(), 0.5*picture_car.getWidth());
+	    xform.translate(0.5*originBufferedImgCar.getHeight(), 0.5*originBufferedImgCar.getWidth());
 	    xform.rotate(Math.toRadians(rot));
-	    xform.translate(-0.5*picture_car.getWidth(), -0.5*picture_car.getHeight());
+	    xform.translate(-0.5*originBufferedImgCar.getWidth(), -0.5*originBufferedImgCar.getHeight());
 	    
 	    AffineTransformOp op = new AffineTransformOp(xform, AffineTransformOp.TYPE_BILINEAR);
-	    this.picture_car_rotated = op.filter(picture_car, null);
+	    bufferedImgCar = op.filter(originBufferedImgCar, null);
 	    
+		imgCar = new JImage(new ImageIcon(bufferedImgCar));
+		
+		this.layeredPane.setLayer(this, 1);
 
-		this.icon_car = new ImageIcon(picture_car_rotated);
-		
-		
-		JImage car = new JImage(icon_car);
-		
-		layeredPane.setLayer(panelCar, 1);
-		
-
-		panelCar.setBounds(p.x,p.y, picture_car_rotated.getWidth(), picture_car_rotated.getHeight()+10);
-
-		panelCar.add(car);
-		layeredPane.add(panelCar);
-		
-		
-		
-		
+		this.setBounds(p.x,p.y, bufferedImgCar.getWidth(), bufferedImgCar.getHeight()+10);
+		this.add(imgCar);
+		this.layeredPane.add(this);
 	}
 	
+	/**
+	 * Modifies the car position along a line according to its starting point
+	 * @param x the modifier we apply to the axial coordinate of the car
+	 */
 	public void move(int x) {
 		if(pos == Position.EAST)
 			p.x += x;
 		else
 			p.x -=x;
-		panelCar.setBounds(p.x,p.y, picture_car_rotated.getWidth(), picture_car_rotated.getHeight()+10);
+		this.setBounds(p.x,p.y, bufferedImgCar.getWidth(), bufferedImgCar.getHeight()+10);
 		
 		if(p.x==0 || p.x==800)
 			hide();
 	}
 	
+	/**
+	 * Sets the the value of the p attribute and modifies the bounds of the panel accordingly
+	 * @param p the new position (as a couple (x,y)) of the panel
+	 */
 	public void put(Point p) {
 		this.p = p;
-		panelCar.setBounds(p.x,p.y, picture_car_rotated.getWidth(), picture_car_rotated.getHeight()+10);
+		this.setBounds(p.x,p.y, bufferedImgCar.getWidth(), bufferedImgCar.getHeight()+10);
 		
 	}
 	
+	/**
+	 * Hides the panel by allocating him a 0x0 area on screen
+	 */
 	public void hide() {
-		//panelCar.setVisible(false);
-		panelCar.setBounds(p.x,p.y,0, 0);
+		this.setBounds(p.x,p.y,0, 0);
 		
 	}
 	

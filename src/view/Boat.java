@@ -16,13 +16,11 @@ import javax.swing.JPanel;
  * Modelization of a boat of a random color
  * @author Loic Vierin
  */
-
-
 @SuppressWarnings("serial")
 public class Boat extends JPanel{
 	
-	private JImage imageBoat;
-	private BufferedImage pictureBoat;
+	private JImage imgBoat;
+	private BufferedImage bufferedImgBoat;
 	private JLayeredPane layeredPane;
 	private Position pos;
 	private Point p;
@@ -35,8 +33,8 @@ public class Boat extends JPanel{
 		int min=1;
 		int rand= (int) ( Math.random()*( max - min + 1 ) ) + min;
 		String img = ImagePath.BOAT.toString() + rand + ".png";
-		pictureBoat = ImageIO.read(new File(img));
-		imageBoat = new JImage(new ImageIcon(pictureBoat));
+		bufferedImgBoat = ImageIO.read(new File(img));
+		imgBoat = new JImage(new ImageIcon(bufferedImgBoat));
 		
 		this.layeredPane = layeredPane;
 		this.setOpaque(false);
@@ -57,9 +55,9 @@ public class Boat extends JPanel{
 		
 		this.layeredPane.setLayer(this, 1);
 
-		this.setBounds(p.x,p.y, pictureBoat.getWidth(), pictureBoat.getHeight()+10);
+		this.setBounds(p.x,p.y, bufferedImgBoat.getWidth(), bufferedImgBoat.getHeight()+10);
 
-		this.add(imageBoat);
+		this.add(imgBoat);
 		layeredPane.add(this);
 	}
 	
@@ -72,7 +70,7 @@ public class Boat extends JPanel{
 			p.y -= y;
 		else
 			p.y +=y;
-		this.setBounds(p.x,p.y, pictureBoat.getWidth(), pictureBoat.getHeight()+10);
+		this.setBounds(p.x,p.y, bufferedImgBoat.getWidth(), bufferedImgBoat.getHeight()+10);
 		
 		if(p.y==0 || p.y==700)
 			hide();
@@ -84,7 +82,7 @@ public class Boat extends JPanel{
 	 */
 	public void put(Point p) {
 		this.p = p;
-		this.setBounds(p.x,p.y, pictureBoat.getWidth(), pictureBoat.getHeight()+10);	
+		this.setBounds(p.x,p.y, bufferedImgBoat.getWidth(), bufferedImgBoat.getHeight()+10);	
 	}
 	
 	/**

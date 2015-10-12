@@ -1,11 +1,6 @@
-/**
- * 
- */
 package view;
 
 import java.awt.Point;
-import java.awt.geom.AffineTransform;
-import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -16,102 +11,98 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
 /**
+ * Modelization of a boat of the bridge
  * @author Loic Vierin
- *
  */
-
-//ceci est l'image sur l'interface de 1 voiture.
-public class Bridge {
+@SuppressWarnings("serial")
+public class Bridge extends JPanel {
 	
-	private ImageIcon icon_bridge;
-	private BufferedImage picture_bridge;
+	private BufferedImage bufferedImgBridge;
+	private JImage imgBridge;
 	private JLayeredPane layeredPane;
-	private JPanel panelBridge;
 	private PositionBridge pos;
 	private Point p;
 	
+	public PositionBridge getPos() {
+		return pos;
+	}
 		
 	public Bridge(JLayeredPane layeredPane, PositionBridge pos) throws IOException {
+		super();
 		
-		this.picture_bridge = ImageIO.read(new File("res/img/bridge/bridge2.png"));
+		bufferedImgBridge = ImageIO.read(new File(ImagePath.BRIDGE.toString()));
 		this.layeredPane = layeredPane;
-		this.panelBridge = new JPanel();
-		this.panelBridge.setOpaque(false);
-		this.p = new Point();
+		this.setOpaque(false);
+		p = new Point();
 		this.pos = pos;
 		
 		p.x=280;
 		p.y=325;
 		
-	    
-
-	    
-
-		this.icon_bridge = new ImageIcon(picture_bridge);
+		imgBridge = new JImage(new ImageIcon(bufferedImgBridge));
 		
+		this.layeredPane.setLayer(this, 0);
 		
-		JImage bridge = new JImage(icon_bridge);
+		this.setBounds(p.x,p.y, bufferedImgBridge.getWidth(), bufferedImgBridge.getHeight()+10);
 		
-		layeredPane.setLayer(panelBridge, 0);
-		
-
-		panelBridge.setBounds(p.x,p.y, picture_bridge.getWidth(), picture_bridge.getHeight()+10);
-		
-
-		panelBridge.add(bridge);
-		layeredPane.add(panelBridge);
-		
-		
-		
-		
+		this.add(imgBridge);
+		this.layeredPane.add(this);
 	}
 	
+	/**
+	 * Closes the bridge i.e. lower the deck
+	 * At the end of the operation, cars can go through, boats are blocked
+	 */
 	public void close() {
-		this.pos = PositionBridge.Moving;
+		pos = PositionBridge.Moving;
 		try {
-			int w = 0;
-			for(int i=0; i<picture_bridge.getWidth(); i++) {
-				w++;
-				this.panelBridge.setSize(w, picture_bridge.getHeight()+10);
+			int width = 0;
+			for(int i=0; i<bufferedImgBridge.getWidth(); i++) {
+				width++;
+				this.setSize(width, bufferedImgBridge.getHeight()+10);
 
 				Thread.sleep(15);
 			}
 			
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		this.pos=PositionBridge.Down;
-		
-			
+		pos=PositionBridge.Down;	
 	}
 	
+	/**
+	 * Opens the bridge i.e. rises the deck
+	 * At the end of the operation, boats can go through, cars are blocked
+	 */
 	public void open() {
-		this.pos = PositionBridge.Moving;
+		pos = PositionBridge.Moving;
 		try {
-			int w = picture_bridge.getWidth();
-			for(int i=0; i<picture_bridge.getWidth(); i++) {
-				w--;
-				this.panelBridge.setSize(w, picture_bridge.getHeight()+10);
+			int width = bufferedImgBridge.getWidth();
+			for(int i=0; i<bufferedImgBridge.getWidth(); i++) {
+				width--;
+				this.setSize(width, bufferedImgBridge.getHeight()+10);
 
 				Thread.sleep(15);
 			}
 			
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		this.pos=PositionBridge.Up;
-		
-			
+		pos=PositionBridge.Up;		
 	}
 	
+	/**
+	 * Resizes the panel when the bridge is open
+	 */
 	public void setOpen() {
-		this.panelBridge.setSize(0, picture_bridge.getHeight()+10);
+		this.setSize(0, bufferedImgBridge.getHeight()+10);
 	}
 	
+	/**
+	 * Resizes the panel when the bridge is closed
+	 */
 	public void setClose() {
-		this.panelBridge.setSize(picture_bridge.getWidth(), picture_bridge.getHeight()+10);
+		this.setSize(bufferedImgBridge.getWidth(), bufferedImgBridge.getHeight()+10);
 	}
 	
 

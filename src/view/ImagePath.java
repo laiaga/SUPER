@@ -22,7 +22,7 @@ public enum ImagePath {
 	},
 	BRIDGE{
 		public String toString(){
-			return "res/img/bridge/bridge.png";
+			return "res/img/bridge/bridge2.png";
 		}
 	},
 	BACKGROUND{

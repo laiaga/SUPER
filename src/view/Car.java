@@ -32,8 +32,11 @@ public class Car {
 	
 		
 	public Car(JLayeredPane layeredPane, Position pos) throws IOException {
-		
-		BufferedImage picture_car = ImageIO.read(new File("res/img/vehicles/cars/car.png"));
+		int max=6;
+		int min=1;
+		int rand= (int) ( Math.random()*( max - min + 1 ) ) + min;
+		String img = "res/img/vehicles/cars/car" + rand + ".png";
+		BufferedImage picture_car = ImageIO.read(new File(img));
 		this.layeredPane = layeredPane;
 		this.panelCar = new JPanel();
 		this.panelCar.setOpaque(false);

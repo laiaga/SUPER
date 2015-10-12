@@ -32,8 +32,11 @@ public class Boat {
 	
 		
 	public Boat(JLayeredPane layeredPane, Position pos) throws IOException {
-		
-		this.picture_boat = ImageIO.read(new File("res/img/vehicles/boats/boat.png"));
+		int max=5;
+		int min=1;
+		int rand= (int) ( Math.random()*( max - min + 1 ) ) + min;
+		String img = "res/img/vehicles/boats/boat" + rand + ".png";
+		this.picture_boat = ImageIO.read(new File(img));
 		this.layeredPane = layeredPane;
 		this.panelBoat = new JPanel();
 		this.panelBoat.setOpaque(false);

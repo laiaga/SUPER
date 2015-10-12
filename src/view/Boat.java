@@ -11,7 +11,7 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
 /**
- * Modelization of a boat of a random color
+ * Modelization of a boat with a random color
  * @author Loic Vierin
  */
 @SuppressWarnings("serial")

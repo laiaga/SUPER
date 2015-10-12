@@ -29,7 +29,8 @@ import javax.swing.JProgressBar;
  */
 @SuppressWarnings("serial")
 public class View extends JFrame{
-	JLayeredPane layeredPane;
+	private JLayeredPane layeredPane;
+	protected static int speed; //the speedrate of the animation   speed = 15: Nominal. speed = 1: Rapide
 
 	/**
 	 * Launch the application.
@@ -39,9 +40,11 @@ public class View extends JFrame{
 	public static void main(String[] args) throws IOException, InterruptedException {
 
 		View window = new View();
+		speed = 1;
 
 		//CECI SERA DANS LE CONTROLEUR, IL S'AGIT ICI D'UN TEST =)
 		//création voitures et bateaux
+		//controleur:
 		Car car1 = window.createCar(Position.EAST);
 		Car car2 = null;
 		Car car3 = null;
@@ -53,6 +56,18 @@ public class View extends JFrame{
 		view.Bridge bridge = window.createBridge(BridgeState.DOWN);
 		Barrier barrier= window.create_barrier(Position.EAST);
 		Barrier barrier2= window.create_barrier(Position.WEST);
+		
+		/*Traffic traffic1 = window.create_traffic(Position.EAST);
+		Traffic traffic2 = window.create_traffic(Position.WEST);
+		Traffic traffic3 = window.create_traffic(Position.NORTH);
+		Traffic traffic4 = window.create_traffic(Position.SOUTH);*/
+				
+		barrier.setOpen(); 
+		barrier2.setOpen();
+		
+		barrier.close();
+		barrier2.close();
+		
 		bridge.open();
 		
 		for(int i=0; i<=700; i++ ) {
@@ -63,7 +78,7 @@ public class View extends JFrame{
 				boat3.move(2); //vitesse modifiable
 			if(boat4!=null)
 				boat4.move(1);
-			Thread.sleep(15);
+			Thread.sleep(speed);
 			if(i==125)
 				boat3 = window.createBoat(Position.SOUTH);
 			
@@ -81,6 +96,8 @@ public class View extends JFrame{
 		
 		
 		bridge.close();
+		barrier.open();
+		barrier2.open();
 		
 		for(int i=0; i<=700; i++ ) {
 		car1.move(1);
@@ -90,7 +107,7 @@ public class View extends JFrame{
 			car3.move(2); //vitesse modifiable
 		if(car4!=null)
 			car4.move(1);
-		Thread.sleep(15);
+		Thread.sleep(speed);
 		if(i==125)
 			car3 = window.createCar(Position.WEST);
 		
@@ -212,6 +229,16 @@ public class View extends JFrame{
 	 */
 	public Barrier create_barrier(Position p) throws IOException {
 		return (new Barrier(getLayeredPane(), p));
+	}
+	
+	/**
+	 * Creates a new traffic light to display onscreen
+	 * @param p
+	 * @return
+	 * @throws IOException
+	 */
+	public Traffic create_traffic(Position p) throws IOException {
+		return (new Traffic(getLayeredPane(), p));
 	}
 
 	/**

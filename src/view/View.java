@@ -54,8 +54,8 @@ public class View extends JFrame{
 		Boat boat3 = null;
 		Boat boat4 = null;
 		view.Bridge bridge = window.createBridge(BridgeState.DOWN);
-		Barrier barrier= window.create_barrier(Position.EAST);
-		Barrier barrier2= window.create_barrier(Position.WEST);
+		Barrier barrier= window.createBarrier(Position.EAST);
+		Barrier barrier2= window.createBarrier(Position.WEST);
 		
 		Traffic_Tri traffic1 = window.create_traffic_tri(Position.EAST);
 		Traffic_Tri traffic2 = window.create_traffic_tri(Position.WEST);
@@ -170,17 +170,17 @@ public class View extends JFrame{
 		setProgressBar();
 				
 						
-		JPanel panel_states = new JPanel();
-		panel_states.setBounds(1041, 23, 141, 775);
-		getContentPane().add(panel_states);
-		layeredPane.setLayer(panel_states, 0);
-		panel_states.setBackground(Color.WHITE);
-		GridBagLayout gbl_panel_states = new GridBagLayout();
-		gbl_panel_states.columnWidths = new int[] {37, 0};
-		gbl_panel_states.rowHeights = new int[]{15, 0, 0, 0, 0, 0, 0, 0};
-		gbl_panel_states.columnWeights = new double[]{0.0, Double.MIN_VALUE};
-		gbl_panel_states.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		panel_states.setLayout(gbl_panel_states);
+		JPanel panelStates = new JPanel();
+		panelStates.setBounds(1041, 23, 141, 775);
+		getContentPane().add(panelStates);
+		layeredPane.setLayer(panelStates, 0);
+		panelStates.setBackground(Color.LIGHT_GRAY);
+		GridBagLayout gblPanelState = new GridBagLayout();
+		gblPanelState.columnWidths = new int[] {37, 0};
+		gblPanelState.rowHeights = new int[]{15, 0, 0, 0, 0, 0, 0, 0};
+		gblPanelState.columnWeights = new double[]{0.0, Double.MIN_VALUE};
+		gblPanelState.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		panelStates.setLayout(gblPanelState);
 		
 		JLabel lblNewLabel = new JLabel("STATES");
 		lblNewLabel.setFont(new Font("Arimo", Font.PLAIN, 14));
@@ -189,7 +189,7 @@ public class View extends JFrame{
 		gbc_lblNewLabel.anchor = GridBagConstraints.NORTHWEST;
 		gbc_lblNewLabel.gridx = 0;
 		gbc_lblNewLabel.gridy = 0;
-		panel_states.add(lblNewLabel, gbc_lblNewLabel);
+		panelStates.add(lblNewLabel, gbc_lblNewLabel);
 		
 		JLabel lblCapteurV = new JLabel("Bridge Closed");
 		lblCapteurV.setFont(new Font("Arimo", Font.PLAIN, 14));
@@ -198,7 +198,7 @@ public class View extends JFrame{
 		gbc_lblCapteurV.insets = new Insets(0, 0, 5, 0);
 		gbc_lblCapteurV.gridx = 0;
 		gbc_lblCapteurV.gridy = 1;
-		panel_states.add(lblCapteurV, gbc_lblCapteurV);
+		panelStates.add(lblCapteurV, gbc_lblCapteurV);
 		setBackground(UIManager.getColor("Button.darkShadow"));
 		setBounds(100, 100, 1218, 858);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -243,7 +243,7 @@ public class View extends JFrame{
 	 * @return the Barrier created 
 	 * @throws IOException in the case of the barrier image not being at the specified path
 	 */
-	public Barrier create_barrier(Position p) throws IOException {
+	public Barrier createBarrier(Position p) throws IOException {
 		return (new Barrier(getLayeredPane(), p));
 	}
 	
@@ -253,12 +253,17 @@ public class View extends JFrame{
 	 * @return
 	 * @throws IOException
 	 */
+<<<<<<< HEAD
 	public Traffic_Tri create_traffic_tri(Position p) throws IOException {
 		return (new Traffic_Tri(getLayeredPane(), p));
 	}
 	
 	public Traffic_Bi create_traffic_bi(Position p) throws IOException {
 		return (new Traffic_Bi(getLayeredPane(), p));
+=======
+	public Traffic createTraffic(Position p) throws IOException {
+		return (new Traffic(getLayeredPane(), p));
+>>>>>>> branch 'master' of https://github.com/laiaga/SUPER.git
 	}
 
 	/**

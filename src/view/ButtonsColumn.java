@@ -1,4 +1,4 @@
-package test_view;
+package view;
 
 import java.awt.GridLayout;
 
@@ -45,6 +45,7 @@ public class ButtonsColumn extends JPanel {
 	
 	
 	private void maintenanceMode(){
+		
 		JButton bridgeUp = new JButton("Lever tabliers");
 		JButton bridgeDown = new JButton("Abaisser tabliers");
 		JButton fenceUp = new JButton("Lever barrières");

@@ -40,7 +40,7 @@ public class View extends JFrame{
 	public static void main(String[] args) throws IOException, InterruptedException {
 
 		View window = new View();
-		speed = 1;
+		speed = 15;
 
 		//CECI SERA DANS LE CONTROLEUR, IL S'AGIT ICI D'UN TEST =)
 		//création voitures et bateaux
@@ -57,16 +57,28 @@ public class View extends JFrame{
 		Barrier barrier= window.create_barrier(Position.EAST);
 		Barrier barrier2= window.create_barrier(Position.WEST);
 		
-		/*Traffic traffic1 = window.create_traffic(Position.EAST);
-		Traffic traffic2 = window.create_traffic(Position.WEST);
-		Traffic traffic3 = window.create_traffic(Position.NORTH);
-		Traffic traffic4 = window.create_traffic(Position.SOUTH);*/
-				
+		Traffic_Tri traffic1 = window.create_traffic_tri(Position.EAST);
+		Traffic_Tri traffic2 = window.create_traffic_tri(Position.WEST);
+		Traffic_Bi traffic3 = window.create_traffic_bi(Position.NORTH);
+		Traffic_Bi traffic4 = window.create_traffic_bi(Position.SOUTH);
+		
+		
 		barrier.setOpen(); 
 		barrier2.setOpen();
 		
+
+		traffic1.setRed();
+		traffic2.setRed();
+		traffic3.setRed();
+		traffic4.setRed();
+		
 		barrier.close();
 		barrier2.close();
+		
+		traffic1.setRed();
+		traffic2.setRed();
+		traffic3.setGreen();
+		traffic4.setGreen();
 		
 		bridge.open();
 		
@@ -98,6 +110,10 @@ public class View extends JFrame{
 		bridge.close();
 		barrier.open();
 		barrier2.open();
+		traffic1.setGreen();
+		traffic2.setGreen();
+		traffic3.setRed();
+		traffic4.setRed();
 		
 		for(int i=0; i<=700; i++ ) {
 		car1.move(1);
@@ -237,8 +253,12 @@ public class View extends JFrame{
 	 * @return
 	 * @throws IOException
 	 */
-	public Traffic create_traffic(Position p) throws IOException {
-		return (new Traffic(getLayeredPane(), p));
+	public Traffic_Tri create_traffic_tri(Position p) throws IOException {
+		return (new Traffic_Tri(getLayeredPane(), p));
+	}
+	
+	public Traffic_Bi create_traffic_bi(Position p) throws IOException {
+		return (new Traffic_Bi(getLayeredPane(), p));
 	}
 
 	/**

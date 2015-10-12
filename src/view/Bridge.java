@@ -11,7 +11,7 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
 /**
- * Modelization of a boat of the bridge
+ * Modelization of the bridge
  * @author Loic Vierin
  */
 @SuppressWarnings("serial")
@@ -61,7 +61,8 @@ public class Bridge extends JPanel {
 				width++;
 				this.setSize(width, bufferedImgBridge.getHeight()+10);
 
-				Thread.sleep(15);
+				//Thread.sleep(15);
+				Thread.sleep(View.speed);
 			}
 			
 		} catch (InterruptedException e) {
@@ -82,7 +83,7 @@ public class Bridge extends JPanel {
 				width--;
 				this.setSize(width, bufferedImgBridge.getHeight()+10);
 
-				Thread.sleep(15);
+				Thread.sleep(View.speed);
 			}
 			
 		} catch (InterruptedException e) {

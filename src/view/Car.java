@@ -43,12 +43,12 @@ public class Car extends JPanel {
 		this.pos = pos;
 		int rot=0;
 		if(pos == Position.EAST) {
-			p.x=200;
+			p.x=140;
 			p.y=345;
 			rot=90;
 		}
 		else if (pos == Position.WEST) {
-			p.x=600;
+			p.x=620;
 			p.y=405;
 			rot=-90;
 		}

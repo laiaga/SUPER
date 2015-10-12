@@ -10,6 +10,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
+import model.PositionBridge;
+
 /**
  * Modelisation of a road barrier used to stop the car flow
  * @author Loic Vierin
@@ -19,11 +21,15 @@ public class Barrier extends JPanel{
 	private BufferedImage bufferedImgBarrier;
 	private JImage imgBarrier;
 	private Point p;
+	private PositionBridge position; //barrier up or down
+	private Position place; //barrier east/west
 	
 	public Barrier(JLayeredPane layeredPane, Position pos) throws IOException {
 		super();
 		
 		this.setOpaque(false);
+		
+		this.place = pos;
 		
 		this.p = new Point();
 		if(pos == Position.EAST) {
@@ -50,49 +56,76 @@ public class Barrier extends JPanel{
 	}
 	
 	
-	/*public void close() {
-		this.pos2 = PositionBridge.Moving;
+	public void close() { 
+		this.position = PositionBridge.Moving;
 		try {
-			int w = 0;
-			for(int i=0; i<400; i++) {
-				move(-1);
+			int width = 0;
+			for(int i=0; i<200; i++) {
 				
-				Thread.sleep(15);
+				if(place == Position.EAST)
+				move(-1);
+				else
+					move(1);
+				
+				Thread.sleep(View.speed); 
 			}
 			
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		this.pos2=PositionBridge.Down;
+		this.position=PositionBridge.Down;
 		
 			
 	}
 	
 	public void open() { 
-		this.pos2 = PositionBridge.Moving;
+		this.position = PositionBridge.Moving;
 		try {
-			int w = 0;
-			for(int i=0; i<400; i++) {
+			int width = 0;
+			for(int i=0; i<200; i++) {
+				if(place == Position.EAST)
 				move(1);
+				else
+					move(-1);
 				
-				Thread.sleep(15); 
+				Thread.sleep(View.speed); 
 			}
 			
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		this.pos2=PositionBridge.Open;
+		this.position=PositionBridge.Up;
 		
 			
+	}
+	
+	public void setOpen() {
+		if(place == Position.EAST)
+			p.y+=200;
+		else
+			p.y-=200;
+		this.setBounds(p.x, p.y, bufferedImgBarrier.getWidth(), bufferedImgBarrier.getHeight()+10);
+
+		this.position = PositionBridge.Up;
+	}
+	
+	public void setClose() {
+		if(place == Position.EAST)
+			p.y-=200;
+		else
+			p.y+=200;
+		this.setBounds(p.x, p.y, bufferedImgBarrier.getWidth(), bufferedImgBarrier.getHeight()+10);
+
+		this.position = PositionBridge.Up;
 	}
 	
 	
 	public void move(int y) {
 		p.y +=y;
-		panelBarrier.setBounds(p.x,p.y, picture_barrier.getWidth(), picture_barrier.getHeight()+10);
-	}*/
+		this.setBounds(p.x,p.y, bufferedImgBarrier.getWidth(), bufferedImgBarrier.getHeight()+10);
+	}
 	
 	/**
 	 * Sets the the value of the p attribute  and modifies the bounds of the panel accordingly
@@ -100,7 +133,7 @@ public class Barrier extends JPanel{
 	 */
 	public void put(Point p) {
 		this.p = p;
-		setBounds(p.x,p.y, bufferedImgBarrier.getWidth(), bufferedImgBarrier.getHeight()+10);
+		this.setBounds(p.x,p.y, bufferedImgBarrier.getWidth(), bufferedImgBarrier.getHeight()+10);
 		
 	}
 	
@@ -108,7 +141,7 @@ public class Barrier extends JPanel{
 	 * Hides the panel by allocating him a 0x0 area on screen 
 	 */
 	public void hide() {
-		setBounds(p.x,p.y,0, 0);
+		this.setBounds(p.x,p.y,0, 0);
 		
 	}
 }

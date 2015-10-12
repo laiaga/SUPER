@@ -29,5 +29,12 @@ public enum ImagePath {
 		public String toString() {
 			return "res/img/background/background.png";
 		}
+	},
+		
+	TRAFFIC{
+		public String toString() {
+			return "res/img/traffic/traffic_";
+		}
+		
 	}
 }

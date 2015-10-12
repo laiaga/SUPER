@@ -5,5 +5,5 @@ package view;
  * Different directions a vehicle can follow : North or South in case of a boat or East or West for a car (arbitrary)
  */
 public enum Position {
-	North, South, East, West;
+	NORTH, SOUTH, EAST, WEST;
 }

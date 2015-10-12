@@ -1,6 +1,3 @@
-/**
- * 
- */
 package view;
 
 import java.awt.Point;
@@ -16,37 +13,40 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
 /**
+ * Modelization of a boat of a random color
  * @author Loic Vierin
- *
  */
 
-//ceci est l'image sur l'interface de 1 voiture.
-public class Boat {
+
+@SuppressWarnings("serial")
+public class Boat extends JPanel{
 	
-	private ImageIcon icon_boat;
-	private BufferedImage picture_boat;
+	private JImage imageBoat;
+	private BufferedImage pictureBoat;
 	private JLayeredPane layeredPane;
-	private JPanel panelBoat;
 	private Position pos;
 	private Point p;
 	
 		
 	public Boat(JLayeredPane layeredPane, Position pos) throws IOException {
+		super();
+		
 		int max=5;
 		int min=1;
 		int rand= (int) ( Math.random()*( max - min + 1 ) ) + min;
-		String img = "res/img/vehicles/boats/boat" + rand + ".png";
-		this.picture_boat = ImageIO.read(new File(img));
+		String img = ImagePath.BOAT.toString() + rand + ".png";
+		pictureBoat = ImageIO.read(new File(img));
+		imageBoat = new JImage(new ImageIcon(pictureBoat));
+		
 		this.layeredPane = layeredPane;
-		this.panelBoat = new JPanel();
-		this.panelBoat.setOpaque(false);
-		this.p = new Point();
+		this.setOpaque(false);
+		p = new Point();
 		this.pos = pos;
-		if(pos == Position.South) {
+		if(pos == Position.SOUTH) {
 			p.x=540;
 			p.y=590;
 		}
-		else if (pos == Position.North) {
+		else if (pos == Position.NORTH) {
 			p.x=340;
 			p.y=100;
 		}
@@ -55,55 +55,42 @@ public class Boat {
 			p.y=0;
 		}
 		
-	    
+		this.layeredPane.setLayer(this, 1);
 
-	    
+		this.setBounds(p.x,p.y, pictureBoat.getWidth(), pictureBoat.getHeight()+10);
 
-		this.icon_boat = new ImageIcon(picture_boat);
-		
-		
-		JImage boat = new JImage(icon_boat);
-		
-		layeredPane.setLayer(panelBoat, 1);
-		
-
-		panelBoat.setBounds(p.x,p.y, picture_boat.getWidth(), picture_boat.getHeight()+10);
-		
-
-		panelBoat.add(boat);
-		layeredPane.add(panelBoat);
-		
-		
-		
-		
+		this.add(imageBoat);
+		layeredPane.add(this);
 	}
 	
-	
+	/**
+	 * Modifies the boat position along a line according to its starting point
+	 * @param y the modifier we apply to the axial coordinate of the boat
+	 */
 	public void move(int y) {
-		if(pos == Position.South)
+		if(pos == Position.SOUTH)
 			p.y -= y;
 		else
 			p.y +=y;
-		panelBoat.setBounds(p.x,p.y, picture_boat.getWidth(), picture_boat.getHeight()+10);
+		this.setBounds(p.x,p.y, pictureBoat.getWidth(), pictureBoat.getHeight()+10);
 		
 		if(p.y==0 || p.y==700)
 			hide();
-		
-	
-		
 	}
 	
+	/**
+	 * Sets the the value of the p attribute  and modifies the bounds of the panel accordingly
+	 * @param p the new position (as a couple (x,y)) of the panel
+	 */
 	public void put(Point p) {
 		this.p = p;
-		panelBoat.setBounds(p.x,p.y, picture_boat.getWidth(), picture_boat.getHeight()+10);
-		
+		this.setBounds(p.x,p.y, pictureBoat.getWidth(), pictureBoat.getHeight()+10);	
 	}
 	
+	/**
+	 * Hides the panel by allocating him a 0x0 area on screen 
+	 */
 	public void hide() {
-		//panelBoat.setVisible(false); ne pas utiliser ceci car cela déplace le pont
-		panelBoat.setBounds(p.x,p.y,0, 0);
-		
+		this.setBounds(p.x,p.y,0, 0);
 	}
-	
-
 }

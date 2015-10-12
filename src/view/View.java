@@ -20,7 +20,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 
-import test.Bridge;
+import test_view.Bridge;
 
 import javax.swing.SwingConstants;
 import javax.swing.JLayeredPane;
@@ -43,17 +43,17 @@ public class View extends JFrame{
 
 		//CECI SERA DANS LE CONTROLEUR, IL S'AGIT ICI D'UN TEST =)
 		//création voitures et bateaux
-		Car car1 = window.create_car(Position.East);
+		Car car1 = window.create_car(Position.EAST);
 		Car car2 = null;
 		Car car3 = null;
 		Car car4 = null;
-		Boat boat1 = window.create_boat(Position.North);
+		Boat boat1 = window.create_boat(Position.NORTH);
 		Boat boat2 = null;
 		Boat boat3 = null;
 		Boat boat4 = null;
 		view.Bridge bridge = window.create_bridge(PositionBridge.Down);
-		Barrier barrier= window.create_barrier(Position.East);
-		Barrier barrier2= window.create_barrier(Position.West);
+		Barrier barrier= window.create_barrier(Position.EAST);
+		Barrier barrier2= window.create_barrier(Position.WEST);
 		bridge.open();
 		
 		for(int i=0; i<=700; i++ ) {
@@ -66,12 +66,12 @@ public class View extends JFrame{
 				boat4.move(1);
 			Thread.sleep(15);
 			if(i==125)
-				boat3 = window.create_boat(Position.South);
+				boat3 = window.create_boat(Position.SOUTH);
 			
 			if(i==200)
 			{
-				boat2 = window.create_boat(Position.North);
-				boat4 = window.create_boat(Position.South);
+				boat2 = window.create_boat(Position.NORTH);
+				boat4 = window.create_boat(Position.SOUTH);
 			}
 		}
 		
@@ -93,12 +93,12 @@ public class View extends JFrame{
 			car4.move(1);
 		Thread.sleep(15);
 		if(i==125)
-			car3 = window.create_car(Position.West);
+			car3 = window.create_car(Position.WEST);
 		
 		if(i==200)
 		{
-			car2 = window.create_car(Position.East);
-			car4 = window.create_car(Position.West);
+			car2 = window.create_car(Position.EAST);
+			car4 = window.create_car(Position.WEST);
 		}
 		
 	}

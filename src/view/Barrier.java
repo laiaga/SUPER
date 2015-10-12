@@ -1,11 +1,6 @@
-/**
- * 
- */
 package view;
 
 import java.awt.Point;
-import java.awt.geom.AffineTransform;
-import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -16,36 +11,26 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
 /**
+ * Modelisation of a road barrier used to stop the car flow
  * @author Loic Vierin
- *
  */
-
-//ceci est l'image sur l'interface de 1 voiture.
-public class Barrier {
-	
-	private ImageIcon icon_barrier;
-	private BufferedImage picture_barrier;
-	private JLayeredPane layeredPane;
-	private JPanel panelBarrier;
-	private Position pos;
-	private PositionBridge pos2;
+@SuppressWarnings("serial")
+public class Barrier extends JPanel{
+	private BufferedImage bufferedImgBarrier;
+	private JImage imgBarrier;
 	private Point p;
 	
-		
 	public Barrier(JLayeredPane layeredPane, Position pos) throws IOException {
+		super();
 		
-		this.picture_barrier = ImageIO.read(new File("res/img//barrier/barrier.png"));
-		this.layeredPane = layeredPane;
-		this.panelBarrier = new JPanel();
-		this.panelBarrier.setOpaque(false);
+		this.setOpaque(false);
+		
 		this.p = new Point();
-		this.pos = pos;
-		this.pos2 = PositionBridge.Down;
-		if(pos == Position.East) {
+		if(pos == Position.EAST) {
 			p.x=375;
 			p.y=325;
 		}
-		else if (pos == Position.West) {
+		else if (pos == Position.WEST) {
 			p.x=-15;
 			p.y=200;
 		}
@@ -54,27 +39,14 @@ public class Barrier {
 			p.y=0;
 		}
 		
-	    
+		bufferedImgBarrier = ImageIO.read(new File(ImagePath.BARRIER.toString()));
+		imgBarrier = new JImage(new ImageIcon(bufferedImgBarrier));
+		this.setBounds(p.x,p.y, bufferedImgBarrier.getWidth(), bufferedImgBarrier.getHeight()+10);
+		
+		layeredPane.setLayer(this, 1);
 
-	    
-
-		this.icon_barrier = new ImageIcon(picture_barrier);
-		
-		
-		JImage barrier = new JImage(icon_barrier);
-		
-		layeredPane.setLayer(panelBarrier, 1);
-		
-
-		panelBarrier.setBounds(p.x,p.y, picture_barrier.getWidth(), picture_barrier.getHeight()+10);
-		
-
-		panelBarrier.add(barrier);
-		layeredPane.add(panelBarrier);
-		
-		
-		
-		
+		this.add(imgBarrier);
+		layeredPane.add(this);	
 	}
 	
 	
@@ -122,17 +94,21 @@ public class Barrier {
 		panelBarrier.setBounds(p.x,p.y, picture_barrier.getWidth(), picture_barrier.getHeight()+10);
 	}*/
 	
+	/**
+	 * Sets the the value of the p attribute  and modifies the bounds of the panel accordingly
+	 * @param p the new position (as a couple (x,y)) of the panel
+	 */
 	public void put(Point p) {
 		this.p = p;
-		panelBarrier.setBounds(p.x,p.y, picture_barrier.getWidth(), picture_barrier.getHeight()+10);
+		setBounds(p.x,p.y, bufferedImgBarrier.getWidth(), bufferedImgBarrier.getHeight()+10);
 		
 	}
 	
+	/**
+	 * Hides the panel by allocating him a 0x0 area on screen 
+	 */
 	public void hide() {
-		//panelBarrier.setVisible(false); ne pas utiliser ceci car cela déplace le pont
-		panelBarrier.setBounds(p.x,p.y,0, 0);
+		setBounds(p.x,p.y,0, 0);
 		
 	}
-	
-
 }

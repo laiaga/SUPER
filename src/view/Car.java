@@ -35,7 +35,7 @@ public class Car {
 		int max=6;
 		int min=1;
 		int rand= (int) ( Math.random()*( max - min + 1 ) ) + min;
-		String img = "res/img/vehicles/cars/car" + rand + ".png";
+		String img = ImagePath.CAR.toString() + rand + ".png";
 		BufferedImage picture_car = ImageIO.read(new File(img));
 		this.layeredPane = layeredPane;
 		this.panelCar = new JPanel();
@@ -43,12 +43,12 @@ public class Car {
 		this.p = new Point();
 		this.pos = pos;
 		int rot=0;
-		if(pos == Position.East) {
+		if(pos == Position.EAST) {
 			p.x=200;
 			p.y=345;
 			rot=90;
 		}
-		else if (pos == Position.West) {
+		else if (pos == Position.WEST) {
 			p.x=600;
 			p.y=405;
 			rot=-90;
@@ -87,7 +87,7 @@ public class Car {
 	}
 	
 	public void move(int x) {
-		if(pos == Position.East)
+		if(pos == Position.EAST)
 			p.x += x;
 		else
 			p.x -=x;

@@ -104,7 +104,7 @@ public class Barrier {
 			for(int i=0; i<400; i++) {
 				move(1);
 				
-				Thread.sleep(15);
+				Thread.sleep(15); 
 			}
 			
 		} catch (InterruptedException e) {

@@ -1,4 +1,4 @@
-package test_view;
+package view;
 
 import java.awt.GridLayout;
 

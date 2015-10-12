@@ -67,18 +67,20 @@ public class View extends JFrame{
 		barrier2.setOpen();
 		
 
-		traffic1.setRed();
-		traffic2.setRed();
-		traffic3.setRed();
-		traffic4.setRed();
+
 		
-		barrier.close();
-		barrier2.close();
 		
+		traffic1.setOrange();
+		traffic2.setOrange();
+		Thread.sleep(1000);
 		traffic1.setRed();
 		traffic2.setRed();
 		traffic3.setGreen();
 		traffic4.setGreen();
+		
+
+		barrier.close();
+		barrier2.close();
 		
 		bridge.open();
 		
@@ -106,10 +108,16 @@ public class View extends JFrame{
 		boat3.hide();
 		boat4.hide();
 		
+		traffic1.setRed();
+		traffic2.setRed();
+		traffic3.setRed();
+		traffic4.setRed();
 		
 		bridge.close();
 		barrier.open();
 		barrier2.open();
+		
+
 		traffic1.setGreen();
 		traffic2.setGreen();
 		traffic3.setRed();

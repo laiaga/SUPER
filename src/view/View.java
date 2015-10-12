@@ -101,7 +101,7 @@ public class View extends JFrame{
 		}
 		
 	}
-
+ 
 		car1.hide();
 		car2.hide();
 		car3.hide();

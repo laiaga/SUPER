@@ -97,7 +97,7 @@ public class Barrier {
 			
 	}
 	
-	public void open() {
+	public void open() { 
 		this.pos2 = PositionBridge.Moving;
 		try {
 			int w = 0;

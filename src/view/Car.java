@@ -84,13 +84,25 @@ public class Car {
 	}
 	
 	public void move(int x) {
-		p.x += x;
+		if(pos == Position.East)
+			p.x += x;
+		else
+			p.x -=x;
 		panelCar.setBounds(p.x,p.y, picture_car_rotated.getWidth(), picture_car_rotated.getHeight()+10);
+		
+		if(p.x==0 || p.x==800)
+			hide();
 	}
 	
 	public void put(Point p) {
 		this.p = p;
 		panelCar.setBounds(p.x,p.y, picture_car_rotated.getWidth(), picture_car_rotated.getHeight()+10);
+		
+	}
+	
+	public void hide() {
+		//panelCar.setVisible(false);
+		panelCar.setBounds(p.x,p.y,0, 0);
 		
 	}
 	

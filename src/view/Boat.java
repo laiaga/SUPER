@@ -40,11 +40,11 @@ public class Boat {
 		this.p = new Point();
 		this.pos = pos;
 		if(pos == Position.South) {
-			p.x=520;
+			p.x=540;
 			p.y=590;
 		}
 		else if (pos == Position.North) {
-			p.x=320;
+			p.x=340;
 			p.y=100;
 		}
 		else {
@@ -75,14 +75,30 @@ public class Boat {
 		
 	}
 	
+	
 	public void move(int y) {
-		p.y += y;
+		if(pos == Position.South)
+			p.y -= y;
+		else
+			p.y +=y;
 		panelBoat.setBounds(p.x,p.y, picture_boat.getWidth(), picture_boat.getHeight()+10);
+		
+		if(p.y==0 || p.y==700)
+			hide();
+		
+	
+		
 	}
 	
 	public void put(Point p) {
 		this.p = p;
 		panelBoat.setBounds(p.x,p.y, picture_boat.getWidth(), picture_boat.getHeight()+10);
+		
+	}
+	
+	public void hide() {
+		//panelBoat.setVisible(false); ne pas utiliser ceci car cela déplace le pont
+		panelBoat.setBounds(p.x,p.y,0, 0);
 		
 	}
 	

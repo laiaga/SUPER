@@ -40,7 +40,7 @@ public class Bridge {
 		this.p = new Point();
 		this.pos = pos;
 		
-		p.x=240;
+		p.x=280;
 		p.y=325;
 		
 	    
@@ -66,7 +66,53 @@ public class Bridge {
 		
 	}
 	
+	public void close() {
+		this.pos = PositionBridge.Moving;
+		try {
+			int w = 0;
+			for(int i=0; i<picture_bridge.getWidth(); i++) {
+				w++;
+				this.panelBridge.setSize(w, picture_bridge.getHeight()+10);
 
+				Thread.sleep(15);
+			}
+			
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.pos=PositionBridge.Down;
+		
+			
+	}
+	
+	public void open() {
+		this.pos = PositionBridge.Moving;
+		try {
+			int w = picture_bridge.getWidth();
+			for(int i=0; i<picture_bridge.getWidth(); i++) {
+				w--;
+				this.panelBridge.setSize(w, picture_bridge.getHeight()+10);
+
+				Thread.sleep(15);
+			}
+			
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.pos=PositionBridge.Up;
+		
+			
+	}
+	
+	public void setOpen() {
+		this.panelBridge.setSize(0, picture_bridge.getHeight()+10);
+	}
+	
+	public void setClose() {
+		this.panelBridge.setSize(picture_bridge.getWidth(), picture_bridge.getHeight()+10);
+	}
 	
 
 }

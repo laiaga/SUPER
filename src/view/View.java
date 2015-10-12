@@ -1,6 +1,8 @@
 package view;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -187,9 +189,20 @@ public class View extends JFrame{
 		setBounds(100, 100, 1218, 858);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		displayButtons();
 		
 	}
 	
+	/**
+	 * Creates the button pannel on the right of the window
+	 * @param contentPane
+	 */
+	private void displayButtons() {
+		
+		ButtonsColumn buttons = new ButtonsColumn();
+		//this.getContentPane().add(buttons, BorderLayout.EAST);
+	}
+
 	/**
 	 * Creates a new car to display on screen
 	 * @param p the position (East or West, relative to the bridge) of the car
@@ -231,15 +244,6 @@ public class View extends JFrame{
 		return (new Barrier(getLayeredPane(), p));
 	}
 	
-	/**
-	 * Creates a new traffic light to display onscreen
-	 * @param p
-	 * @return
-	 * @throws IOException
-	 */
-	public Traffic createTraffic(Position p) throws IOException {
-		return (new Traffic(getLayeredPane(), p));
-	}
 
 	/**
 	 * Displays the background image on screen

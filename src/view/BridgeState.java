@@ -2,9 +2,9 @@ package view;
 
 /**
  * @author Loïc Vierin
- * Possible positions of the bridge
+ * Possible states of the bridge
  */
-public enum PositionBridge
+public enum BridgeState
 {
 	UP, DOWN, MOVING;
 }

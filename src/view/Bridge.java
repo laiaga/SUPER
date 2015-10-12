@@ -20,14 +20,14 @@ public class Bridge extends JPanel {
 	private BufferedImage bufferedImgBridge;
 	private JImage imgBridge;
 	private JLayeredPane layeredPane;
-	private PositionBridge pos;
+	private BridgeState pos;
 	private Point p;
 	
-	public PositionBridge getPos() {
+	public BridgeState getPos() {
 		return pos;
 	}
 		
-	public Bridge(JLayeredPane layeredPane, PositionBridge pos) throws IOException {
+	public Bridge(JLayeredPane layeredPane, BridgeState pos) throws IOException {
 		super();
 		
 		bufferedImgBridge = ImageIO.read(new File(ImagePath.BRIDGE.toString()));
@@ -54,7 +54,7 @@ public class Bridge extends JPanel {
 	 * At the end of the operation, cars can go through, boats are blocked
 	 */
 	public void close() {
-		pos = PositionBridge.MOVING;
+		pos = BridgeState.MOVING;
 		try {
 			int width = 0;
 			for(int i=0; i<bufferedImgBridge.getWidth(); i++) {
@@ -67,7 +67,7 @@ public class Bridge extends JPanel {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		pos=PositionBridge.DOWN;	
+		pos=BridgeState.DOWN;	
 	}
 	
 	/**
@@ -75,7 +75,7 @@ public class Bridge extends JPanel {
 	 * At the end of the operation, boats can go through, cars are blocked
 	 */
 	public void open() {
-		pos = PositionBridge.MOVING;
+		pos = BridgeState.MOVING;
 		try {
 			int width = bufferedImgBridge.getWidth();
 			for(int i=0; i<bufferedImgBridge.getWidth(); i++) {
@@ -88,7 +88,7 @@ public class Bridge extends JPanel {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		pos=PositionBridge.UP;		
+		pos=BridgeState.UP;		
 	}
 	
 	/**

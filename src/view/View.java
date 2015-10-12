@@ -28,7 +28,8 @@ import javax.swing.JProgressBar;
  * @author Loïc Vierin
  */
 @SuppressWarnings("serial")
-public class View extends JFrame{	
+public class View extends JFrame{
+	JLayeredPane layeredPane;
 
 	/**
 	 * Launch the application.
@@ -41,15 +42,15 @@ public class View extends JFrame{
 
 		//CECI SERA DANS LE CONTROLEUR, IL S'AGIT ICI D'UN TEST =)
 		//création voitures et bateaux
-		Car car1 = window.create_car(Position.EAST);
+		Car car1 = window.createCar(Position.EAST);
 		Car car2 = null;
 		Car car3 = null;
 		Car car4 = null;
-		Boat boat1 = window.create_boat(Position.NORTH);
+		Boat boat1 = window.createBoat(Position.NORTH);
 		Boat boat2 = null;
 		Boat boat3 = null;
 		Boat boat4 = null;
-		view.Bridge bridge = window.create_bridge(PositionBridge.DOWN);
+		view.Bridge bridge = window.createBridge(BridgeState.DOWN);
 		Barrier barrier= window.create_barrier(Position.EAST);
 		Barrier barrier2= window.create_barrier(Position.WEST);
 		bridge.open();
@@ -64,12 +65,12 @@ public class View extends JFrame{
 				boat4.move(1);
 			Thread.sleep(15);
 			if(i==125)
-				boat3 = window.create_boat(Position.SOUTH);
+				boat3 = window.createBoat(Position.SOUTH);
 			
 			if(i==200)
 			{
-				boat2 = window.create_boat(Position.NORTH);
-				boat4 = window.create_boat(Position.SOUTH);
+				boat2 = window.createBoat(Position.NORTH);
+				boat4 = window.createBoat(Position.SOUTH);
 			}
 		}
 		
@@ -91,12 +92,12 @@ public class View extends JFrame{
 			car4.move(1);
 		Thread.sleep(15);
 		if(i==125)
-			car3 = window.create_car(Position.WEST);
+			car3 = window.createCar(Position.WEST);
 		
 		if(i==200)
 		{
-			car2 = window.create_car(Position.EAST);
-			car4 = window.create_car(Position.WEST);
+			car2 = window.createCar(Position.EAST);
+			car4 = window.createCar(Position.WEST);
 		}
 		
 	}
@@ -120,55 +121,20 @@ public class View extends JFrame{
 		
 		getContentPane().setBackground(Color.WHITE);
 		getContentPane().setLayout(null);
-		JLayeredPane layeredPane = new JLayeredPane();
+		layeredPane = new JLayeredPane();
 		layeredPane.setBounds(37, 23, 978, 775);
 		getContentPane().add(layeredPane);
 		
 		
 		try { 
-			
-			
-			
-			BufferedImage bufferedImgBackground = ImageIO.read(new File(ImagePath.BACKGROUND.toString()));
-			JImage imgBackground = new JImage( new ImageIcon(bufferedImgBackground));
-			imgBackground.setHorizontalAlignment(SwingConstants.CENTER);
-
-			JPanel panelBackground = new JPanel();
-			panelBackground.setBackground(Color.WHITE);
-			layeredPane.setLayer(panelBackground, 0);
-			panelBackground.setBounds(0, 0, 897, 773);
-			layeredPane.add(panelBackground);
-			
-			panelBackground.add(imgBackground);
-			
+			displayBackgroundImage();			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
-		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 1216, 23);
-		getContentPane().add(menuBar);
+		displayMenu();
 		
-		JMenu mnNewMenu = new JMenu("Actions");
-		mnNewMenu.setFont(new Font("Arimo", Font.PLAIN, 14));
-		menuBar.add(mnNewMenu);
-		
-		JMenuItem mntmNewMenuItem = new JMenuItem("Exit");
-		mntmNewMenuItem.setFont(new Font("Arimo", Font.PLAIN, 14));
-		mnNewMenu.add(mntmNewMenuItem);
-		
-		JMenu mnNewMenu_1 = new JMenu("More");
-		mnNewMenu_1.setFont(new Font("Arimo", Font.PLAIN, 14));
-		menuBar.add(mnNewMenu_1);
-		
-		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Infos");
-		mntmNewMenuItem_1.setFont(new Font("Arimo", Font.PLAIN, 14));
-		mnNewMenu_1.add(mntmNewMenuItem_1);
-		
-		JProgressBar progressBar = new JProgressBar();
-		progressBar.setBounds(0, 818, 1216, 14);
-		getContentPane().add(progressBar);
-		progressBar.setValue(50);
+		setProgressBar();
 				
 						
 		JPanel panel_states = new JPanel();
@@ -207,23 +173,94 @@ public class View extends JFrame{
 		
 	}
 	
-	public Car create_car(Position p) throws IOException {
+	/**
+	 * Creates a new car to display on screen
+	 * @param p the position (East or West, relative to the bridge) of the car
+	 * @return the Car created 
+	 * @throws IOException in the case of the car image not being at the specified path
+	 */
+	public Car createCar(Position p) throws IOException {
 		return (new Car(getLayeredPane(), p));
-		
 	}
 	
-	public Boat create_boat(Position p) throws IOException {
+	/**
+	 * Creates a new boat to display on screen
+	 * @param p the position (North or South, relative to the bridge) of the boat
+	 * @return the Boat created 
+	 * @throws IOException in the case of the boat image not being at the specified path
+	 */
+	public Boat createBoat(Position p) throws IOException {
 		return (new Boat(getLayeredPane(), p));
-		
 	}
 	
 
-	public view.Bridge create_bridge(PositionBridge p) throws IOException {
-		return (new view.Bridge(getLayeredPane(), p));
+	/**
+	 * Creates a bridge to display on screen
+	 * @param s the state of the bridge at the begining of the simulation
+	 * @return the bridge created
+	 * @throws IOException if the bridge picture is not found at the specified path
+	 */
+	public view.Bridge createBridge(BridgeState s) throws IOException {
+		return (new view.Bridge(getLayeredPane(), s));
 	}
 	
+	/**
+	 * Creates a new barrier to display on screen
+	 * @param p the position (East or West, relative to the bridge) of the barrier
+	 * @return the Barrier created 
+	 * @throws IOException in the case of the barrier image not being at the specified path
+	 */
 	public Barrier create_barrier(Position p) throws IOException {
 		return (new Barrier(getLayeredPane(), p));
 	}
 
+	/**
+	 * Displays the background image on screen
+	 * @throws IOException if the image is not at the specified path
+	 */
+	public void displayBackgroundImage() throws IOException{
+		BufferedImage bufferedImgBackground = ImageIO.read(new File(ImagePath.BACKGROUND.toString()));
+		JImage imgBackground = new JImage( new ImageIcon(bufferedImgBackground));
+		imgBackground.setHorizontalAlignment(SwingConstants.CENTER);
+
+		JPanel panelBackground = new JPanel();
+		panelBackground.setBackground(Color.WHITE);
+		layeredPane.setLayer(panelBackground, 0);
+		panelBackground.setBounds(0, 0, 897, 773);
+		layeredPane.add(panelBackground);
+		
+		panelBackground.add(imgBackground);
+	}
+	
+	/**
+	 * Displays the menu on screen
+	 */
+	public void displayMenu(){
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.setBounds(0, 0, 1216, 23);
+		getContentPane().add(menuBar);
+		
+		JMenu mnNewMenu = new JMenu("Actions");
+		mnNewMenu.setFont(new Font("Arimo", Font.PLAIN, 14));
+		menuBar.add(mnNewMenu);
+		
+		JMenuItem mntmNewMenuItem = new JMenuItem("Exit");
+		mntmNewMenuItem.setFont(new Font("Arimo", Font.PLAIN, 14));
+		mnNewMenu.add(mntmNewMenuItem);
+		
+		JMenu mnNewMenu_1 = new JMenu("More");
+		mnNewMenu_1.setFont(new Font("Arimo", Font.PLAIN, 14));
+		menuBar.add(mnNewMenu_1);
+		
+		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Infos");
+		mntmNewMenuItem_1.setFont(new Font("Arimo", Font.PLAIN, 14));
+		mnNewMenu_1.add(mntmNewMenuItem_1);
+	}
+	
+	public void setProgressBar(){
+		JProgressBar progressBar = new JProgressBar();
+		progressBar.setBounds(0, 818, 1216, 14);
+		getContentPane().add(progressBar);
+		progressBar.setValue(50);
+	}
 }

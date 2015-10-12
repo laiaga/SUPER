@@ -33,18 +33,19 @@ public class Boat {
 		
 	public Boat(JLayeredPane layeredPane, Position pos) throws IOException {
 		
-		this.picture_boat = ImageIO.read(new File("ressources/img/vehicles/boats/boat.png"));
+		this.picture_boat = ImageIO.read(new File("res/img/vehicles/boats/boat.png"));
 		this.layeredPane = layeredPane;
 		this.panelBoat = new JPanel();
+		this.panelBoat.setOpaque(false);
 		this.p = new Point();
 		this.pos = pos;
 		if(pos == Position.South) {
-			p.x=300;
-			p.y=350;
+			p.x=520;
+			p.y=590;
 		}
 		else if (pos == Position.North) {
-			p.x=250;
-			p.y=125;
+			p.x=320;
+			p.y=100;
 		}
 		else {
 			p.x=0;
@@ -58,7 +59,7 @@ public class Boat {
 		this.icon_boat = new ImageIcon(picture_boat);
 		
 		
-		JImage car = new JImage(icon_boat);
+		JImage boat = new JImage(icon_boat);
 		
 		layeredPane.setLayer(panelBoat, 1);
 		
@@ -66,7 +67,7 @@ public class Boat {
 		panelBoat.setBounds(p.x,p.y, picture_boat.getWidth(), picture_boat.getHeight()+10);
 		
 
-		panelBoat.add(car);
+		panelBoat.add(boat);
 		layeredPane.add(panelBoat);
 		
 		

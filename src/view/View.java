@@ -41,21 +41,26 @@ public class View extends JFrame{
 
 		View window = new View();
 
+		//CECI SERA DANS LE CONTROLEUR, IL S'AGIT ICI D'UN TEST =)
 		//création voitures et bateaux
 		Car car1 = window.create_car(Position.East);
 		Car car2 = null;
+		Car car3 = null;
 		Boat boat1 = new Boat(window.getLayeredPane(), Position.North);
+		Boat boat2 = new Boat(window.getLayeredPane(), Position.South);
+		view.Bridge bridge = new view.Bridge (window.getLayeredPane(), PositionBridge.Down);
 		
 		for(int i=0; i<=1000; i++ ) {
 			car1.move(1);
 			if(car2!=null)
 				car2.move(1);
+			if(car3!=null)
+				car3.move(-1);
 			Thread.sleep(15);
-			window.revalidate();
-			window.repaint();
 			if(i==200)
 			{
 				car2 = window.create_car(Position.East);
+				car3 = window.create_car(Position.West);
 			}
 		}
 		
@@ -80,7 +85,7 @@ public class View extends JFrame{
 			
 			
 			
-			BufferedImage picture_bg = ImageIO.read(new File("ressources/img/background/background.png"));
+			BufferedImage picture_bg = ImageIO.read(new File("res/img/background/background.png"));
 			JLabel bg = new JLabel( new ImageIcon(picture_bg));
 			bg.setHorizontalAlignment(SwingConstants.CENTER);
 

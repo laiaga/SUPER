@@ -253,17 +253,13 @@ public class View extends JFrame{
 	 * @return
 	 * @throws IOException
 	 */
-<<<<<<< HEAD
+
 	public Traffic_Tri create_traffic_tri(Position p) throws IOException {
 		return (new Traffic_Tri(getLayeredPane(), p));
 	}
 	
 	public Traffic_Bi create_traffic_bi(Position p) throws IOException {
 		return (new Traffic_Bi(getLayeredPane(), p));
-=======
-	public Traffic createTraffic(Position p) throws IOException {
-		return (new Traffic(getLayeredPane(), p));
->>>>>>> branch 'master' of https://github.com/laiaga/SUPER.git
 	}
 
 	/**

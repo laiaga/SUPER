@@ -59,14 +59,28 @@ public class View extends JFrame{
 		Barrier barrier= window.createBarrier(Position.EAST);
 		Barrier barrier2= window.createBarrier(Position.WEST);
 		
-		/*Traffic traffic1 = window.create_traffic(Position.EAST);
-		Traffic traffic2 = window.create_traffic(Position.WEST);
-		Traffic traffic3 = window.create_traffic(Position.NORTH);
-		Traffic traffic4 = window.create_traffic(Position.SOUTH);*/
-				
+		Traffic_Tri traffic1 = window.create_traffic_tri(Position.EAST);
+		Traffic_Tri traffic2 = window.create_traffic_tri(Position.WEST);
+		Traffic_Bi traffic3 = window.create_traffic_bi(Position.NORTH);
+		Traffic_Bi traffic4 = window.create_traffic_bi(Position.SOUTH);
+		
+		
 		barrier.setOpen(); 
 		barrier2.setOpen();
 		
+
+
+		
+		
+		traffic1.setOrange();
+		traffic2.setOrange();
+		Thread.sleep(1000);
+		traffic1.setRed();
+		traffic2.setRed();
+		traffic3.setGreen();
+		traffic4.setGreen();
+		
+
 		barrier.close();
 		barrier2.close();
 		
@@ -96,28 +110,42 @@ public class View extends JFrame{
 		boat3.hide();
 		boat4.hide();
 		
+		traffic1.setRed();
+		traffic2.setRed();
+		traffic3.setRed();
+		traffic4.setRed();
 		
 		bridge.close();
 		barrier.open();
 		barrier2.open();
 		
-		for(int i=0; i<=700; i++ ) {
-		car1.move(1);
-		if(car2!=null)
-			car2.move(1); 
-		if(car3!=null)
-			car3.move(2); //vitesse modifiable
-		if(car4!=null)
-			car4.move(1);
-		Thread.sleep(speed);
-		if(i==125)
-			car3 = window.createCar(Position.WEST);
+
+		traffic1.setGreen();
+		traffic2.setGreen();
+		traffic3.setRed();
+		traffic4.setRed();
 		
-		if(i==200)
-		{
-			car2 = window.createCar(Position.EAST);
-			car4 = window.createCar(Position.WEST);
-		}
+		
+		((JProgressBar) window.getContentPane().getComponent(2)).setValue(0);
+		((JProgressBar) window.getContentPane().getComponent(2)).setMaximum(700);
+		for(int i=0; i<=700; i++ ) {
+			((JProgressBar) window.getContentPane().getComponent(2)).setValue(i);
+			car1.move(1);
+			if(car2!=null)
+				car2.move(1); 
+			if(car3!=null)
+				car3.move(2); //vitesse modifiable
+			if(car4!=null)
+				car4.move(1);
+			Thread.sleep(speed);
+			if(i==125)
+				car3 = window.createCar(Position.WEST);
+			
+			if(i==200)
+			{
+				car2 = window.createCar(Position.EAST);
+				car4 = window.createCar(Position.WEST);
+			}
 		
 	}
  
@@ -244,6 +272,23 @@ public class View extends JFrame{
 		return (new Barrier(getLayeredPane(), p));
 	}
 	
+<<<<<<< HEAD
+=======
+	
+	/**
+	 * Creates a new traffic light to display onscreen
+	 * @param p
+	 * @return
+	 * @throws IOException
+	 */
+	public Traffic_Tri create_traffic_tri(Position p) throws IOException {
+		return (new Traffic_Tri(getLayeredPane(), p));
+	}
+	
+	public Traffic_Bi create_traffic_bi(Position p) throws IOException {
+		return (new Traffic_Bi(getLayeredPane(), p));
+	}
+>>>>>>> 86540b44e65d7d0f9071ff8cdfe78ee4bce6f817
 
 	/**
 	 * Displays the background image on screen

@@ -40,7 +40,7 @@ public class View extends JFrame{
 	public static void main(String[] args) throws IOException, InterruptedException {
 
 		View window = new View();
-		speed = 15;
+		speed = 1;
 
 		//CECI SERA DANS LE CONTROLEUR, IL S'AGIT ICI D'UN TEST =)
 		//création voitures et bateaux
@@ -115,23 +115,27 @@ public class View extends JFrame{
 		traffic3.setRed();
 		traffic4.setRed();
 		
-		for(int i=0; i<=700; i++ ) {
-		car1.move(1);
-		if(car2!=null)
-			car2.move(1); 
-		if(car3!=null)
-			car3.move(2); //vitesse modifiable
-		if(car4!=null)
-			car4.move(1);
-		Thread.sleep(speed);
-		if(i==125)
-			car3 = window.createCar(Position.WEST);
 		
-		if(i==200)
-		{
-			car2 = window.createCar(Position.EAST);
-			car4 = window.createCar(Position.WEST);
-		}
+		((JProgressBar) window.getContentPane().getComponent(2)).setValue(0);
+		((JProgressBar) window.getContentPane().getComponent(2)).setMaximum(700);
+		for(int i=0; i<=700; i++ ) {
+			((JProgressBar) window.getContentPane().getComponent(2)).setValue(i);
+			car1.move(1);
+			if(car2!=null)
+				car2.move(1); 
+			if(car3!=null)
+				car3.move(2); //vitesse modifiable
+			if(car4!=null)
+				car4.move(1);
+			Thread.sleep(speed);
+			if(i==125)
+				car3 = window.createCar(Position.WEST);
+			
+			if(i==200)
+			{
+				car2 = window.createCar(Position.EAST);
+				car4 = window.createCar(Position.WEST);
+			}
 		
 	}
  
@@ -247,13 +251,13 @@ public class View extends JFrame{
 		return (new Barrier(getLayeredPane(), p));
 	}
 	
+	
 	/**
 	 * Creates a new traffic light to display onscreen
 	 * @param p
 	 * @return
 	 * @throws IOException
 	 */
-
 	public Traffic_Tri create_traffic_tri(Position p) throws IOException {
 		return (new Traffic_Tri(getLayeredPane(), p));
 	}

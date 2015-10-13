@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.Window;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -30,6 +31,7 @@ import javax.swing.JProgressBar;
 @SuppressWarnings("serial")
 public class View extends JFrame{
 	private JLayeredPane layeredPane;
+	private JPanel panelStates;
 	protected static int speed; //the speedrate of the animation   speed = 15: Nominal. speed = 1: Rapide
 
 	/**
@@ -40,8 +42,9 @@ public class View extends JFrame{
 	public static void main(String[] args) throws IOException, InterruptedException {
 
 		View window = new View();
-		speed = 1;
 
+		speed = 1;
+	
 		//CECI SERA DANS LE CONTROLEUR, IL S'AGIT ICI D'UN TEST =)
 		//création voitures et bateaux
 		//controleur:
@@ -61,6 +64,18 @@ public class View extends JFrame{
 		TrafficTri traffic2 = window.createTrafficTri(Position.WEST);
 		TrafficBi traffic3 = window.createTrafficBi(Position.NORTH);
 		TrafficBi traffic4 = window.createTrafficBi(Position.SOUTH);
+		
+		JLabel label_bridge = window.createLabelState();
+		label_bridge.setText("Bridge Closed");
+		
+		JLabel label_sensor_west = window.createLabelState();
+		label_sensor_west.setText("West sensor active");
+		
+		JLabel label_sensor_east = window.createLabelState();
+		label_sensor_east.setText("East sensor inactive");
+		label_sensor_east.setForeground(Color.green);
+		
+
 		
 		
 		barrier.setOpen(); 
@@ -160,6 +175,8 @@ public class View extends JFrame{
 	public View() {
 		super();
 		
+		speed=1;
+		
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
@@ -169,6 +186,19 @@ public class View extends JFrame{
 		layeredPane = new JLayeredPane();
 		layeredPane.setBounds(37, 23, 978, 775);
 		getContentPane().add(layeredPane);
+		
+
+		JPanel panelStates = new JPanel();
+		panelStates.setBounds(1041, 23, 141, 775);
+		getContentPane().add(panelStates);
+		layeredPane.setLayer(panelStates, 0);
+		panelStates.setBackground(Color.WHITE);
+		GridBagLayout gblPanelState = new GridBagLayout();
+		gblPanelState.columnWidths = new int[] {37, 0};
+		gblPanelState.rowHeights = new int[]{15, 0, 0, 0, 0, 0, 0, 0};
+		gblPanelState.columnWeights = new double[]{0.0, Double.MIN_VALUE};
+		gblPanelState.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		panelStates.setLayout(gblPanelState);
 		
 		
 		try { 
@@ -182,19 +212,10 @@ public class View extends JFrame{
 		setProgressBar();
 				
 						
-		JPanel panelStates = new JPanel();
-		panelStates.setBounds(1041, 23, 141, 775);
-		getContentPane().add(panelStates);
-		layeredPane.setLayer(panelStates, 0);
-		panelStates.setBackground(Color.LIGHT_GRAY);
-		GridBagLayout gblPanelState = new GridBagLayout();
-		gblPanelState.columnWidths = new int[] {37, 0};
-		gblPanelState.rowHeights = new int[]{15, 0, 0, 0, 0, 0, 0, 0};
-		gblPanelState.columnWeights = new double[]{0.0, Double.MIN_VALUE};
-		gblPanelState.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		panelStates.setLayout(gblPanelState);
+
 		
 		JLabel lblNewLabel = new JLabel("STATES");
+		//lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNewLabel.setFont(new Font("Arimo", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 0);
@@ -203,20 +224,39 @@ public class View extends JFrame{
 		gbc_lblNewLabel.gridy = 0;
 		panelStates.add(lblNewLabel, gbc_lblNewLabel);
 		
-		JLabel lblCapteurV = new JLabel("Bridge Closed");
-		lblCapteurV.setFont(new Font("Arimo", Font.PLAIN, 14));
-		lblCapteurV.setForeground(Color.RED);
-		GridBagConstraints gbc_lblCapteurV = new GridBagConstraints();
-		gbc_lblCapteurV.insets = new Insets(0, 0, 5, 0);
-		gbc_lblCapteurV.gridx = 0;
-		gbc_lblCapteurV.gridy = 1;
-		panelStates.add(lblCapteurV, gbc_lblCapteurV);
+		
+		
+
+		
 		setBackground(UIManager.getColor("Button.darkShadow"));
 		setBounds(100, 100, 1218, 858);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		displayButtons();
 		
+		
+		
+	}
+	
+	public JLabel createLabelState() {
+		
+		JLabel lblCapteur = new JLabel("Test");
+		lblCapteur.setFont(new Font("Arimo", Font.PLAIN, 14));
+		lblCapteur.setForeground(Color.RED);
+
+		lblCapteur.setHorizontalAlignment(SwingConstants.LEFT);
+		
+		GridBagConstraints gbc_lblCapteur = new GridBagConstraints();
+		gbc_lblCapteur.insets = new Insets(0, 0, 5, 0);
+		
+		gbc_lblCapteur.gridx = 0;
+		gbc_lblCapteur.gridy = ((JPanel) this.getContentPane().getComponent(1)).getComponentCount();
+		((JPanel) this.getContentPane().getComponent(1)).add(lblCapteur, gbc_lblCapteur);
+		
+		revalidate();
+
+		
+		return lblCapteur;
 	}
 	
 	/**
@@ -281,6 +321,7 @@ public class View extends JFrame{
 	public TrafficBi createTrafficBi(Position p) throws IOException {
 		return (new TrafficBi(getLayeredPane(), p));
 	}
+	
 
 	/**
 	 * Displays the background image on screen
@@ -304,6 +345,10 @@ public class View extends JFrame{
 	 * Displays the menu on screen
 	 */
 	public void displayMenu(){
+		JProgressBar progressBar = new JProgressBar();
+		progressBar.setBounds(0, 818, 1216, 14);
+		getContentPane().add(progressBar);
+		progressBar.setValue(50);
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBounds(0, 0, 1216, 23);
 		getContentPane().add(menuBar);
@@ -326,9 +371,5 @@ public class View extends JFrame{
 	}
 	
 	public void setProgressBar(){
-		JProgressBar progressBar = new JProgressBar();
-		progressBar.setBounds(0, 818, 1216, 14);
-		getContentPane().add(progressBar);
-		progressBar.setValue(50);
 	}
 }

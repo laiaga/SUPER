@@ -39,7 +39,7 @@ public class View extends JFrame{
 	 * @throws IOException 
 	 * @throws InterruptedException 
 	 */
-	public static void main(String[] args) throws IOException, InterruptedException {
+	/*public static void main(String[] args) throws IOException, InterruptedException {
 
 		View window = new View();
 
@@ -167,7 +167,7 @@ public class View extends JFrame{
 		car3.hide();
 		car4.hide();
 		
-	}
+	}*/
 
 	/**
 	 * Initialize the contents of the frame.

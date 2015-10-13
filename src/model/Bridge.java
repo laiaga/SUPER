@@ -2,16 +2,31 @@ package model;
 
 import java.util.HashMap;
 
+import model.ColorLights.ColorTri;
+
 public class Bridge
 {
 	private PositionBridge state;
 	private HashMap<Integer, Sensor> sensors;
 	private int nbCars;
 	private int nbBoats;
+	private Barrier barrierEast;
+	private Barrier barrierWest;
+	private ColorLights lightEast;
+	private ColorLights lightWest;
+	private ColorLights lightNorth;
+	private ColorLights lightSouth;
+	
 	
 	private Bridge()
 	{
 		state = PositionBridge.Down;
+		barrierEast = new Barrier(0);
+		barrierEast = new Barrier(0);
+		lightEast = new TricolorLight(ColorTri.VERT);
+		lightWest = new TricolorLight(ColorTri.VERT);
+		lightNorth = new BicolorLight(ColorTri.ROUGE);
+		lightSouth = new BicolorLight(ColorTri.ROUGE);
 		nbBoats = nbCars = 0;
 	}
 	
@@ -66,6 +81,30 @@ public class Bridge
 		return this.sensors.get(key);
 	}
 	
+
+	public Barrier getBarrierEast() {
+		return barrierEast;
+	}
+
+	public Barrier getBarrierWest() {
+		return barrierWest;
+	}
+
+	public ColorLights getLightEast() {
+		return lightEast;
+	}
+
+	public ColorLights getLightWest() {
+		return lightWest;
+	}
+
+	public ColorLights getLightNorth() {
+		return lightNorth;
+	}
+
+	public ColorLights getLightSouth() {
+		return lightSouth;
+	}
 
 	public void up()
 	{

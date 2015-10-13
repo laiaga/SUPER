@@ -68,6 +68,10 @@ public class TrafficBi extends JPanel {
 		this.layeredPane.add(this);
 	}
 	
+	
+	/**
+	 * Turn the traffic Light red
+	 */
 	public void setRed() {
 		this.color = ColorBi.ROUGE;
 		try {
@@ -79,7 +83,9 @@ public class TrafficBi extends JPanel {
 		imgBridge.setIcon(new ImageIcon(bufferedImgBridge));
 	}
 
-
+	/**
+	 * Turn the traffic Light green
+	 */
 	public void setGreen() {
 		this.color = ColorBi.VERT;
 		try {
@@ -89,6 +95,14 @@ public class TrafficBi extends JPanel {
 			e.printStackTrace();
 		}
 		imgBridge.setIcon(new ImageIcon(bufferedImgBridge));
+	}
+
+	public ColorBi getColor() {
+		return color;
+	}
+
+	public Point getP() {
+		return p;
 	}
 	
 	

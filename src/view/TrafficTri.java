@@ -66,6 +66,9 @@ public class TrafficTri extends JPanel {
 		this.layeredPane.add(this);
 	}
 	
+	/**
+	 * Turn the traffic Light red
+	 */
 	public void setRed() {
 		this.color = ColorTri.ROUGE;
 		try {
@@ -76,6 +79,10 @@ public class TrafficTri extends JPanel {
 		}
 		imgBridge.setIcon(new ImageIcon(bufferedImgBridge));
 	}
+	
+	/**
+	 * Turn the traffic Light orange
+	 */
 	public void setOrange() {
 		this.color = ColorTri.ORANGE;
 		try {
@@ -86,6 +93,10 @@ public class TrafficTri extends JPanel {
 		}
 		imgBridge.setIcon(new ImageIcon(bufferedImgBridge));
 	}
+	
+	/**
+	 * Turn the traffic Light green
+	 */
 	public void setGreen() {
 		this.color = ColorTri.VERT;
 		try {

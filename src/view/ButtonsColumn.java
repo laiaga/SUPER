@@ -45,12 +45,8 @@ public class ButtonsColumn extends JFrame {
 	}
 	
 	private void normalMode(){
-		JButton sendCar = new JButton("Envoyer voiture");
-		JButton sendBoat = new JButton("Envoyer bateau");
 		JButton maintenance = new JButton("Mode maintenance");
-		
-		buttonsPanel.add(sendCar);
-		buttonsPanel.add(sendBoat);
+		maintenance.addActionListener(null);
 		buttonsPanel.add(maintenance);
 	}
 	
@@ -58,16 +54,22 @@ public class ButtonsColumn extends JFrame {
 	private void maintenanceMode(){
 		
 		JButton bridgeUp = new JButton("Lever tabliers");
+		bridgeUp.addActionListener(null);
 		JButton bridgeDown = new JButton("Abaisser tabliers");
-		JButton fenceUp = new JButton("Lever barrières");
-		JButton fenceDown = new JButton("Abaisser barrières");
+		bridgeDown.addActionListener(null);
+		JButton barrierUp = new JButton("Lever barrières");
+		barrierUp.addActionListener(null);
+		JButton barrierDown = new JButton("Abaisser barrières");
+		barrierDown.addActionListener(null);
 		JButton lightsRed = new JButton("Tous feux au rouge");
+		lightsRed.addActionListener(null);
 		JButton lightsGreen = new JButton("Tous feux au vert");
+		lightsGreen.addActionListener(null);
 		
 		buttonsPanel.add(bridgeUp);
 		buttonsPanel.add(bridgeDown);
-		buttonsPanel.add(fenceUp);
-		buttonsPanel.add(fenceDown);
+		buttonsPanel.add(barrierUp);
+		buttonsPanel.add(barrierDown);
 		buttonsPanel.add(lightsRed);
 		buttonsPanel.add(lightsGreen);
 	}

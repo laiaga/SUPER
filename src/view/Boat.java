@@ -75,8 +75,8 @@ public class Boat extends JPanel{
 	}
 	
 	/**
-	 * Sets the the value of the p attribute  and modifies the bounds of the panel accordingly
-	 * @param p the new position (as a couple (x,y)) of the panel
+	 * Sets the boat at the Point p
+	 * @param p the new position (as a couple (x,y))
 	 */
 	public void put(Point p) {
 		this.p = p;
@@ -88,5 +88,13 @@ public class Boat extends JPanel{
 	 */
 	public void hide() {
 		this.setBounds(p.x,p.y,0, 0);
+	}
+
+	public Position getPos() {
+		return pos;
+	}
+
+	public Point getP() {
+		return p;
 	}
 }

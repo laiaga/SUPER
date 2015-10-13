@@ -20,17 +20,14 @@ public class SystemContoller
 	{
 		
 	}
-	
-	
+		
 	public static void main(String[] args)
 	{
 		window = new View();
 		CarController carController = new CarController(window);
 		carController.run();
+
 	}
-	
-
-
 }
 
 

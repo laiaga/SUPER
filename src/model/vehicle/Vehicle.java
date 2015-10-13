@@ -13,6 +13,8 @@ public abstract class Vehicle {
 	private int speed;
 	// Direction the vehicle is following,
 	private Direction direction;
+	// True if the vehicle has finished crossing the bridge and is gone
+	private boolean gone;
 	
 	public boolean isWaiting() {
 		return waiting;
@@ -38,6 +40,12 @@ public abstract class Vehicle {
 	public void setDirection(Direction direction) {
 		this.direction = direction;
 	}
+	public boolean isGone(){
+		return gone;
+	}
+	public void setGone(boolean gone){
+		this.gone = gone;
+	}
 
 	public Vehicle(int position, int speed, Direction direction){
 		waiting = false;
@@ -50,15 +58,25 @@ public abstract class Vehicle {
 		if(isWaiting()){
 			throw new Exception("You can't ask for a car in the state \"waiting\" to move !");
 		}
+		if(isGone()){
+			throw new Exception("You can't ask for a car that has already finished crossing the bridge.");
+		}
 		else{
 			while(!isWaiting()){
 				int newPos = getPosition();
 				newPos += getSpeed();
 				setPosition(newPos);
+				if(getPosition() > 1000){
+					setGone(true);
+					break;
+				}
 				wait(1000);
 			}
 		}
 	}
+	
+	
+	
     public void stop(){
     	setWaiting(true);
     }

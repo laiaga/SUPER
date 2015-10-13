@@ -81,7 +81,7 @@ public class Barrier extends JPanel{
 			}
 
 			this.position=BridgeState.DOWN;
-			System.out.println("Barrier "+ position);
+			System.out.println("Barrier "+ place + " :" + position);
 		}
 		
 		else
@@ -112,7 +112,7 @@ public class Barrier extends JPanel{
 				e.printStackTrace();
 			}
 			this.position=BridgeState.UP;
-			System.out.println("Barrier "+ position);
+			System.out.println("Barrier "+ place + " :" + position);
 		} 
 		else
 			System.err.println("Error: Barrier already up !");
@@ -130,7 +130,7 @@ public class Barrier extends JPanel{
 			this.setBounds(p.x, p.y, bufferedImgBarrier.getWidth(), bufferedImgBarrier.getHeight()+10);
 	
 			this.position = BridgeState.UP;
-			System.out.println("Barrier "+ position);
+			System.out.println("Barrier "+ place + " :" + position);
 		} 
 		else
 			System.err.println("Error: Barrier already up !");
@@ -145,7 +145,7 @@ public class Barrier extends JPanel{
 			this.setBounds(p.x, p.y, bufferedImgBarrier.getWidth(), bufferedImgBarrier.getHeight()+10);
 	
 			this.position = BridgeState.DOWN;
-			System.out.println("Barrier "+ position);
+			System.out.println("Barrier "+ place + " :" + position);
 		}
 		else
 			System.err.println("Error: Barrier already Down !");

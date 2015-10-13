@@ -32,6 +32,15 @@ import javax.swing.JProgressBar;
 public class View extends JFrame{
 	private JLayeredPane layeredPane;
 	private JPanel panelStates;
+	private JProgressBar progressBar;
+	private Bridge bridge;
+	private Barrier barrier_west;
+	private Barrier barrier_east;
+	private TrafficBi traffic_bi_north;
+	private TrafficBi traffic_bi_south;
+	private TrafficTri traffic_tri_west;
+	private TrafficTri traffic_tri_east;
+	
 	protected static int speed; //the speedrate of the animation   speed = 15: Nominal. speed = 1: Rapide
 
 	/**
@@ -175,6 +184,24 @@ public class View extends JFrame{
 	public View() {
 		super();
 		
+
+		this.progressBar = new JProgressBar();
+		try {
+			
+			this.bridge = createBridge(BridgeState.DOWN);
+			this.barrier_west = createBarrier(Position.WEST);
+			this.barrier_east = createBarrier(Position.EAST);
+			this.traffic_bi_north = createTrafficBi(Position.NORTH);
+			this.traffic_bi_south = createTrafficBi(Position.SOUTH);
+			this.traffic_tri_east = createTrafficTri(Position.EAST);
+			this.traffic_tri_east = createTrafficTri(Position.WEST);
+		
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		
 		speed=1;
 		
 		setVisible(true);
@@ -209,7 +236,6 @@ public class View extends JFrame{
 		
 		displayMenu();
 		
-		setProgressBar();
 				
 						
 
@@ -350,7 +376,6 @@ public class View extends JFrame{
 	 * Displays the menu on screen
 	 */
 	public void displayMenu(){
-		JProgressBar progressBar = new JProgressBar();
 		progressBar.setBounds(0, 818, 1216, 14);
 		getContentPane().add(progressBar);
 		progressBar.setValue(50);
@@ -374,7 +399,96 @@ public class View extends JFrame{
 		mntmNewMenuItem_1.setFont(new Font("Arimo", Font.PLAIN, 14));
 		mnNewMenu_1.add(mntmNewMenuItem_1);
 	}
-	
-	public void setProgressBar(){
+
+
+	public JProgressBar getProgressBar() {
+		return progressBar;
 	}
+
+
+	public void setProgressBar(JProgressBar progressBar) {
+		this.progressBar = progressBar;
+	}
+
+
+	public Bridge getBridge() {
+		return bridge;
+	}
+
+
+	public void setBridge(Bridge bridge) {
+		this.bridge = bridge;
+	}
+
+
+	public Barrier getBarrier_west() {
+		return barrier_west;
+	}
+
+
+	public void setBarrier_west(Barrier barrier_west) {
+		this.barrier_west = barrier_west;
+	}
+
+
+	public Barrier getBarrier_east() {
+		return barrier_east;
+	}
+
+
+	public void setBarrier_east(Barrier barrier_east) {
+		this.barrier_east = barrier_east;
+	}
+
+
+	public TrafficBi getTraffic_bi_north() {
+		return traffic_bi_north;
+	}
+
+
+	public void setTraffic_bi_north(TrafficBi traffic_bi_north) {
+		this.traffic_bi_north = traffic_bi_north;
+	}
+
+
+	public TrafficBi getTraffic_bi_south() {
+		return traffic_bi_south;
+	}
+
+
+	public void setTraffic_bi_south(TrafficBi traffic_bi_south) {
+		this.traffic_bi_south = traffic_bi_south;
+	}
+
+
+	public TrafficTri getTraffic_tri_west() {
+		return traffic_tri_west;
+	}
+
+
+	public void setTraffic_tri_west(TrafficTri traffic_tri_west) {
+		this.traffic_tri_west = traffic_tri_west;
+	}
+
+
+	public TrafficTri getTraffic_tri_east() {
+		return traffic_tri_east;
+	}
+
+
+	public void setTraffic_tri_east(TrafficTri traffic_tri_east) {
+		this.traffic_tri_east = traffic_tri_east;
+	}
+
+
+	public static int getSpeed() {
+		return speed;
+	}
+
+
+	public static void setSpeed(int speed) {
+		View.speed = speed;
+	}
+	
+
 }

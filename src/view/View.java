@@ -194,6 +194,8 @@ public class View extends JFrame{
 			this.barrier_east = createBarrier(Position.EAST);
 			this.traffic_bi_north = createTrafficBi(Position.NORTH);
 			this.traffic_bi_south = createTrafficBi(Position.SOUTH);
+			traffic_bi_north.setRed();
+			traffic_bi_south.setRed();
 			this.traffic_tri_east = createTrafficTri(Position.EAST);
 			this.traffic_tri_east = createTrafficTri(Position.WEST);
 		

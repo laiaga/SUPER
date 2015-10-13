@@ -1,5 +1,7 @@
 package model.vehicle;
 
+import model.Bridge;
+
 /**
  * Abstract modelisation of a vehicule using the bridge
  * @author Alexandre Leonardi
@@ -54,19 +56,7 @@ public abstract class Vehicle{
 		this.direction = direction;
 	}
 	
-	public void forward() throws Exception {
-		if(isWaiting()){
-			throw new Exception("You can't ask for a car in the state \"waiting\" to move !");
-		}
-		if(isGone()){
-			throw new Exception("You can't ask for a car that has already finished crossing the bridge.");
-		}
-		else{
-			int newPos = getPosition();
-			newPos += getSpeed();
-			setPosition(newPos);
-		}
-	}
+	public abstract void forward() throws Exception;
 	
     public void stopVehicule(){
 	    	setWaiting(true);

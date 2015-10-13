@@ -1,32 +1,31 @@
 package model;
 
-import java.util.HashMap;
-
-import model.ColorLights.ColorTri;
-
 public class Bridge
 {
 	private PositionBridge state;
-	private HashMap<Integer, Sensor> sensors;
 	private int nbCars;
 	private int nbBoats;
+	private Sensor sensorCars;
+	private Sensor sensorBoats;
 	private Barrier barrierEast;
 	private Barrier barrierWest;
-	private ColorLights lightEast;
-	private ColorLights lightWest;
-	private ColorLights lightNorth;
-	private ColorLights lightSouth;
+	private TricolorLight lightEast;
+	private TricolorLight lightWest;
+	private BicolorLight lightNorth;
+	private BicolorLight lightSouth;
 	
 	
 	private Bridge()
 	{
 		state = PositionBridge.Down;
+		sensorCars = new Sensor();
+		sensorBoats = new Sensor();
 		barrierEast = new Barrier(0);
 		barrierEast = new Barrier(0);
-		lightEast = new TricolorLight(ColorTri.VERT);
-		lightWest = new TricolorLight(ColorTri.VERT);
-		lightNorth = new BicolorLight(ColorTri.ROUGE);
-		lightSouth = new BicolorLight(ColorTri.ROUGE);
+		lightEast = new TricolorLight(ColorLights.VERT);
+		lightWest = new TricolorLight(ColorLights.VERT);
+		lightNorth = new BicolorLight(ColorLights.ROUGE);
+		lightSouth = new BicolorLight(ColorLights.ROUGE);
 		nbBoats = nbCars = 0;
 	}
 	
@@ -45,64 +44,82 @@ public class Bridge
 	public void addCar()
 	{
 		nbCars += 1;
+		if(nbCars > 0)
+		{
+			sensorCars.setState(true);
+		}
 	}
 	
 	public void removeCar()
 	{
 		nbCars -= 1;
+		if(nbCars < 1)
+		{
+			sensorCars.setState(false);
+		}
 	}
 	
 	public void addBoat()
 	{
 		nbBoats += 1;
+		if(nbBoats > 0)
+		{
+			sensorBoats.setState(true);
+		}
 	}
 	
 	public void removeBoat()
 	{
 		nbBoats -= 1;
+		if(nbBoats < 1)
+		{
+			sensorBoats.setState(false);
+		}
 	}
 	
 	public boolean isThereCars()
 	{
-		return nbCars != 0;
+		return sensorCars.getState();
 	}
 	
 	public boolean isThereBoats()
 	{
-		return nbBoats != 0;
+		return sensorBoats.getState();
 	}
 
 	public PositionBridge getState()
 	{
 		return this.state;
 	}
-	public Sensor getSensor(int key)
-	{
-		return this.sensors.get(key);
-	}
 	
 
-	public Barrier getBarrierEast() {
+	public Barrier getBarrierEast()
+	{
 		return barrierEast;
 	}
 
-	public Barrier getBarrierWest() {
+	public Barrier getBarrierWest()
+	{
 		return barrierWest;
 	}
 
-	public ColorLights getLightEast() {
+	public TricolorLight getLightEast()
+	{
 		return lightEast;
 	}
 
-	public ColorLights getLightWest() {
+	public TricolorLight getLightWest()
+	{
 		return lightWest;
 	}
 
-	public ColorLights getLightNorth() {
+	public BicolorLight getLightNorth()
+	{
 		return lightNorth;
 	}
 
-	public ColorLights getLightSouth() {
+	public BicolorLight getLightSouth()
+	{
 		return lightSouth;
 	}
 
@@ -120,6 +137,7 @@ public class Bridge
 			this.state = PositionBridge.Up;
 		}
 	}
+	
 	public void down()
 	{
 		if(this.state == PositionBridge.Up)

@@ -1,17 +1,8 @@
 package model;
 
-public class ColorLights {
-	
-	public enum ColorBi {
-		ROUGE,
-		VERT;
-	}
-	
-	public enum ColorTri {
-		ROUGE,
-		ORANGE,
-		VERT;
-	}
-	
-
+public enum ColorLights
+{
+	ROUGE,
+	ORANGE,
+	VERT;
 }

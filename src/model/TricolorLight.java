@@ -1,24 +1,26 @@
 package model;
 
-public class TricolorLight extends ColorLights{
-	ColorTri feux;
+public class TricolorLight
+{
+	ColorLights feux;
 
-	public ColorTri getFeux() {
+	public ColorLights getFeux()
+	{
 		return feux;
 	}
 
-	public void setFeux(ColorTri feux) {
+	public void setFeux(ColorLights feux)
+	{
 		this.feux = feux;
 	}
 
-	public TricolorLight() {
-		super();
+	public TricolorLight()
+	{
+		this.feux = ColorLights.ROUGE;
 	}
 
-	public TricolorLight(ColorTri feux) {
-		super();
+	public TricolorLight(ColorLights feux)
+	{
 		this.feux = feux;
 	}
-	
-	
 }

@@ -1,22 +1,25 @@
 package model;
 
-public class BicolorLight extends ColorLights{
-	ColorTri feux;
+public class BicolorLight
+{
+	ColorLights feux;
 
-	public ColorTri getFeux() {
+	public ColorLights getFeux()
+	{
 		return feux;
 	}
 
-	public void setFeux(ColorTri feux) {
+	public void setFeux(ColorLights feux)
+	{
 		this.feux = feux;
 	}
 
 	public BicolorLight() {
-		super();
+		this.feux = ColorLights.ROUGE;
 	}
 
-	public BicolorLight(ColorTri feux) {
-		super();
+	public BicolorLight(ColorLights feux)
+	{
 		this.feux = feux;
 	}
 }

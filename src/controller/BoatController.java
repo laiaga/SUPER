@@ -53,10 +53,14 @@ public class BoatController implements Runnable
 					}
 					
 				}
-			} catch (IOException e) {
+			}
+			catch (IOException e)
+			{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			} catch (Exception e) {
+			}
+			catch (Exception e)
+			{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}

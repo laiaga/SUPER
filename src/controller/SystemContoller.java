@@ -27,7 +27,9 @@ public class SystemContoller
 		CarController carController = new CarController(window);
 		Thread threadCarContoller = new Thread(carController);
 	    threadCarContoller.start();
-
+	    BoatController boatController = new BoatController(window);
+	    Thread threadBoatController = new Thread(boatController);
+	    threadBoatController.start();
 	}
 }
 

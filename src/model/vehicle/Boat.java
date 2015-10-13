@@ -35,11 +35,11 @@ public class Boat extends Vehicle {
 			setPosition(newPos);
 			if(super.getPosition() > 50)
 			{
-				Bridge.getInstance().addCar();
+				Bridge.getInstance().addBoat();
 			}
 			if(super.getPosition() > 480)
 			{
-				Bridge.getInstance().removeCar();
+				Bridge.getInstance().removeBoat();
 			}
 		}
 	}

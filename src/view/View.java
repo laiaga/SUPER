@@ -201,6 +201,8 @@ public class View extends JFrame{
 			e1.printStackTrace();
 		}
 		
+		barrier_east.setOpen();
+		barrier_west.setOpen();
 		
 		speed=1;
 		

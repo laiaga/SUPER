@@ -113,17 +113,13 @@ public class SystemContoller implements Runnable {
 				car2 = window.createCar(Position.EAST);
 				car4 = window.createCar(Position.WEST);
 			}
-		
 	}
- 
 		car1.hide();
 		car2.hide();
 		car3.hide();
 		car4.hide();
 		
 	}
-
-
 }
 
 

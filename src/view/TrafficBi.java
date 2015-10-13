@@ -10,8 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
-import model.ColorLights.ColorBi;
-import view.ColorLights.ColorTri;
+import model.ColorLights;
 
 /**
  * Modelization of the bridge
@@ -24,7 +23,7 @@ public class TrafficBi extends JPanel {
 	private JImage imgBridge;
 	private JLayeredPane layeredPane;
 	private Position pos;
-	private ColorBi color;
+	private ColorLights color;
 	private Point p;
 	
 	public Position getPos() {
@@ -39,7 +38,7 @@ public class TrafficBi extends JPanel {
 		this.setOpaque(false);
 		p = new Point();
 		this.pos = pos;
-		color = ColorBi.VERT;
+		color = ColorLights.VERT;
 		
 		
 		if(pos == Position.NORTH) {
@@ -74,7 +73,7 @@ public class TrafficBi extends JPanel {
 	 * Turn the traffic Light red
 	 */
 	public void setRed() {
-		this.color = ColorBi.ROUGE;
+		this.color = ColorLights.ROUGE;
 		try {
 			bufferedImgBridge = ImageIO.read(new File(ImagePath.TRAFFIC.toString()+"red.png"));
 		} catch (IOException e) {
@@ -89,7 +88,7 @@ public class TrafficBi extends JPanel {
 	 * Turn the traffic Light green
 	 */
 	public void setGreen() {
-		this.color = ColorBi.VERT;
+		this.color = ColorLights.VERT;
 		try {
 			bufferedImgBridge = ImageIO.read(new File(ImagePath.TRAFFIC.toString()+"green.png"));
 		} catch (IOException e) {
@@ -100,7 +99,7 @@ public class TrafficBi extends JPanel {
 		System.out.println("Traffic Bicolor " + pos + ": " + color );
 	}
 
-	public ColorBi getColor() {
+	public ColorLights getColor() {
 		return color;
 	}
 

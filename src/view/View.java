@@ -5,7 +5,8 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.Window;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -14,15 +15,15 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.UIManager;
-
-import javax.swing.SwingConstants;
-import javax.swing.JLayeredPane;
 import javax.swing.JProgressBar;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 
 /**
  * The main JFrame containing the whole GUI
@@ -51,7 +52,7 @@ public class View extends JFrame{
 	/*public static void main(String[] args) throws IOException, InterruptedException {
 
 		View window = new View();
-
+	
 		speed = 1;
 	
 		//CECI SERA DANS LE CONTROLEUR, IL S'AGIT ICI D'UN TEST =)
@@ -392,6 +393,23 @@ public class View extends JFrame{
 		JMenuItem mntmNewMenuItem = new JMenuItem("Exit");
 		mntmNewMenuItem.setFont(new Font("Arimo", Font.PLAIN, 14));
 		mnNewMenu.add(mntmNewMenuItem);
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				JOptionPane jop = new JOptionPane();	
+				
+				int choix = jop.showConfirmDialog (null, "Voulez-vous quitter ?", "Quitter", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+				if(choix == JOptionPane.YES_OPTION){
+					System.exit(0);
+				}
+				
+				
+				
+			}
+		});
 		
 		JMenu mnNewMenu_1 = new JMenu("More");
 		mnNewMenu_1.setFont(new Font("Arimo", Font.PLAIN, 14));
@@ -400,6 +418,17 @@ public class View extends JFrame{
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Infos");
 		mntmNewMenuItem_1.setFont(new Font("Arimo", Font.PLAIN, 14));
 		mnNewMenu_1.add(mntmNewMenuItem_1);
+		
+		mntmNewMenuItem_1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane jop1 = new JOptionPane();
+				String str = "VIERIN Loic, LEONARDI Alexandre, DUGAT Ghislain, LEPETIT Gélaud, BENAMEUR Abdelkader";
+				jop1.showMessageDialog(null, str, "Information", JOptionPane.INFORMATION_MESSAGE);
+				
+			}
+		});
 	}
 
 

@@ -1,5 +1,7 @@
 package model;
 
+import view.Position;
+
 /**
  * @author Loïc Vierin
  *
@@ -8,10 +10,10 @@ public class Barrier
 {
 
 	private boolean state;
-	private int position;
+	private Position position;
 
 	
-	public Barrier(int position)
+	public Barrier(Position position)
 	{
 		this.state = false;
 		this.position = position;
@@ -22,7 +24,7 @@ public class Barrier
 		return this.state;
 	}
 
-	public int getPosition()
+	public Position getPosition()
 	{
 		return this.position;
 	}

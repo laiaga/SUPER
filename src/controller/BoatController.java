@@ -28,30 +28,25 @@ public class BoatController implements Runnable
 		{
 			try
 			{
-				Bridge bridge = Bridge.getInstance();
-				BicolorLight lightNorth = bridge.getLightNorth();
-				BicolorLight lightSouth = bridge.getLightSouth();
 				model.vehicle.Boat boatNorth = new model.vehicle.Boat(0, 1, Direction.South);
 				Boat boatNorthView = window.createBoat(Position.NORTH);
 				model.vehicle.Boat boatSouth = new model.vehicle.Boat(0, 1, Direction.North);
 				Boat boatSouthView = window.createBoat(Position.SOUTH);
-				if(bridge.getState() == PositionBridge.Up)
+				if(Bridge.getInstance().getState() == PositionBridge.Up
+						&& Bridge.getInstance().getLightNorth().getFeux() == ColorLights.VERT && Bridge.getInstance().getLightSouth().getFeux() == ColorLights.VERT)
 				{
-					if(lightNorth.getFeux() == ColorLights.VERT)
-					{
-						boatNorth.forward();
-						MoveBoatController moveBoatNorth = new MoveBoatController(boatNorth, boatNorthView);
-						Thread threadBoatNorth = new Thread(moveBoatNorth);
-						threadBoatNorth.start();
-					}
-					if(lightSouth.getFeux() == ColorLights.VERT)
-					{
-						boatSouth.forward();
-						MoveBoatController moveBoatSouth = new MoveBoatController(boatSouth, boatSouthView);	
-						Thread threadBoatSouth = new Thread(moveBoatSouth);
-						threadBoatSouth.start();					
-					}
-					
+					boatNorth.forward();
+					MoveBoatController moveBoatNorth = new MoveBoatController(boatNorth, boatNorthView);
+					Thread threadBoatNorth = new Thread(moveBoatNorth);
+					threadBoatNorth.start();
+					boatSouth.forward();
+					MoveBoatController moveBoatSouth = new MoveBoatController(boatSouth, boatSouthView);	
+					Thread threadBoatSouth = new Thread(moveBoatSouth);
+					threadBoatSouth.start();										
+				}
+				else
+				{
+					this.wait();
 				}
 			}
 			catch (IOException e)

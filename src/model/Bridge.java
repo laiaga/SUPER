@@ -1,5 +1,7 @@
 package model;
 
+import view.Position;
+
 public class Bridge
 {
 	private PositionBridge state;
@@ -20,8 +22,8 @@ public class Bridge
 		state = PositionBridge.Down;
 		sensorCars = new Sensor();
 		sensorBoats = new Sensor();
-		barrierEast = new Barrier(0);
-		barrierEast = new Barrier(0);
+		barrierEast = new Barrier(Position.EAST);
+		barrierWest = new Barrier(Position.WEST);
 		lightEast = new TricolorLight(ColorLights.VERT);
 		lightWest = new TricolorLight(ColorLights.VERT);
 		lightNorth = new BicolorLight(ColorLights.ROUGE);

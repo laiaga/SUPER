@@ -77,12 +77,12 @@ public class Bridge
 		}
 	}
 	
-	public boolean isThereCars()
+	public boolean areThereCars()
 	{
 		return sensorCars.getState();
 	}
 	
-	public boolean isThereBoats()
+	public boolean areThereBoats()
 	{
 		return sensorBoats.getState();
 	}

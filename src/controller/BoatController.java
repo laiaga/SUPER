@@ -41,11 +41,15 @@ public class BoatController implements Runnable
 					{
 						boatNorth.forward();
 						MoveBoatController moveBoatNorth = new MoveBoatController(boatNorth, boatNorthView);
+						Thread threadBoatNorth = new Thread(moveBoatNorth);
+						threadBoatNorth.start();
 					}
 					if(lightSouth.getFeux() == ColorLights.VERT)
 					{
 						boatSouth.forward();
-						MoveBoatController moveBoatSouth = new MoveBoatController(boatSouth, boatSouthView);						
+						MoveBoatController moveBoatSouth = new MoveBoatController(boatSouth, boatSouthView);	
+						Thread threadBoatSouth = new Thread(moveBoatSouth);
+						threadBoatSouth.start();					
 					}
 					
 				}

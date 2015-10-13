@@ -6,6 +6,55 @@ public class Bridge
 {
 	private PositionBridge state;
 	private HashMap<Integer, Sensor> sensors;
+	private int nbCars;
+	private int nbBoats;
+	
+	private Bridge()
+	{
+		nbBoats = nbCars = 0;
+	}
+	
+	private static class BridgeHolder
+	{		
+		/** Instance unique non préinitialisée */
+		private final static Bridge instance = new Bridge();
+	}
+ 
+	/** Point d'accès pour l'instance unique du singleton */
+	public static Bridge getInstance()
+	{
+		return BridgeHolder.instance;
+	}
+	
+	public void addCar()
+	{
+		nbCars += 1;
+	}
+	
+	public void removeCar()
+	{
+		nbCars -= 1;
+	}
+	
+	public void addBoat()
+	{
+		nbBoats += 1;
+	}
+	
+	public void removeBoat()
+	{
+		nbBoats -= 1;
+	}
+	
+	public boolean isThereCars()
+	{
+		return nbCars != 0;
+	}
+	
+	public boolean isThereBoats()
+	{
+		return nbBoats != 0;
+	}
 
 	public PositionBridge getState()
 	{
@@ -15,6 +64,7 @@ public class Bridge
 	{
 		return this.sensors.get(key);
 	}
+	
 
 	public void up()
 	{

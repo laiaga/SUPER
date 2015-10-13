@@ -20,18 +20,26 @@ public class MoveCarController implements Runnable
 	@Override
 	public void run()
 	{
-		while(car != null)
+		while(car.getPosition() < 761)
 		{
 			int x = 0;
 			if(car.getDirection() == Direction.West)
 			{
-				x = car.getPosition() + 140;
+				x = car.getPosition() + 140 - carView.getP().x;
 			}
 			else
 			{
-				
+				x = 620 - car.getPosition() + carView.getP().x;
+			}
+			carView.move(x);
+			try {
+				Thread.currentThread().wait(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
+		carView.hide();
 		
 	}
 

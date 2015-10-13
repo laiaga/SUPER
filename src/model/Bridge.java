@@ -11,6 +11,7 @@ public class Bridge
 	
 	private Bridge()
 	{
+		state = PositionBridge.Down;
 		nbBoats = nbCars = 0;
 	}
 	

@@ -4,7 +4,7 @@ package model.vehicle;
  * Abstract modelisation of a vehicule using the bridge
  * @author Alexandre Leonardi
  */
-public abstract class Vehicle {
+public abstract class Vehicle implements Runnable{
 	// True if the vehicle isn't prioritary at the moment
 	private boolean waiting;
 	// Position of the vehicle along the axis he is following, in m
@@ -55,11 +55,12 @@ public abstract class Vehicle {
 				int newPos = getPosition();
 				newPos += getSpeed();
 				setPosition(newPos);
-				wait(1000);
+				//Thread.currentThread().wait(1000);
+				
 			}
 		}
 	}
-    public void stop(){
+    public void stopVehicule(){
     	setWaiting(true);
     }
 }

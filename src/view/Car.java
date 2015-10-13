@@ -73,6 +73,7 @@ public class Car extends JPanel {
 		this.setBounds(p.x,p.y, bufferedImgCar.getWidth(), bufferedImgCar.getHeight()+10);
 		this.add(imgCar);
 		this.layeredPane.add(this);
+		System.out.println("New car "+ pos);
 	}
 	
 	/**

@@ -368,7 +368,7 @@ public class View extends JFrame{
 		
 		JMenu mnNewMenu_1 = new JMenu("More");
 		mnNewMenu_1.setFont(new Font("Arimo", Font.PLAIN, 14));
-		menuBar.add(mnNewMenu_1);
+		menuBar.add(mnNewMenu_1); 
 		
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Infos");
 		mntmNewMenuItem_1.setFont(new Font("Arimo", Font.PLAIN, 14));

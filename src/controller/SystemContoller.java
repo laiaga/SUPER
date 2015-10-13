@@ -24,9 +24,9 @@ public class SystemContoller
 	public static void main(String[] args) throws IOException
 	{
 		window = new View();
-		window.createBridge(BridgeState.DOWN);
 		CarController carController = new CarController(window);
-		carController.run();
+		Thread threadCarContoller = new Thread(carController);
+	    threadCarContoller.start();
 
 	}
 }

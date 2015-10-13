@@ -18,10 +18,4 @@ public class Car extends Vehicle {
 			throw new Exception("A car can only follow the East direction or the West direction.");
 		}
 	}
-
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		
-	}
 }

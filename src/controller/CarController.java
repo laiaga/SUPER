@@ -21,25 +21,21 @@ public class CarController implements Runnable
 
 	@Override
 	public void run() {
-		//while(true)
-		//{
+		while(true)
+		{
 			try {
-				model.vehicle.Car carEast = new model.vehicle.Car(0, 10, Direction.West);
+				model.vehicle.Car carEast = new model.vehicle.Car(0, 100, Direction.West);
 				Car carEastView = window.createCar(Position.EAST);
-				model.vehicle.Car carWest = new model.vehicle.Car(0, 10, Direction.East);
+				model.vehicle.Car carWest = new model.vehicle.Car(0, 100, Direction.East);
 				Car carWestView = window.createCar(Position.WEST);
-				carEast.run();
-				carWest.run();
 				if(Bridge.getInstance().getState() == PositionBridge.Down)
 				{
-					carEast.forward();
-					carWest.forward();
-					System.out.println(carEast.getPosition());
 					MoveCarController moveCarEast = new MoveCarController(carEast, carEastView);
 					MoveCarController moveCarWest = new MoveCarController(carWest, carWestView);
-					moveCarEast.run();
-					moveCarWest.run();
-					
+					Thread threadCarEast = new Thread(moveCarEast);
+				    Thread threadCarWest = new Thread(moveCarWest);
+				    threadCarEast.start();
+				    threadCarWest.start();
 					
 				}
 			} catch (IOException e) {
@@ -49,7 +45,22 @@ public class CarController implements Runnable
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		//}
+			synchronized (Thread.currentThread()) {
+				try {synchronized (Thread.currentThread()) {
+					try {
+						Thread.currentThread().wait(1000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+					Thread.currentThread().wait(5000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 
 }

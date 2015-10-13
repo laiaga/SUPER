@@ -19,10 +19,4 @@ public class Boat extends Vehicle {
 		}
 	}
 
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

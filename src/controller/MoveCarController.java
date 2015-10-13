@@ -22,6 +22,12 @@ public class MoveCarController implements Runnable
 	{
 		while(car.getPosition() < 761)
 		{
+			try {
+				car.forward();
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			int x = 0;
 			if(car.getDirection() == Direction.West)
 			{
@@ -29,14 +35,16 @@ public class MoveCarController implements Runnable
 			}
 			else
 			{
-				x = 620 - car.getPosition() + carView.getP().x;
+				x = car.getSpeed();
 			}
 			carView.move(x);
-			try {
-				Thread.currentThread().wait(1000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			synchronized (Thread.currentThread()) {
+				try {
+					Thread.currentThread().wait(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
 		carView.hide();

@@ -21,12 +21,12 @@ public class Barrier extends JPanel{
 	private BufferedImage bufferedImgBarrier;
 	private JImage imgBarrier;
 	private Point p;
-	private PositionBridge position; //barrier up or down
+	private BridgeState position; //barrier up or down
 	private Position place; //barrier east/west
 	
 	public Barrier(JLayeredPane layeredPane, Position pos) throws IOException {
 		super();
-		this.position = PositionBridge.Down;
+		this.position = BridgeState.DOWN;
 		
 		this.setOpaque(false);
 		
@@ -53,15 +53,16 @@ public class Barrier extends JPanel{
 		layeredPane.setLayer(this, 1);
 
 		this.add(imgBarrier);
-		layeredPane.add(this);	
+		layeredPane.add(this);
+		System.out.println("New Barrier "+ pos);
 	}
 	
 	/**
 	 * Close the barrier with an animation
 	 */
 	public void close() { 
-		if(this.position == PositionBridge.Up) {
-			this.position = PositionBridge.Moving;
+		if(this.position == BridgeState.UP) {
+			this.position = BridgeState.MOVING;
 			try {
 				int width = 0;
 				for(int i=0; i<200; i++) {
@@ -79,7 +80,8 @@ public class Barrier extends JPanel{
 				e.printStackTrace();
 			}
 
-			this.position=PositionBridge.Down;
+			this.position=BridgeState.DOWN;
+			System.out.println("Barrier "+ position);
 		}
 		
 		else
@@ -92,8 +94,8 @@ public class Barrier extends JPanel{
 	 * Open the barrier with an animation
 	 */
 	public void open() { 
-		if(this.position == PositionBridge.Down) {
-			this.position = PositionBridge.Moving;
+		if(this.position == BridgeState.DOWN) {
+			this.position = BridgeState.MOVING;
 			try {
 				int width = 0;
 				for(int i=0; i<200; i++) {
@@ -109,7 +111,8 @@ public class Barrier extends JPanel{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			this.position=PositionBridge.Up;
+			this.position=BridgeState.UP;
+			System.out.println("Barrier "+ position);
 		} 
 		else
 			System.err.println("Error: Barrier already up !");
@@ -119,28 +122,30 @@ public class Barrier extends JPanel{
 	
 
 	public void setOpen() {
-		if(this.position == PositionBridge.Down) {
+		if(this.position == BridgeState.DOWN) {
 			if(place == Position.EAST)
 				p.y+=200;
 			else
 				p.y-=200;
 			this.setBounds(p.x, p.y, bufferedImgBarrier.getWidth(), bufferedImgBarrier.getHeight()+10);
 	
-			this.position = PositionBridge.Up;
+			this.position = BridgeState.UP;
+			System.out.println("Barrier "+ position);
 		} 
 		else
 			System.err.println("Error: Barrier already up !");
 	}
 	
 	public void setClose() {
-		if(this.position == PositionBridge.Up) {
+		if(this.position == BridgeState.UP) {
 			if(place == Position.EAST)
 				p.y-=200;
 			else
 				p.y+=200;
 			this.setBounds(p.x, p.y, bufferedImgBarrier.getWidth(), bufferedImgBarrier.getHeight()+10);
 	
-			this.position = PositionBridge.Up;
+			this.position = BridgeState.DOWN;
+			System.out.println("Barrier "+ position);
 		}
 		else
 			System.err.println("Error: Barrier already Down !");
@@ -180,7 +185,7 @@ public class Barrier extends JPanel{
 		return p;
 	}
 
-	public PositionBridge getPosition() {
+	public BridgeState getPosition() {
 		return position;
 	}
 

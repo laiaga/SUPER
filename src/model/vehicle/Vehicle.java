@@ -4,7 +4,7 @@ package model.vehicle;
  * Abstract modelisation of a vehicule using the bridge
  * @author Alexandre Leonardi
  */
-public abstract class Vehicle implements Runnable{
+public abstract class Vehicle{
 	// True if the vehicle isn't prioritary at the moment
 	private boolean waiting;
 	// Position of the vehicle along the axis he is following, in m
@@ -13,6 +13,8 @@ public abstract class Vehicle implements Runnable{
 	private int speed;
 	// Direction the vehicle is following,
 	private Direction direction;
+	// True if the vehicle has finished crossing the bridge and is gone
+	private boolean gone;
 	
 	public boolean isWaiting() {
 		return waiting;
@@ -38,6 +40,12 @@ public abstract class Vehicle implements Runnable{
 	public void setDirection(Direction direction) {
 		this.direction = direction;
 	}
+	public boolean isGone(){
+		return gone;
+	}
+	public void setGone(boolean gone){
+		this.gone = gone;
+	}
 
 	public Vehicle(int position, int speed, Direction direction){
 		waiting = false;
@@ -50,17 +58,17 @@ public abstract class Vehicle implements Runnable{
 		if(isWaiting()){
 			throw new Exception("You can't ask for a car in the state \"waiting\" to move !");
 		}
+		if(isGone()){
+			throw new Exception("You can't ask for a car that has already finished crossing the bridge.");
+		}
 		else{
-			while(!isWaiting()){
-				int newPos = getPosition();
-				newPos += getSpeed();
-				setPosition(newPos);
-				//Thread.currentThread().wait(1000);
-				
-			}
+			int newPos = getPosition();
+			newPos += getSpeed();
+			setPosition(newPos);
 		}
 	}
+	
     public void stopVehicule(){
-    	setWaiting(true);
+	    	setWaiting(true);
     }
 }

@@ -44,6 +44,7 @@ public class Bridge extends JPanel {
 		
 		this.add(imgBridge);
 		this.layeredPane.add(this);
+		System.out.println("New Bridge "+ pos);
 	}
 	
 	/**
@@ -66,7 +67,8 @@ public class Bridge extends JPanel {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			pos=BridgeState.DOWN;	
+			pos=BridgeState.DOWN;
+			System.out.println("Bridge "+ pos);
 		}
 		else 
 			System.err.println("Error: Bridge already closed !");
@@ -91,7 +93,8 @@ public class Bridge extends JPanel {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			pos=BridgeState.UP;		
+			pos=BridgeState.UP;	
+			System.out.println("Bridge "+ pos);
 		}
 		else
 			System.err.println("Bridge already up!");
@@ -102,6 +105,8 @@ public class Bridge extends JPanel {
 	 */
 	public void setOpen() {
 		this.setSize(0, bufferedImgBridge.getHeight()+10);
+		pos=BridgeState.UP;
+		System.out.println("Bridge "+ pos);
 	}
 	
 	/**
@@ -109,6 +114,8 @@ public class Bridge extends JPanel {
 	 */
 	public void setClose() {
 		this.setSize(bufferedImgBridge.getWidth(), bufferedImgBridge.getHeight()+10);
+		pos=BridgeState.DOWN;
+		System.out.println("Bridge "+ pos);
 	}
 
 	public BridgeState getPos() {

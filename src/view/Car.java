@@ -77,7 +77,8 @@ public class Car extends JPanel {
 	
 	/**
 	 * Modifies the car position along a line according to its starting point
-	 * @param x the modifier we apply to the axial coordinate of the car
+	 * (Add x at it's x position)
+	 * @param x 
 	 */
 	public void move(int x) {
 		if(pos == Position.EAST)
@@ -107,6 +108,16 @@ public class Car extends JPanel {
 		this.setBounds(p.x,p.y,0, 0);
 		
 	}
+
+	public Position getPos() {
+		return pos;
+	}
+
+	public Point getP() {
+		return p;
+	}
+	
+	
 	
 
 }

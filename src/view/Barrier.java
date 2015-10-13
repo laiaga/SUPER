@@ -56,7 +56,9 @@ public class Barrier extends JPanel{
 		layeredPane.add(this);	
 	}
 	
-	
+	/**
+	 * Close the barrier with an animation
+	 */
 	public void close() { 
 		if(this.position == PositionBridge.Up) {
 			this.position = PositionBridge.Moving;
@@ -86,6 +88,9 @@ public class Barrier extends JPanel{
 			
 	}
 	
+	/**
+	 * Open the barrier with an animation
+	 */
 	public void open() { 
 		if(this.position == PositionBridge.Down) {
 			this.position = PositionBridge.Moving;
@@ -112,6 +117,7 @@ public class Barrier extends JPanel{
 			
 	}
 	
+
 	public void setOpen() {
 		if(this.position == PositionBridge.Down) {
 			if(place == Position.EAST)
@@ -141,15 +147,19 @@ public class Barrier extends JPanel{
 		
 	}
 	
-	
+	/**
+	 * Move the barrier on the y axe.
+	 * @param y
+	 */
 	public void move(int y) {
 		p.y +=y;
 		this.setBounds(p.x,p.y, bufferedImgBarrier.getWidth(), bufferedImgBarrier.getHeight()+10);
 	}
 	
+
 	/**
-	 * Sets the the value of the p attribute  and modifies the bounds of the panel accordingly
-	 * @param p the new position (as a couple (x,y)) of the panel
+	 * Sets the barrier at the Point p
+	 * @param p the new position (as a couple (x,y))
 	 */
 	public void put(Point p) {
 		this.p = p;
@@ -163,5 +173,18 @@ public class Barrier extends JPanel{
 	public void hide() {
 		this.setBounds(p.x,p.y,0, 0);
 		
+	}
+	
+	
+	public Point getP() {
+		return p;
+	}
+
+	public PositionBridge getPosition() {
+		return position;
+	}
+
+	public Position getPlace() {
+		return place;
 	}
 }

@@ -6,7 +6,8 @@ import model.Bridge;
  * Abstract modelisation of a vehicule using the bridge
  * @author Alexandre Leonardi
  */
-public abstract class Vehicle{
+public abstract class Vehicle
+{
 	// True if the vehicle isn't prioritary at the moment
 	private boolean waiting;
 	// Position of the vehicle along the axis he is following, in m
@@ -15,6 +16,8 @@ public abstract class Vehicle{
 	private int speed;
 	// Direction the vehicle is following,
 	private Direction direction;
+	// True if the vehicle has begun crossing the bridge
+	private boolean entered;
 	// True if the vehicle has finished crossing the bridge and is gone
 	private boolean gone;
 	
@@ -42,6 +45,12 @@ public abstract class Vehicle{
 	public void setDirection(Direction direction) {
 		this.direction = direction;
 	}
+	public boolean isEntered(){
+		return entered;
+	}
+	public void setEntered(boolean entered){
+		this.entered = entered;
+	}
 	public boolean isGone(){
 		return gone;
 	}
@@ -51,6 +60,8 @@ public abstract class Vehicle{
 
 	public Vehicle(int position, int speed, Direction direction){
 		waiting = false;
+		entered = false;
+		gone = false;
 		this.position = position;
 		this.speed = speed;
 		this.direction = direction;

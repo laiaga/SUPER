@@ -4,6 +4,7 @@ import view.View;
 import model.BicolorLight;
 import model.Bridge;
 import model.ColorLights;
+import model.PositionBridge;
 import model.TricolorLight;
 
 public class BridgeController implements Runnable
@@ -28,7 +29,8 @@ public class BridgeController implements Runnable
 	private model.Barrier barrierEast;
 	private model.Barrier barrierWest;
 	
-	public int switchTime;
+	public int carTime;
+	public int boatTime;
 	
 	public BridgeController(View window, Thread threadCarsController, Thread threadBoatsController)
 	{
@@ -52,7 +54,8 @@ public class BridgeController implements Runnable
 		this.barrierEast = bridge.getBarrierEast();
 		this.barrierWest = bridge.getBarrierWest();
 		
-		this.switchTime = 15000;
+		this.carTime = 10000;
+		this.boatTime = 20000;
 	}
 	
 	public void run()
@@ -63,7 +66,7 @@ public class BridgeController implements Runnable
 			{
 				try
 				{
-					Thread.currentThread().wait(switchTime);
+					Thread.currentThread().wait(carTime);
 				}
 				catch (InterruptedException e)
 				{
@@ -99,7 +102,7 @@ public class BridgeController implements Runnable
 	    		barrierWest.down();
 	    		barrierWestView.close();
 	    		
-	    		bridge.up();
+	    		openBridge();
 	    		bridgeView.open();
 	    		
 	    		lightNorth.setFeux(ColorLights.VERT);
@@ -107,22 +110,25 @@ public class BridgeController implements Runnable
 	    		lightSouth.setFeux(ColorLights.VERT);
 	    		lightSouthView.setRed();
 	    		
-	    		try
-	    		{
-	    			threadBoatsController.notify();
-	    		}
-	    		catch(IllegalMonitorStateException e)
-	    		{
-					// TODO Auto-generated catch block
-					e.printStackTrace();	    			
-	    		}
+	    		synchronized (threadBoatsController)
+				{
+	    			try
+		    		{
+		    			threadBoatsController.notify();
+		    		}
+		    		catch(IllegalMonitorStateException e)
+		    		{
+						// TODO Auto-generated catch block
+						e.printStackTrace();	    			
+		    		}
+				}
 	    	}
 	    	
 	    	synchronized (Thread.currentThread())
 			{
 				try
 				{
-					Thread.currentThread().wait(switchTime);
+					Thread.currentThread().wait(boatTime);
 				}
 				catch (InterruptedException e)
 				{
@@ -153,7 +159,7 @@ public class BridgeController implements Runnable
 	    	}
 	    	if(!bridge.areThereBoats())
 	    	{
-	    		bridge.down();
+	    		closeBridge();
 	    		bridgeView.close();
 	    		
 	    		lightEast.setFeux(ColorLights.VERT);
@@ -165,17 +171,61 @@ public class BridgeController implements Runnable
 	    		barrierEastView.open();
 	    		barrierWest.up();
 	    		barrierWestView.open();
-	    		try
-	    		{
-	    			threadCarsController.notify();
-	    		}
-	    		catch(IllegalMonitorStateException e)
-	    		{
-					// TODO Auto-generated catch block
-					e.printStackTrace();	    			
-	    		}
+	    		synchronized (threadCarsController)
+				{
+	    			try
+		    		{
+		    			threadCarsController.notify();
+		    		}
+		    		catch(IllegalMonitorStateException e)
+		    		{
+						// TODO Auto-generated catch block
+						e.printStackTrace();	    			
+		    		}
+				}
 	    	}
 	    }
 	}
-
+	
+	private void closeBridge()
+	{
+		if(bridge.getState() != PositionBridge.Down)
+		{
+			bridge.setState(PositionBridge.Moving);
+			synchronized (Thread.currentThread())
+			{
+				try
+				{
+					Thread.currentThread().wait(1000);
+				}
+				catch (InterruptedException e)
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			bridge.setState(PositionBridge.Down);
+		}
+	}
+	
+	private void openBridge()
+	{
+		if(bridge.getState() != PositionBridge.Up)
+		{
+			bridge.setState(PositionBridge.Moving);
+			synchronized (Thread.currentThread())
+			{
+				try
+				{
+					Thread.currentThread().wait(1000);
+				}
+				catch (InterruptedException e)
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			bridge.setState(PositionBridge.Up);
+		}
+	}
 }

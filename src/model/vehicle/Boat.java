@@ -29,18 +29,25 @@ public class Boat extends Vehicle {
 		if(isGone()){
 			throw new Exception("You can't ask for a car that has already finished crossing the bridge.");
 		}
-		else{
+		else
+		{
 			int newPos = getPosition();
 			newPos += getSpeed();
 			setPosition(newPos);
 			if(super.getPosition() > 50)
 			{
-				Bridge.getInstance().addBoat();
+				if(!super.isEntered())
+				Bridge.getInstance().addCar();
 			}
-			if(super.getPosition() > 480)
+			super.setEntered(true);
+		}
+		if(super.getPosition() > 480)
+		{
+			if(!super.isGone())
 			{
-				Bridge.getInstance().removeBoat();
+				Bridge.getInstance().removeCar();
 			}
+			super.setGone(true);
 		}
 	}
 

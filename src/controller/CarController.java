@@ -27,13 +27,13 @@ public class CarController implements Runnable
 		{
 			try
 			{
-				model.vehicle.Car carEast = new model.vehicle.Car(0, 100, Direction.West);
-				Car carEastView = window.createCar(Position.EAST);
-				model.vehicle.Car carWest = new model.vehicle.Car(0, 100, Direction.East);
-				Car carWestView = window.createCar(Position.WEST);
 				if(Bridge.getInstance().getState() == PositionBridge.Down
 						&& Bridge.getInstance().getLightEast().getFeux() == ColorLights.VERT && Bridge.getInstance().getLightWest().getFeux() == ColorLights.VERT)
 				{
+					model.vehicle.Car carEast = new model.vehicle.Car(0, 100, Direction.West);
+					Car carEastView = window.createCar(Position.EAST);
+					model.vehicle.Car carWest = new model.vehicle.Car(0, 100, Direction.East);
+					Car carWestView = window.createCar(Position.WEST);
 					MoveCarController moveCarEast = new MoveCarController(carEast, carEastView);
 					MoveCarController moveCarWest = new MoveCarController(carWest, carWestView);
 					Thread threadCarEast = new Thread(moveCarEast);

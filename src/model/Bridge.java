@@ -125,33 +125,8 @@ public class Bridge
 		return lightSouth;
 	}
 
-	public void up()
+	public void setState(PositionBridge newPos)
 	{
-		if(this.state == PositionBridge.Down)
-		{
-			this.state = PositionBridge.Moving;
-			try {
-				wait(5000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			this.state = PositionBridge.Up;
-		}
-	}
-	
-	public void down()
-	{
-		if(this.state == PositionBridge.Up)
-		{
-			this.state = PositionBridge.Moving;
-			try {
-				wait(5000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			this.state = PositionBridge.Down;
-		}
+		this.state = newPos;
 	}
 }

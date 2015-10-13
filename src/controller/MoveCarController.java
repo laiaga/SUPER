@@ -22,9 +22,11 @@ public class MoveCarController implements Runnable
 	{
 		while(car.getPosition() < 761)
 		{
-			try {
+			try
+			{
 				car.forward();
-			} catch (Exception e1) {
+			} catch (Exception e1)
+			{
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}

@@ -54,21 +54,25 @@ public class Bridge extends JPanel {
 	 * At the end of the operation, cars can go through, boats are blocked
 	 */
 	public void close() {
-		pos = BridgeState.MOVING;
-		try {
-			int width = 0;
-			for(int i=0; i<bufferedImgBridge.getWidth(); i++) {
-				width++;
-				this.setSize(width, bufferedImgBridge.getHeight()+10);
-
-				//Thread.sleep(15);
-				Thread.sleep(View.speed);
+		if(pos == BridgeState.UP) {
+			pos = BridgeState.MOVING;
+			try {
+				int width = 0;
+				for(int i=0; i<bufferedImgBridge.getWidth(); i++) {
+					width++;
+					this.setSize(width, bufferedImgBridge.getHeight()+10);
+	
+					//Thread.sleep(15);
+					Thread.sleep(View.speed);
+				}
+				
+			} catch (InterruptedException e) {
+				e.printStackTrace();
 			}
-			
-		} catch (InterruptedException e) {
-			e.printStackTrace();
+			pos=BridgeState.DOWN;	
 		}
-		pos=BridgeState.DOWN;	
+		else 
+			System.err.println("Error: Bridge already closed !");
 	}
 	
 	/**
@@ -76,20 +80,24 @@ public class Bridge extends JPanel {
 	 * At the end of the operation, boats can go through, cars are blocked
 	 */
 	public void open() {
-		pos = BridgeState.MOVING;
-		try {
-			int width = bufferedImgBridge.getWidth();
-			for(int i=0; i<bufferedImgBridge.getWidth(); i++) {
-				width--;
-				this.setSize(width, bufferedImgBridge.getHeight()+10);
-
-				Thread.sleep(View.speed);
+		if( pos == BridgeState.DOWN) {
+			pos = BridgeState.MOVING;
+			try {
+				int width = bufferedImgBridge.getWidth();
+				for(int i=0; i<bufferedImgBridge.getWidth(); i++) {
+					width--;
+					this.setSize(width, bufferedImgBridge.getHeight()+10);
+	
+					Thread.sleep(View.speed);
+				}
+				
+			} catch (InterruptedException e) {
+				e.printStackTrace();
 			}
-			
-		} catch (InterruptedException e) {
-			e.printStackTrace();
+			pos=BridgeState.UP;		
 		}
-		pos=BridgeState.UP;		
+		else
+			System.err.println("Bridge already up!");
 	}
 	
 	/**

@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 
 import model.Bridge;
+import model.ColorLights;
 import model.PositionBridge;
 import model.vehicle.*;
 import view.Car;
@@ -20,15 +21,18 @@ public class CarController implements Runnable
 	}
 
 	@Override
-	public void run() {
+	public void run()
+	{
 		while(true)
 		{
-			try {
+			try
+			{
 				model.vehicle.Car carEast = new model.vehicle.Car(0, 100, Direction.West);
 				Car carEastView = window.createCar(Position.EAST);
 				model.vehicle.Car carWest = new model.vehicle.Car(0, 100, Direction.East);
 				Car carWestView = window.createCar(Position.WEST);
-				if(Bridge.getInstance().getState() == PositionBridge.Down)
+				if(Bridge.getInstance().getState() == PositionBridge.Down
+						&& Bridge.getInstance().getLightEast().getFeux() == ColorLights.VERT && Bridge.getInstance().getLightWest().getFeux() == ColorLights.VERT)
 				{
 					MoveCarController moveCarEast = new MoveCarController(carEast, carEastView);
 					MoveCarController moveCarWest = new MoveCarController(carWest, carWestView);
@@ -38,24 +42,44 @@ public class CarController implements Runnable
 				    threadCarWest.start();
 					
 				}
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (Exception e) {
+				else
+				{
+					synchronized (Thread.currentThread())
+					{
+						Thread.currentThread().wait();
+					}
+				}
+			}
+			catch (IOException e)
+			{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			synchronized (Thread.currentThread()) {
-				try {synchronized (Thread.currentThread()) {
-					try {
-						Thread.currentThread().wait(1000);
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+			catch (Exception e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			synchronized (Thread.currentThread())
+			{
+				try
+				{
+					synchronized (Thread.currentThread())
+					{
+						try
+						{
+							Thread.currentThread().wait(1000);
+						}
+						catch (InterruptedException e)
+						{
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 					}
-				}
 					Thread.currentThread().wait(5000);
-				} catch (InterruptedException e) {
+				}
+				catch (InterruptedException e)
+				{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}

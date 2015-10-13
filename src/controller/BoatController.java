@@ -46,7 +46,10 @@ public class BoatController implements Runnable
 				}
 				else
 				{
-					this.wait();
+					synchronized (Thread.currentThread())
+					{
+						Thread.currentThread().wait();
+					}
 				}
 			}
 			catch (IOException e)
@@ -59,7 +62,30 @@ public class BoatController implements Runnable
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			synchronized (Thread.currentThread())
+			{
+				try
+				{
+					synchronized (Thread.currentThread())
+					{
+						try
+						{
+							Thread.currentThread().wait(1000);
+						}
+						catch (InterruptedException e)
+						{
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+					Thread.currentThread().wait(5000);
+				}
+				catch (InterruptedException e)
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 	}
-
 }

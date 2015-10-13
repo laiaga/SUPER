@@ -28,6 +28,8 @@ public class BridgeController implements Runnable
 	private model.Barrier barrierEast;
 	private model.Barrier barrierWest;
 	
+	public int switchTime;
+	
 	public BridgeController(View window, Thread threadCarsController, Thread threadBoatsController)
 	{
 		this.window = window;
@@ -49,70 +51,45 @@ public class BridgeController implements Runnable
 		this.lightWest = bridge.getLightWest();
 		this.barrierEast = bridge.getBarrierEast();
 		this.barrierWest = bridge.getBarrierWest();
+		
+		this.switchTime = 15000;
 	}
 	
 	public void run()
 	{
 		while(true)
-	    {
-    		lightNorth.setFeux(ColorLights.ROUGE);
-    		lightNorthView.setRed();
-    		lightSouth.setFeux(ColorLights.ROUGE);
-    		lightSouthView.setRed();
-	    	while(bridge.areThereBoats())
-	    	{
-	    		try
-	    		{
-	    			wait(500);
-	    		}
+	    {	    	
+	    	synchronized (Thread.currentThread())
+			{
+				try
+				{
+					Thread.currentThread().wait(switchTime);
+				}
 				catch (InterruptedException e)
 				{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-	    	}
-	    	if(!bridge.areThereBoats())
-	    	{
-	    		bridge.down();
-	    		bridgeView.close();
-	    		
-	    		lightEast.setFeux(ColorLights.VERT);
-	    		lightEastView.setGreen();
-	    		lightWest.setFeux(ColorLights.VERT);
-	    		lightWestView.setGreen();
-	    		
-	    		barrierEast.up();
-	    		barrierEastView.open();
-	    		barrierWest.up();
-	    		barrierWestView.open();
-	    		
-	    		threadCarsController.notify();
-	    	}
-	    	
-	    	try
-    		{
-    			wait(15000);
-    		}
-			catch (InterruptedException e)
-			{
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
 	    	
+	    	System.out.println("La circulation passe aux bateaux.");
     		lightEast.setFeux(ColorLights.ROUGE);
     		lightEastView.setRed();
     		lightWest.setFeux(ColorLights.ROUGE);
     		lightWestView.setRed();
 	    	while(bridge.areThereCars())
 	    	{
-	    		try
-	    		{
-	    			wait(500);
-	    		}
-				catch (InterruptedException e)
+	    		synchronized (Thread.currentThread())
 				{
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					try
+					{
+						Thread.currentThread().wait(500);
+					}
+					catch (InterruptedException e)
+					{
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 	    	}
 	    	if(!bridge.areThereCars())
@@ -130,7 +107,73 @@ public class BridgeController implements Runnable
 	    		lightSouth.setFeux(ColorLights.VERT);
 	    		lightSouthView.setRed();
 	    		
-	    		threadBoatsController.notify();
+	    		try
+	    		{
+	    			threadBoatsController.notify();
+	    		}
+	    		catch(IllegalMonitorStateException e)
+	    		{
+					// TODO Auto-generated catch block
+					e.printStackTrace();	    			
+	    		}
+	    	}
+	    	
+	    	synchronized (Thread.currentThread())
+			{
+				try
+				{
+					Thread.currentThread().wait(switchTime);
+				}
+				catch (InterruptedException e)
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+	    	
+	    	System.out.println("La circulation passe aux voitures.");
+	    	lightNorth.setFeux(ColorLights.ROUGE);
+    		lightNorthView.setRed();
+    		lightSouth.setFeux(ColorLights.ROUGE);
+    		lightSouthView.setRed();
+	    	while(bridge.areThereBoats())
+	    	{
+	    		synchronized (Thread.currentThread())
+				{
+					try
+					{
+						Thread.currentThread().wait(500);
+					}
+					catch (InterruptedException e)
+					{
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+	    	}
+	    	if(!bridge.areThereBoats())
+	    	{
+	    		bridge.down();
+	    		bridgeView.close();
+	    		
+	    		lightEast.setFeux(ColorLights.VERT);
+	    		lightEastView.setGreen();
+	    		lightWest.setFeux(ColorLights.VERT);
+	    		lightWestView.setGreen();
+	    		
+	    		barrierEast.up();
+	    		barrierEastView.open();
+	    		barrierWest.up();
+	    		barrierWestView.open();
+	    		try
+	    		{
+	    			threadCarsController.notify();
+	    		}
+	    		catch(IllegalMonitorStateException e)
+	    		{
+					// TODO Auto-generated catch block
+					e.printStackTrace();	    			
+	    		}
 	    	}
 	    }
 	}

@@ -197,7 +197,7 @@ public class View extends JFrame{
 			traffic_bi_north.setRed();
 			traffic_bi_south.setRed();
 			this.traffic_tri_east = createTrafficTri(Position.EAST);
-			this.traffic_tri_east = createTrafficTri(Position.WEST);
+			this.traffic_tri_west = createTrafficTri(Position.WEST);
 		
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block

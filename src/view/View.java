@@ -238,6 +238,11 @@ public class View extends JFrame{
 		
 	}
 	
+	
+	/**
+	 * Creates a new LabelState
+	 * @return the JLabel created
+	 */
 	public JLabel createLabelState() {
 		
 		JLabel lblCapteur = new JLabel("Test");
@@ -260,7 +265,7 @@ public class View extends JFrame{
 	}
 	
 	/**
-	 * Creates the button pannel on the right of the window
+	 * Creates the button panel on the right of the window
 	 * @param contentPane
 	 */
 	private void displayButtons() {

@@ -23,9 +23,6 @@ public class Bridge extends JPanel {
 	private BridgeState pos;
 	private Point p;
 	
-	public BridgeState getPos() {
-		return pos;
-	}
 		
 	public Bridge(JLayeredPane layeredPane, BridgeState pos) throws IOException {
 		super();
@@ -51,7 +48,7 @@ public class Bridge extends JPanel {
 	
 	/**
 	 * Closes the bridge i.e. lower the deck
-	 * At the end of the operation, cars can go through, boats are blocked
+	 *
 	 */
 	public void close() {
 		if(pos == BridgeState.UP) {
@@ -77,7 +74,7 @@ public class Bridge extends JPanel {
 	
 	/**
 	 * Opens the bridge i.e. rises the deck
-	 * At the end of the operation, boats can go through, cars are blocked
+	 *
 	 */
 	public void open() {
 		if( pos == BridgeState.DOWN) {
@@ -101,17 +98,25 @@ public class Bridge extends JPanel {
 	}
 	
 	/**
-	 * Resizes the panel when the bridge is open
+	 * Sets the bridge open
 	 */
 	public void setOpen() {
 		this.setSize(0, bufferedImgBridge.getHeight()+10);
 	}
 	
 	/**
-	 * Resizes the panel when the bridge is closed
+	 * Sets the bridge closed.
 	 */
 	public void setClose() {
 		this.setSize(bufferedImgBridge.getWidth(), bufferedImgBridge.getHeight()+10);
+	}
+
+	public BridgeState getPos() {
+		return pos;
+	}
+	
+	public Point getP() {
+		return p;
 	}
 	
 

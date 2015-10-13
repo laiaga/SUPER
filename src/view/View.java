@@ -41,7 +41,7 @@ public class View extends JFrame{
 	private TrafficTri traffic_tri_west;
 	private TrafficTri traffic_tri_east;
 	
-	protected int speed; //the speedrate of the animation   speed = 15: Nominal. speed = 1: Rapide
+	protected static int speed; //the speedrate of the animation   speed = 15: Nominal. speed = 1: Rapide
 
 	/**
 	 * Launch the application.
@@ -483,13 +483,13 @@ public class View extends JFrame{
 	}
 
 
-	public int getSpeed() {
+	public static int getSpeed() {
 		return speed;
 	}
 
 
-	public void setSpeed(int speed) {
-		speed = speed;
+	public static void setSpeed(int speed) {
+		View.speed = speed;
 	}
 	
 

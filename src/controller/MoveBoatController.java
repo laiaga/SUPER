@@ -1,16 +1,22 @@
 package controller;
 
-import java.awt.Point;
 
 import model.vehicle.Boat;
-import model.vehicle.Direction;
 
+/**
+ * @author Ghislain Dugat, Abdelkader Benameur, Guélaud Petit
+ *
+ */
 public class MoveBoatController implements Runnable
 {
 	
 	private Boat boat;
 	private view.Boat boatView;
 	
+	/**
+	 * @param boat
+	 * @param boatView
+	 */
 	public MoveBoatController(Boat boat, view.Boat boatView)
 	{
 		this.boat = boat;
@@ -33,6 +39,10 @@ public class MoveBoatController implements Runnable
 		boatView.hide();
 	}
 	
+	/**
+	 * @param boatView
+	 * @param x
+	 */
 	private void moveBoatView(view.Boat boatView, int x)
 	{
 		int delta = x / 20;

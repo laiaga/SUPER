@@ -1,25 +1,11 @@
 package controller;
 import java.io.IOException;
 
-import javax.swing.JProgressBar;
-
-import model.BicolorLight;
-import model.Bridge;
-import model.ColorLights;
-import model.TricolorLight;
-import view.Barrier;
-import view.Boat;
-import view.BridgeState;
-import view.Car;
-import view.Position;
-import view.TrafficBi;
-import view.TrafficTri;
 import view.View;
 
 /**
- * 
- * @author Sny_de_Treves
  * Use threads to control environnement
+ * @author Ghislain Dugat, Abdelkader Benameur, Guelaud Lepetit
  *
  */
 public class SystemContoller
@@ -32,6 +18,10 @@ public class SystemContoller
 		
 	}
 		
+	/**
+	 * @param args
+	 * @throws IOException
+	 */
 	public static void main(String[] args) throws IOException
 	{
 		window = new View();

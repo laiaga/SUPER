@@ -25,6 +25,8 @@ import javax.swing.JProgressBar;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
+import controller.ButtonsController;
+
 /**
  * The main JFrame containing the whole GUI
  * @author Loïc Vierin
@@ -41,6 +43,7 @@ public class View extends JFrame{
 	private TrafficBi traffic_bi_south;
 	private TrafficTri traffic_tri_west;
 	private TrafficTri traffic_tri_east;
+	private ButtonsColumn buttons;
 	
 	protected static int speed; //the speedrate of the animation   speed = 15: Nominal. speed = 1: Rapide
 
@@ -200,7 +203,6 @@ public class View extends JFrame{
 			this.traffic_tri_west = createTrafficTri(Position.WEST);
 		
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		
@@ -263,7 +265,7 @@ public class View extends JFrame{
 		setBounds(100, 100, 1218, 858);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		displayButtons();
+		//displayButtons();
 		
 		
 		
@@ -274,7 +276,8 @@ public class View extends JFrame{
 	 * Creates a new LabelState
 	 * @return the JLabel created
 	 */
-	public JLabel createLabelState(String label, Color background) {
+	public JLabel createLabelState(String label, Color background)
+	{
 		
 		JLabel lblCapteur = new JLabel(label);
 		lblCapteur.setFont(new Font("Arimo", Font.BOLD, 14));
@@ -300,10 +303,12 @@ public class View extends JFrame{
 	
 	/**
 	 * Creates the button panel on the right of the window
+	 * @param buttonsController 
 	 * @param contentPane
 	 */
-	private void displayButtons() {
-		ButtonsColumn buttons = new ButtonsColumn();
+	public ButtonsColumn createButtonsColumn(ButtonsController buttonsController) {
+		buttons = new ButtonsColumn(buttonsController);
+		return new ButtonsColumn(buttonsController);
 	}
 
 	/**
@@ -525,6 +530,11 @@ public class View extends JFrame{
 	public static void setSpeed(int speed) {
 		View.speed = speed;
 	}
-	
+	public ButtonsColumn getButtons(){
+		return buttons;
+	}
+	public void setButtons(ButtonsColumn buttons){
+		this.buttons = buttons;
+	}
 
 }

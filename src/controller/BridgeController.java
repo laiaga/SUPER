@@ -8,14 +8,12 @@ import model.PositionBridge;
 import model.TricolorLight;
 
 /**
- * 
- * @author Sny_de_Treves
  * Control the traffic by controlling the lights, the barriers and the bridge
+ * @author Ghislain Dugat, Abdelkader Benameur, Guelaud Lepetit
  *
  */
 public class BridgeController implements Runnable
 {
-	private View window;
 	private Thread threadCarsController;
 	private Thread threadBoatsController;
 	
@@ -38,9 +36,13 @@ public class BridgeController implements Runnable
 	public int carTime;
 	public int boatTime;
 	
+	/**
+	 * @param window
+	 * @param threadCarsController
+	 * @param threadBoatsController
+	 */
 	public BridgeController(View window, Thread threadCarsController, Thread threadBoatsController)
 	{
-		this.window = window;
 		this.threadCarsController = threadCarsController;
 		this.threadBoatsController = threadBoatsController;
 		

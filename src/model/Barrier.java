@@ -15,7 +15,7 @@ public class Barrier
 	
 	public Barrier(Position position)
 	{
-		this.state = false;
+		this.state = true;
 		this.position = position;
 	}
 

@@ -4,12 +4,12 @@ import java.io.IOException;
 import view.View;
 
 /**
- * @author Ghislain Dugat, Abdelkader Benameur, Guélaud Lepetit
+ * Use threads to control environnement
+ * @author Ghislain Dugat, Abdelkader Benameur, Guelaud Lepetit
  *
  */
 public class SystemContoller
 {
-	
 	private static View window;
 
 	
@@ -25,9 +25,15 @@ public class SystemContoller
 	public static void main(String[] args) throws IOException
 	{
 		window = new View();
+		
+	    StateLabelController stateLabelController = new StateLabelController(window);
+	    Thread threadStateLabelController = new Thread(stateLabelController);
+	    threadStateLabelController.start();
+
 		ButtonsController buttonsController = new ButtonsController(window);
 		Thread threadButtonsController = new Thread(buttonsController);
 		threadButtonsController.start();
+		
 		CarController carsController = new CarController(window);
 		Thread threadCarsController = new Thread(carsController);
 	    threadCarsController.start();

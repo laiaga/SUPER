@@ -25,7 +25,9 @@ public class SystemContoller
 	public static void main(String[] args) throws IOException
 	{
 		window = new View();
-		
+		ButtonsController buttonsController = new ButtonsController(window);
+		Thread threadButtonsController = new Thread(buttonsController);
+		threadButtonsController.start();
 		CarController carsController = new CarController(window);
 		Thread threadCarsController = new Thread(carsController);
 	    threadCarsController.start();

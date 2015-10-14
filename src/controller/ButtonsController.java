@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+//import view.ButtonsColumn;
 import view.View;
 
 /**
@@ -22,6 +23,7 @@ public class ButtonsController implements Runnable,ActionListener {
 	public ButtonsController(View window) {
 		this.window = window;
 		window.createButtonsColumn(this);
+		System.out.println("test");
 	}
 
 
@@ -35,8 +37,9 @@ public class ButtonsController implements Runnable,ActionListener {
 		
 		if(j.getName() == "maintenance"){
 			System.out.println(j.getName());
-			window.getButtons().setVisible(false);
-			window.getButtons().dispose();
+			//window.getButtons().setVisible(false);
+			//window.getButtons().dispose();
+			//window.setButtons(new ButtonsColumn(this,true));
 		}
 	}
 

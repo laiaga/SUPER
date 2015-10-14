@@ -8,7 +8,7 @@ import model.PositionBridge;
 import model.TricolorLight;
 
 /**
- * @author Ghislain Dugat, Abdelkader Benameur, Guélaud Petit
+ * @author Ghislain Dugat, Abdelkader Benameur, Guélaud Lepetit
  *
  */
 public class BridgeController implements Runnable

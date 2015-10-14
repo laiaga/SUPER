@@ -81,7 +81,7 @@ public class StateLabelController implements Runnable
 	
 	private String getStringBridge()
 	{
-		return "Bridge : "+bridge.getState();
+		return "Bridge is "+bridge.getState();
 	}
 	
 	private String getStringLightCars()

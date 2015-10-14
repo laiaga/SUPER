@@ -1,9 +1,7 @@
 package controller;
 
-import java.awt.Point;
 
 import model.vehicle.Boat;
-import model.vehicle.Direction;
 
 /**
  * @author Ghislain Dugat, Abdelkader Benameur, Guélaud Petit

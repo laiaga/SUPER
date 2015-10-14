@@ -1,19 +1,6 @@
 package controller;
 import java.io.IOException;
 
-import javax.swing.JProgressBar;
-
-import model.BicolorLight;
-import model.Bridge;
-import model.ColorLights;
-import model.TricolorLight;
-import view.Barrier;
-import view.Boat;
-import view.BridgeState;
-import view.Car;
-import view.Position;
-import view.TrafficBi;
-import view.TrafficTri;
 import view.View;
 
 /**

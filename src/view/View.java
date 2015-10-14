@@ -200,7 +200,6 @@ public class View extends JFrame{
 			this.traffic_tri_west = createTrafficTri(Position.WEST);
 		
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		
@@ -263,7 +262,7 @@ public class View extends JFrame{
 		setBounds(100, 100, 1218, 858);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		displayButtons();
+		//displayButtons();
 		
 		
 		
@@ -299,7 +298,7 @@ public class View extends JFrame{
 	 * Creates the button panel on the right of the window
 	 * @param contentPane
 	 */
-	private void displayButtons() {
+	public void displayButtons() {
 		ButtonsColumn buttons = new ButtonsColumn();
 	}
 

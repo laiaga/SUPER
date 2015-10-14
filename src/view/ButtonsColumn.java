@@ -38,17 +38,29 @@ public class ButtonsColumn extends JFrame {
 	
 	public ButtonsColumn(ButtonsController controller, boolean maintenance){
 		this.maintenance = maintenance;
+		this.controller = controller;
 		
+		buttonsPanel = new JPanel();
 		buttonsPanel.setLayout(new GridLayout(9,1));
 		
-		normalMode();
 		
 		if(maintenance){
 			maintenanceMode();
 		}
+		else{
+			normalMode();
+		}
+		
+		setVisible(true);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setResizable(false);
+		
+		setContentPane(buttonsPanel);
+		getContentPane().setBackground(Color.WHITE);
+		setBounds(1327,100,200,858);
 	}
 	
-	private void normalMode(){
+	public void normalMode(){
 		JButton maintenance = new JButton("Mode maintenance");
 		maintenance.setName("maintenance");
 		maintenance.addActionListener(controller);
@@ -56,8 +68,7 @@ public class ButtonsColumn extends JFrame {
 	}
 	
 	
-	private void maintenanceMode(){
-		
+	public void maintenanceMode(){
 		JButton bridgeUp = new JButton("Lever tabliers");
 		bridgeUp.setName("bridgeUp");
 		bridgeUp.addActionListener(controller);
@@ -88,6 +99,8 @@ public class ButtonsColumn extends JFrame {
 		buttonsPanel.add(barrierDown);
 		buttonsPanel.add(lightsRed);
 		buttonsPanel.add(lightsGreen);
+		buttonsPanel.repaint();
+		this.revalidate();
 	}
 	
 	public void setMaintenance(boolean maintenance){

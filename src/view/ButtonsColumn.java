@@ -7,13 +7,17 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import controller.ButtonsController;
+
 @SuppressWarnings("serial")
 public class ButtonsColumn extends JFrame {
 	private boolean maintenance;
 	private JPanel buttonsPanel;
+	private ButtonsController controller;
 
-	public ButtonsColumn(){
+	public ButtonsColumn(ButtonsController controller){
 		maintenance = false;
+		this.controller = controller;
 		
 		buttonsPanel = new JPanel();
 		buttonsPanel.setLayout(new GridLayout(9,1));
@@ -32,7 +36,7 @@ public class ButtonsColumn extends JFrame {
 		setBounds(1327,100,200,858);
 	}
 	
-	public ButtonsColumn(boolean maintenance){
+	public ButtonsColumn(ButtonsController controller, boolean maintenance){
 		this.maintenance = maintenance;
 		
 		buttonsPanel.setLayout(new GridLayout(9,1));
@@ -46,7 +50,8 @@ public class ButtonsColumn extends JFrame {
 	
 	private void normalMode(){
 		JButton maintenance = new JButton("Mode maintenance");
-		maintenance.addActionListener(null);
+		maintenance.setName("maintenance");
+		maintenance.addActionListener(controller);
 		buttonsPanel.add(maintenance);
 	}
 	
@@ -54,17 +59,28 @@ public class ButtonsColumn extends JFrame {
 	private void maintenanceMode(){
 		
 		JButton bridgeUp = new JButton("Lever tabliers");
-		bridgeUp.addActionListener(null);
+		bridgeUp.setName("bridgeUp");
+		bridgeUp.addActionListener(controller);
+		
 		JButton bridgeDown = new JButton("Abaisser tabliers");
-		bridgeDown.addActionListener(null);
+		bridgeDown.setName("bridgeDown");
+		bridgeDown.addActionListener(controller);
+		
 		JButton barrierUp = new JButton("Lever barrières");
-		barrierUp.addActionListener(null);
+		barrierUp.setName("barrierUp");
+		barrierUp.addActionListener(controller);
+		
 		JButton barrierDown = new JButton("Abaisser barrières");
-		barrierDown.addActionListener(null);
+		barrierDown.setName("barrierDown");
+		barrierDown.addActionListener(controller);
+		
 		JButton lightsRed = new JButton("Tous feux au rouge");
-		lightsRed.addActionListener(null);
+		lightsRed.setName("lightsRed");
+		lightsRed.addActionListener(controller);
+		
 		JButton lightsGreen = new JButton("Tous feux au vert");
-		lightsGreen.addActionListener(null);
+		lightsGreen.setName("lightsGreen");
+		lightsGreen.addActionListener(controller);
 		
 		buttonsPanel.add(bridgeUp);
 		buttonsPanel.add(bridgeDown);

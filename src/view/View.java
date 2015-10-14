@@ -25,6 +25,8 @@ import javax.swing.JProgressBar;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
+import controller.ButtonsController;
+
 /**
  * The main JFrame containing the whole GUI
  * @author Loïc Vierin
@@ -41,6 +43,7 @@ public class View extends JFrame{
 	private TrafficBi traffic_bi_south;
 	private TrafficTri traffic_tri_west;
 	private TrafficTri traffic_tri_east;
+	private ButtonsColumn buttons;
 	
 	protected static int speed; //the speedrate of the animation   speed = 15: Nominal. speed = 1: Rapide
 
@@ -296,10 +299,12 @@ public class View extends JFrame{
 	
 	/**
 	 * Creates the button panel on the right of the window
+	 * @param buttonsController 
 	 * @param contentPane
 	 */
-	public void displayButtons() {
-		ButtonsColumn buttons = new ButtonsColumn();
+	public ButtonsColumn createButtonsColumn(ButtonsController buttonsController) {
+		buttons = new ButtonsColumn(buttonsController);
+		return new ButtonsColumn(buttonsController);
 	}
 
 	/**
@@ -521,6 +526,11 @@ public class View extends JFrame{
 	public static void setSpeed(int speed) {
 		View.speed = speed;
 	}
-	
+	public ButtonsColumn getButtons(){
+		return buttons;
+	}
+	public void setButtons(ButtonsColumn buttons){
+		this.buttons = buttons;
+	}
 
 }

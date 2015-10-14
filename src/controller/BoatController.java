@@ -35,13 +35,23 @@ public class BoatController implements Runnable
 					Boat boatNorthView = window.createBoat(Position.NORTH);
 					model.vehicle.Boat boatSouth = new model.vehicle.Boat(0, 50, Direction.North);
 					Boat boatSouthView = window.createBoat(Position.SOUTH);
-					boatNorth.forward();
 					MoveBoatController moveBoatNorth = new MoveBoatController(boatNorth, boatNorthView);
 					Thread threadBoatNorth = new Thread(moveBoatNorth);
-					threadBoatNorth.start();
-					boatSouth.forward();
 					MoveBoatController moveBoatSouth = new MoveBoatController(boatSouth, boatSouthView);	
 					Thread threadBoatSouth = new Thread(moveBoatSouth);
+					threadBoatNorth.start();
+				    synchronized (Thread.currentThread())
+					{
+						try
+						{
+							Thread.currentThread().wait(100);
+						}
+						catch (InterruptedException e)
+						{
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
 					threadBoatSouth.start();										
 				}
 				else

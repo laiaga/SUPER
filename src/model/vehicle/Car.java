@@ -43,16 +43,16 @@ public class Car extends Vehicle
 				{
 					Bridge.getInstance().addCar();
 				}
+				super.setEntered(true);
 			}
-			super.setEntered(true);
-		}
-		if(super.getPosition() > 480)
-		{
-			if(!super.isGone())
+			if(super.getPosition() > 480)
 			{
-				Bridge.getInstance().removeCar();
+				if(!super.isGone())
+				{
+					Bridge.getInstance().removeCar();
+				}
+				super.setGone(true);
 			}
-			super.setGone(true);
 		}
 	}
 }

@@ -39,6 +39,18 @@ public class CarController implements Runnable
 					Thread threadCarEast = new Thread(moveCarEast);
 				    Thread threadCarWest = new Thread(moveCarWest);
 				    threadCarEast.start();
+				    synchronized (Thread.currentThread())
+					{
+						try
+						{
+							Thread.currentThread().wait(100);
+						}
+						catch (InterruptedException e)
+						{
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
 				    threadCarWest.start();
 					
 				}

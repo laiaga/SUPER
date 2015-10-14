@@ -13,7 +13,7 @@ import view.Position;
 import view.View;
 
 /**
- * @author Ghislain Dugat, Abdelkader Benameur, Guélaud Petit
+ * @author Ghislain Dugat, Abdelkader Benameur, Guélaud Lepetit
  *
  */
 public class BoatController implements Runnable

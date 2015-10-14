@@ -25,17 +25,15 @@ public class SystemContoller
 	public static void main(String[] args) throws IOException
 	{
 		window = new View();
-<<<<<<< HEAD
-	    
+		
 	    StateLabelController stateLabelController = new StateLabelController(window);
 	    Thread threadStateLabelController = new Thread(stateLabelController);
 	    threadStateLabelController.start();
-		
-=======
+
 		ButtonsController buttonsController = new ButtonsController(window);
 		Thread threadButtonsController = new Thread(buttonsController);
 		threadButtonsController.start();
->>>>>>> b8afecc19c8496f08cfbf1a9f9b59fe6ab8f38d5
+		
 		CarController carsController = new CarController(window);
 		Thread threadCarsController = new Thread(carsController);
 	    threadCarsController.start();

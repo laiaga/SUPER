@@ -27,40 +27,37 @@ public class CarController implements Runnable
 		{
 			try
 			{
-				if(Bridge.getInstance().getState() == PositionBridge.Down
-						&& Bridge.getInstance().getLightEast().getFeux() == ColorLights.VERT && Bridge.getInstance().getLightWest().getFeux() == ColorLights.VERT)
-				{
-					model.vehicle.Car carEast = new model.vehicle.Car(0, 100, Direction.West);
-					Car carEastView = window.createCar(Position.EAST);
-					model.vehicle.Car carWest = new model.vehicle.Car(0, 100, Direction.East);
-					Car carWestView = window.createCar(Position.WEST);
-					MoveCarController moveCarEast = new MoveCarController(carEast, carEastView);
-					MoveCarController moveCarWest = new MoveCarController(carWest, carWestView);
-					Thread threadCarEast = new Thread(moveCarEast);
-				    Thread threadCarWest = new Thread(moveCarWest);
-				    threadCarEast.start();
-				    synchronized (Thread.currentThread())
-					{
-						try
-						{
-							Thread.currentThread().wait(100);
-						}
-						catch (InterruptedException e)
-						{
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-					}
-				    threadCarWest.start();
-					
-				}
-				else
+				model.vehicle.Car carEast = new model.vehicle.Car(0, 100, Direction.West);
+				Car carEastView = window.createCar(Position.EAST);
+				model.vehicle.Car carWest = new model.vehicle.Car(0, 100, Direction.East);
+				Car carWestView = window.createCar(Position.WEST);
+				if(!(Bridge.getInstance().getState() == PositionBridge.Down
+						&& Bridge.getInstance().getLightEast().getFeux() == ColorLights.VERT && Bridge.getInstance().getLightWest().getFeux() == ColorLights.VERT))
 				{
 					synchronized (Thread.currentThread())
 					{
 						Thread.currentThread().wait();
 					}
+					
 				}
+				MoveCarController moveCarEast = new MoveCarController(carEast, carEastView);
+				MoveCarController moveCarWest = new MoveCarController(carWest, carWestView);
+				Thread threadCarEast = new Thread(moveCarEast);
+			    Thread threadCarWest = new Thread(moveCarWest);
+			    threadCarEast.start();
+			    synchronized (Thread.currentThread())
+				{
+					try
+					{
+						Thread.currentThread().wait(100);
+					}
+					catch (InterruptedException e)
+					{
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			    threadCarWest.start();
 			}
 			catch (IOException e)
 			{
@@ -76,7 +73,7 @@ public class CarController implements Runnable
 			{
 				try
 				{
-					Thread.currentThread().wait(3000);
+					Thread.currentThread().wait(2000);
 				}
 				catch (InterruptedException e)
 				{

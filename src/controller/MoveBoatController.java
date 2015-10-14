@@ -44,7 +44,7 @@ public class MoveBoatController implements Runnable
 			{
 				try
 				{
-					Thread.currentThread().wait(50);
+					Thread.currentThread().wait(30);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

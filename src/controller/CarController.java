@@ -76,7 +76,7 @@ public class CarController implements Runnable
 			{
 				try
 				{
-					Thread.currentThread().wait(3000);
+					Thread.currentThread().wait(2000);
 				}
 				catch (InterruptedException e)
 				{

@@ -64,7 +64,6 @@ public class TrafficTri extends JPanel {
 		
 		this.add(imgBridge);
 		this.layeredPane.add(this);
-		System.out.println("New Traffic Tricolor "+ pos);
 	}
 	
 	/**
@@ -79,7 +78,7 @@ public class TrafficTri extends JPanel {
 			e.printStackTrace();
 		}
 		imgBridge.setIcon(new ImageIcon(bufferedImgBridge));
-		System.out.println("Traffic Tricolor " + pos + ": " + color );
+		System.out.println("Traffic Tricolor " + pos + " : " + color );
 	}
 	
 	/**
@@ -94,7 +93,7 @@ public class TrafficTri extends JPanel {
 			e.printStackTrace();
 		}
 		imgBridge.setIcon(new ImageIcon(bufferedImgBridge));
-		System.out.println("Traffic Tricolor " + pos + ": " + color );
+		System.out.println("Traffic Tricolor " + pos + " : " + color );
 	}
 	
 	/**
@@ -109,7 +108,7 @@ public class TrafficTri extends JPanel {
 			e.printStackTrace();
 		}
 		imgBridge.setIcon(new ImageIcon(bufferedImgBridge));
-		System.out.println("Traffic Tricolor " + pos + ": " + color );
+		System.out.println("Traffic Tricolor " + pos + " : " + color );
 	}
 	
 	

@@ -76,6 +76,22 @@ public class BridgeController implements Runnable
 			}
 	    	
 	    	System.out.println("La circulation passe aux bateaux.");
+    		lightEast.setFeux(ColorLights.ORANGE);
+    		lightEastView.setOrange();
+    		lightWest.setFeux(ColorLights.ORANGE);
+    		lightWestView.setOrange();
+    		synchronized (Thread.currentThread())
+			{
+				try
+				{
+					Thread.currentThread().wait(1000);
+				}
+				catch (InterruptedException e)
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
     		lightEast.setFeux(ColorLights.ROUGE);
     		lightEastView.setRed();
     		lightWest.setFeux(ColorLights.ROUGE);

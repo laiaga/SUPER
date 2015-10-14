@@ -65,7 +65,6 @@ public class TrafficBi extends JPanel {
 		
 		this.add(imgBridge);
 		this.layeredPane.add(this);
-		System.out.println("New Traffic Bicolor "+ pos);
 	}
 	
 	
@@ -81,7 +80,7 @@ public class TrafficBi extends JPanel {
 			e.printStackTrace();
 		}
 		imgBridge.setIcon(new ImageIcon(bufferedImgBridge));
-		System.out.println("Traffic Bicolor " + pos + ": " + color );
+		System.out.println("Traffic Bicolor " + pos + " : " + color );
 	}
 
 	/**
@@ -96,7 +95,7 @@ public class TrafficBi extends JPanel {
 			e.printStackTrace();
 		}
 		imgBridge.setIcon(new ImageIcon(bufferedImgBridge));
-		System.out.println("Traffic Bicolor " + pos + ": " + color );
+		System.out.println("Traffic Bicolor " + pos + " : " + color );
 	}
 
 	public ColorLights getColor() {

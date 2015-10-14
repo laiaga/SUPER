@@ -4,7 +4,7 @@ import java.io.IOException;
 import view.View;
 
 /**
- * @author Ghislain Dugat, Abdelkader Benameur, Guélaud Petit
+ * @author Ghislain Dugat, Abdelkader Benameur, Guélaud Lepetit
  *
  */
 public class SystemContoller

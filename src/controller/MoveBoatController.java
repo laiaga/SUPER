@@ -4,7 +4,7 @@ package controller;
 import model.vehicle.Boat;
 
 /**
- * @author Ghislain Dugat, Abdelkader Benameur, Guélaud Petit
+ * @author Ghislain Dugat, Abdelkader Benameur, Guélaud Lepetit
  *
  */
 public class MoveBoatController implements Runnable

@@ -6,7 +6,7 @@ import model.vehicle.Car;
 import model.vehicle.Direction;
 
 /**
- * @author Ghislain Dugat, Abdelkader Benameur, Guélaud Petit
+ * @author Ghislain Dugat, Abdelkader Benameur, Guélaud Lepetit
  *
  */
 public class MoveCarController implements Runnable

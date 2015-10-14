@@ -5,11 +5,19 @@ import java.awt.Point;
 import model.vehicle.Car;
 import model.vehicle.Direction;
 
+/**
+ * @author Ghislain Dugat, Abdelkader Benameur, Guélaud Petit
+ *
+ */
 public class MoveCarController implements Runnable
 {
 	private Car car;
 	private view.Car carView;
 	
+	/**
+	 * @param car
+	 * @param carView
+	 */
 	public MoveCarController(Car car, view.Car carView)
 	{
 		this.car = car;
@@ -35,6 +43,10 @@ public class MoveCarController implements Runnable
 		carView.hide();
 	}
 	
+	/**
+	 * @param carView
+	 * @param x
+	 */
 	private void moveCarView(view.Car carView, int x)
 	{
 		int delta = x / 20;

@@ -16,6 +16,10 @@ import view.TrafficBi;
 import view.TrafficTri;
 import view.View;
 
+/**
+ * @author Ghislain Dugat, Abdelkader Benameur, Guélaud Petit
+ *
+ */
 public class SystemContoller
 {
 	
@@ -27,6 +31,10 @@ public class SystemContoller
 		
 	}
 		
+	/**
+	 * @param args
+	 * @throws IOException
+	 */
 	public static void main(String[] args) throws IOException
 	{
 		window = new View();

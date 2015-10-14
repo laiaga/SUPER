@@ -12,11 +12,18 @@ import view.Car;
 import view.Position;
 import view.View;
 
+/**
+ * @author Ghislain Dugat, Abdelkader Benameur, Guélaud Petit
+ *
+ */
 public class BoatController implements Runnable
 {
 	
 	private View window;
 	
+	/**
+	 * @param window
+	 */
 	public BoatController(View window)
 	{
 		this.window = window;

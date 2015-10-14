@@ -45,7 +45,7 @@ public class Car extends Vehicle
 				}
 				super.setEntered(true);
 			}
-			if(super.getPosition() > 480)
+			if(super.getPosition() > 550)
 			{
 				if(!super.isGone())
 				{

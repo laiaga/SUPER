@@ -57,7 +57,6 @@ public class Boat extends JPanel{
 
 		this.add(imgBoat);
 		layeredPane.add(this);
-		System.out.println("New Boat "+ pos);
 	}
 	
 	/**

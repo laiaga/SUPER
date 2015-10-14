@@ -44,7 +44,6 @@ public class Bridge extends JPanel {
 		
 		this.add(imgBridge);
 		this.layeredPane.add(this);
-		System.out.println("New Bridge "+ pos);
 	}
 	
 	/**

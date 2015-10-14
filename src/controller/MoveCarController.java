@@ -30,27 +30,29 @@ public class MoveCarController implements Runnable
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			int x = 0;
-			if(car.getDirection() == Direction.West)
+			moveCarView(carView, car.getSpeed());
+		}
+		carView.hide();
+	}
+	
+	private void moveCarView(view.Car carView, int x)
+	{
+		int delta = x / 20;
+		while(x > delta)
+		{
+			carView.move(delta);
+			x -= delta;
+			synchronized (Thread.currentThread())
 			{
-				x = car.getPosition() + 140 - carView.getP().x;
-			}
-			else
-			{
-				x = car.getSpeed();
-			}
-			carView.move(x);
-			synchronized (Thread.currentThread()) {
-				try {
-					Thread.currentThread().wait(1000);
+				try
+				{
+					Thread.currentThread().wait(50);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
 		}
-		carView.hide();
-		
 	}
 
 }

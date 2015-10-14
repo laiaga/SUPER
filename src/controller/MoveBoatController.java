@@ -28,21 +28,29 @@ public class MoveBoatController implements Runnable
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			boatView.move(boat.getSpeed());
+			moveBoatView(boatView, boat.getSpeed());
+		}
+		boatView.hide();
+	}
+	
+	private void moveBoatView(view.Boat boatView, int x)
+	{
+		int delta = x / 20;
+		while(x > delta)
+		{
+			boatView.move(delta);
+			x -= delta;
 			synchronized (Thread.currentThread())
 			{
 				try
 				{
-					Thread.currentThread().wait(1000);
-				}
-				catch (InterruptedException e)
-				{
+					Thread.currentThread().wait(50);
+				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
 		}
-		boatView.hide();
 	}
 
 }

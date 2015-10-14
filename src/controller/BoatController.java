@@ -31,9 +31,9 @@ public class BoatController implements Runnable
 				if(Bridge.getInstance().getState() == PositionBridge.Up
 						&& Bridge.getInstance().getLightNorth().getFeux() == ColorLights.VERT && Bridge.getInstance().getLightSouth().getFeux() == ColorLights.VERT)
 				{
-					model.vehicle.Boat boatNorth = new model.vehicle.Boat(0, 1, Direction.South);
+					model.vehicle.Boat boatNorth = new model.vehicle.Boat(0, 50, Direction.South);
 					Boat boatNorthView = window.createBoat(Position.NORTH);
-					model.vehicle.Boat boatSouth = new model.vehicle.Boat(0, 1, Direction.North);
+					model.vehicle.Boat boatSouth = new model.vehicle.Boat(0, 50, Direction.North);
 					Boat boatSouthView = window.createBoat(Position.SOUTH);
 					boatNorth.forward();
 					MoveBoatController moveBoatNorth = new MoveBoatController(boatNorth, boatNorthView);
@@ -66,19 +66,7 @@ public class BoatController implements Runnable
 			{
 				try
 				{
-					synchronized (Thread.currentThread())
-					{
-						try
-						{
-							Thread.currentThread().wait(1000);
-						}
-						catch (InterruptedException e)
-						{
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-					}
-					Thread.currentThread().wait(5000);
+					Thread.currentThread().wait(3000);
 				}
 				catch (InterruptedException e)
 				{

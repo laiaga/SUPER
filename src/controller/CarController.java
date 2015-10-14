@@ -64,19 +64,7 @@ public class CarController implements Runnable
 			{
 				try
 				{
-					synchronized (Thread.currentThread())
-					{
-						try
-						{
-							Thread.currentThread().wait(1000);
-						}
-						catch (InterruptedException e)
-						{
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-					}
-					Thread.currentThread().wait(5000);
+					Thread.currentThread().wait(3000);
 				}
 				catch (InterruptedException e)
 				{

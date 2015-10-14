@@ -37,10 +37,12 @@ public class Car extends Vehicle
 			int newPos = getPosition();
 			newPos += getSpeed();
 			setPosition(newPos);
-			if(super.getPosition() > 50)
+			if(super.getPosition() >= super.getSpeed())
 			{
 				if(!super.isEntered())
-				Bridge.getInstance().addCar();
+				{
+					Bridge.getInstance().addCar();
+				}
 			}
 			super.setEntered(true);
 		}

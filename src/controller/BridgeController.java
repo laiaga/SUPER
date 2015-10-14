@@ -106,9 +106,9 @@ public class BridgeController implements Runnable
 	    		bridgeView.open();
 	    		
 	    		lightNorth.setFeux(ColorLights.VERT);
-	    		lightNorthView.setRed();
+	    		lightNorthView.setGreen();
 	    		lightSouth.setFeux(ColorLights.VERT);
-	    		lightSouthView.setRed();
+	    		lightSouthView.setGreen();
 	    		
 	    		synchronized (threadBoatsController)
 				{

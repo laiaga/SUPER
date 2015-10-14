@@ -23,21 +23,21 @@ public class Boat extends Vehicle {
 
 	@Override
 	public void forward() throws Exception {
-		if(isWaiting()){
-			throw new Exception("You can't ask for a car in the state \"waiting\" to move !");
-		}
-		if(isGone()){
-			throw new Exception("You can't ask for a car that has already finished crossing the bridge.");
+		if(isWaiting())
+		{
+			throw new Exception("You can't ask for a boat in the state \"waiting\" to move !");
 		}
 		else
 		{
 			int newPos = getPosition();
 			newPos += getSpeed();
 			setPosition(newPos);
-			if(super.getPosition() > 50)
+			if(super.getPosition() >= super.getSpeed())
 			{
 				if(!super.isEntered())
-				Bridge.getInstance().addCar();
+				{
+					Bridge.getInstance().addBoat();
+				}
 			}
 			super.setEntered(true);
 		}
@@ -45,7 +45,7 @@ public class Boat extends Vehicle {
 		{
 			if(!super.isGone())
 			{
-				Bridge.getInstance().removeCar();
+				Bridge.getInstance().removeBoat();
 			}
 			super.setGone(true);
 		}

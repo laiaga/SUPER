@@ -3,6 +3,10 @@ import java.io.IOException;
 
 import view.View;
 
+/**
+ * @author Ghislain Dugat, Abdelkader Benameur, Guélaud Petit
+ *
+ */
 public class SystemContoller
 {
 	
@@ -14,13 +18,14 @@ public class SystemContoller
 		
 	}
 		
+	/**
+	 * @param args
+	 * @throws IOException
+	 */
 	public static void main(String[] args) throws IOException
 	{
 		window = new View();
 		
-		ButtonsController buttonsController = new ButtonsController(window);
-		Thread threadButtonsController = new Thread(buttonsController);
-		threadButtonsController.start();
 		CarController carsController = new CarController(window);
 		Thread threadCarsController = new Thread(carsController);
 	    threadCarsController.start();

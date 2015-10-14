@@ -7,6 +7,10 @@ import model.ColorLights;
 import model.PositionBridge;
 import model.TricolorLight;
 
+/**
+ * @author Ghislain Dugat, Abdelkader Benameur, Guélaud Petit
+ *
+ */
 public class BridgeController implements Runnable
 {
 	private View window;
@@ -32,6 +36,11 @@ public class BridgeController implements Runnable
 	public int carTime;
 	public int boatTime;
 	
+	/**
+	 * @param window
+	 * @param threadCarsController
+	 * @param threadBoatsController
+	 */
 	public BridgeController(View window, Thread threadCarsController, Thread threadBoatsController)
 	{
 		this.window = window;

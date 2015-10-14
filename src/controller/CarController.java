@@ -10,11 +10,18 @@ import view.Car;
 import view.Position;
 import view.View;
 
+/**
+ * @author Ghislain Dugat, Abdelkader Benameur, Guélaud Petit
+ *
+ */
 public class CarController implements Runnable
 {
 	
 	private View window;
 
+	/**
+	 * @param window
+	 */
 	public CarController(View window)
 	{
 		this.window = window;

@@ -16,9 +16,14 @@ import view.TrafficBi;
 import view.TrafficTri;
 import view.View;
 
+/**
+ * 
+ * @author Sny_de_Treves
+ * Use threads to control environnement
+ *
+ */
 public class SystemContoller
 {
-	
 	private static View window;
 
 	
@@ -30,6 +35,10 @@ public class SystemContoller
 	public static void main(String[] args) throws IOException
 	{
 		window = new View();
+	    
+	    StateLabelController stateLabelController = new StateLabelController(window);
+	    Thread threadStateLabelController = new Thread(stateLabelController);
+	    threadStateLabelController.start();
 		
 		CarController carsController = new CarController(window);
 		Thread threadCarsController = new Thread(carsController);

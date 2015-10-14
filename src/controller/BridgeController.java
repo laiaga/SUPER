@@ -7,6 +7,12 @@ import model.ColorLights;
 import model.PositionBridge;
 import model.TricolorLight;
 
+/**
+ * 
+ * @author Sny_de_Treves
+ * Control the traffic by controlling the lights, the barriers and the bridge
+ *
+ */
 public class BridgeController implements Runnable
 {
 	private View window;

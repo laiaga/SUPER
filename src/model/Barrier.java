@@ -38,16 +38,12 @@ public class Barrier
 	{
 		if(this.state == false)
 			this.state = true;
-		else
-			System.out.println("Barrier already up");
 	}
 	
 	public void down()
 	{
-		if( this.state == true)
+		if(this.state == true)
 			this.state = false;
-		else
-			System.out.println("Barrier already down");
 	}
 
 }

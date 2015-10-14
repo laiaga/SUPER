@@ -274,11 +274,14 @@ public class View extends JFrame{
 	 * Creates a new LabelState
 	 * @return the JLabel created
 	 */
-	public JLabel createLabelState() {
+	public JLabel createLabelState(String label, Color background) {
 		
-		JLabel lblCapteur = new JLabel("Test");
-		lblCapteur.setFont(new Font("Arimo", Font.PLAIN, 14));
-		lblCapteur.setForeground(Color.RED);
+		JLabel lblCapteur = new JLabel(label);
+		lblCapteur.setFont(new Font("Arimo", Font.BOLD, 14));
+		lblCapteur.setForeground(Color.BLACK);
+		
+		lblCapteur.setBackground(background);
+		lblCapteur.setOpaque(true);
 
 		lblCapteur.setHorizontalAlignment(SwingConstants.LEFT);
 		

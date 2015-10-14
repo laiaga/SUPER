@@ -28,39 +28,36 @@ public class BoatController implements Runnable
 		{
 			try
 			{
-				if(Bridge.getInstance().getState() == PositionBridge.Up
-						&& Bridge.getInstance().getLightNorth().getFeux() == ColorLights.VERT && Bridge.getInstance().getLightSouth().getFeux() == ColorLights.VERT)
-				{
-					model.vehicle.Boat boatNorth = new model.vehicle.Boat(0, 50, Direction.South);
-					Boat boatNorthView = window.createBoat(Position.NORTH);
-					model.vehicle.Boat boatSouth = new model.vehicle.Boat(0, 50, Direction.North);
-					Boat boatSouthView = window.createBoat(Position.SOUTH);
-					MoveBoatController moveBoatNorth = new MoveBoatController(boatNorth, boatNorthView);
-					Thread threadBoatNorth = new Thread(moveBoatNorth);
-					MoveBoatController moveBoatSouth = new MoveBoatController(boatSouth, boatSouthView);	
-					Thread threadBoatSouth = new Thread(moveBoatSouth);
-					threadBoatNorth.start();
-				    synchronized (Thread.currentThread())
-					{
-						try
-						{
-							Thread.currentThread().wait(100);
-						}
-						catch (InterruptedException e)
-						{
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-					}
-					threadBoatSouth.start();										
-				}
-				else
+				model.vehicle.Boat boatNorth = new model.vehicle.Boat(0, 50, Direction.South);
+				Boat boatNorthView = window.createBoat(Position.NORTH);
+				model.vehicle.Boat boatSouth = new model.vehicle.Boat(0, 50, Direction.North);
+				Boat boatSouthView = window.createBoat(Position.SOUTH);
+				if(!(Bridge.getInstance().getState() == PositionBridge.Up
+						&& Bridge.getInstance().getLightNorth().getFeux() == ColorLights.VERT && Bridge.getInstance().getLightSouth().getFeux() == ColorLights.VERT))
 				{
 					synchronized (Thread.currentThread())
 					{
 						Thread.currentThread().wait();
+					}										
+				}
+				MoveBoatController moveBoatNorth = new MoveBoatController(boatNorth, boatNorthView);
+				Thread threadBoatNorth = new Thread(moveBoatNorth);
+				MoveBoatController moveBoatSouth = new MoveBoatController(boatSouth, boatSouthView);	
+				Thread threadBoatSouth = new Thread(moveBoatSouth);
+				threadBoatNorth.start();
+			    synchronized (Thread.currentThread())
+				{
+					try
+					{
+						Thread.currentThread().wait(100);
+					}
+					catch (InterruptedException e)
+					{
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}
 				}
+				threadBoatSouth.start();
 			}
 			catch (IOException e)
 			{

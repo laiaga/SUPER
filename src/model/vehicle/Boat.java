@@ -40,7 +40,7 @@ public class Boat extends Vehicle {
 				}
 				super.setEntered(true);
 			}
-			if(super.getPosition() > 550)
+			if(super.getPosition() > 400)
 			{
 				if(!super.isGone())
 				{
